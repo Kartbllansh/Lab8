@@ -15,6 +15,7 @@ public class HelloApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 1280, 720);
         stage.setTitle("Dragon Program");
         stage.setScene(scene);
+        stage.getIcons().add(new Image("/data/ico.png"));
         stage.show();
     }
 
