@@ -30,7 +30,7 @@
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor></Button>
-      <Button fx:id="regist" graphicTextGap="10.0" layoutX="658.0" layoutY="175.0" lineSpacing="150.0" mnemonicParsing="false" mouseTransparent="true" prefHeight="81.0" prefWidth="210.0" style="-fx-background-color: transparent; -fx-font-family: BRHendrix;" text="SIGN UP" onAction="#handleButtonClick" textOverrun="LEADING_ELLIPSIS" wrapText="true">
+      <Button fx:id="regist" graphicTextGap="10.0" layoutX="658.0" layoutY="175.0" lineSpacing="150.0" mnemonicParsing="false" mouseTransparent="false" prefHeight="81.0" prefWidth="210.0" style="-fx-background-color: transparent; -fx-font-family: BRHendrix;" text="SIGN UP"  textOverrun="LEADING_ELLIPSIS" wrapText="true">
          <font>
             <Font name="@../image/BRHendrix-SemiBold.ttf" size="31.0" />
          </font>

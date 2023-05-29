@@ -16,24 +16,18 @@ public class AutController {
     private Button regist;
     @FXML
     private void initialize(){
-      regist.setOnAction(this::handleButtonClick);
+regist.setOnAction(event -> {
+    try {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/SIGNUP.fxml"));
+        Scene signUpScene = new Scene(fxmlLoader.load(), 1280, 720);
+
+        Stage currentStage = (Stage) regist.getScene().getWindow();
+        currentStage.setScene(signUpScene);
+    } catch (IOException e) {
+        e.printStackTrace();
     }
-    @FXML
-    private void handleButtonClick(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/fxml/SIGNUP.fxml"));
-            Scene signUp = new Scene(fxmlLoader.load(), 1280, 720);
-             Stage stage = (Stage) regist.getScene().getWindow();
-            stage.setScene(signUp);
 
-
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
+});
     }
 
 

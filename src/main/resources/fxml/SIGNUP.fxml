@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.lab8.Apps.AutController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" >
    <children>
       <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -55,7 +55,7 @@
             <Font size="24.0" />
          </font>
       </Button>
-      <MenuButton layoutX="850.0" layoutY="158.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="85.0" style="-fx-background-color: 0000; -fx-font-family: BRHendrix;" text="Language" textFill="#35aeff">
+      <MenuButton layoutX="850.0" layoutY="158.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="85.0" style="-fx-background-color: transparent; -fx-font-family: BRHendrix;" text="Language" textFill="#35aeff">
         <items>
           <MenuItem mnemonicParsing="false" text="Action 1" />
           <MenuItem mnemonicParsing="false" text="Action 2" />
