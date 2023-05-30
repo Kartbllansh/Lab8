@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.MenuButton?>
@@ -12,7 +13,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<?import java.net.URL?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.lab8.Apps.AutLogController">
    <children>
       <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
@@ -25,7 +25,7 @@
             <Image url="@../image/Слой 9.png" />
          </image>
       </ImageView>
-      <Button   layoutX="440.0" layoutY="180.0"   prefHeight="70.0" prefWidth="199.0" style="-fx-background-color: transparent;" text="LOG IN" textFill="WHITE"  underline="true" wrapText="true">
+      <Button layoutX="440.0" layoutY="180.0" prefHeight="70.0" prefWidth="199.0" style="-fx-background-color: transparent;" text="LOG IN" textFill="WHITE" underline="true" wrapText="true">
          <font>
             <Font name="@../image/BRHendrix-SemiBold.ttf" size="31.0" />
          </font>
@@ -35,7 +35,7 @@
          <effect>
             <Glow level="0.22" />
          </effect></Button>
-      <Button fx:id="regist" graphicTextGap="10.0" layoutX="658.0" layoutY="175.0" lineSpacing="150.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="210.0" style="-fx-background-color: transparent;" text="SIGN UP"  wrapText="true">
+      <Button fx:id="regist" graphicTextGap="10.0" layoutX="658.0" layoutY="175.0" lineSpacing="150.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="210.0" style="-fx-background-color: transparent;" text="SIGN UP" wrapText="true">
          <font>
             <Font name="@../image/BRHendrix-SemiBold.ttf" size="31.0" />
          </font>
@@ -47,7 +47,7 @@
          <font>
             <Font name="@../image/BRHendrix-SemiBold.ttf" size="17.0" />
          </font></Text>
-      <TextField layoutX="440.0" layoutY="323.0" opacity="0.51" prefHeight="37.0" prefWidth="372.0" promptText="Login" style="-fx-background-color: #525252;-fx-text-fill: #ffffff; -fx-background-radius: 15px;">
+      <TextField fx:id="name" layoutX="440.0" layoutY="323.0" opacity="0.51" prefHeight="37.0" prefWidth="372.0" promptText="Login" style="-fx-background-color: #525252;-fx-text-fill: #ffffff; -fx-background-radius: 15px;">
          <font>
             <Font name="Arial Rounded MT Bold" size="15.0" />
          </font>
@@ -57,15 +57,18 @@
             <Font name="@../image/BRHendrix-SemiBold.ttf" size="17.0" />
          </font>
       </Text>
-      <TextField layoutX="440.0" layoutY="425.0" opacity="0.51" prefHeight="37.0" prefWidth="372.0" promptText="Password" style="-fx-text-fill: #ffffff; -fx-background-color: #525252; -fx-background-radius: 15px;">
+      <TextField fx:id="passwd" layoutX="440.0" layoutY="425.0" opacity="0.51" prefHeight="37.0" prefWidth="372.0" promptText="Password" style="-fx-text-fill: #ffffff; -fx-background-color: #525252; -fx-background-radius: 15px;">
          <font>
             <Font name="Arial" size="15.0" />
          </font>
       </TextField>
-      <Button cacheShape="false" centerShape="false" focusTraversable="false" layoutX="564.0" layoutY="506.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="199.0" scaleShape="false" style="-fx-background-color: #754d4a; -fx-background-radius: 20px; -fx-font-family: BRHendrix;" text="SIGN IN" textFill="WHITE">
+      <Button fx:id="enter" layoutX="564.0" layoutY="506.0" opacity="0.89" prefHeight="55.0" prefWidth="199.0" style="-fx-background-color: #754d4a; -fx-background-radius: 20px; -fx-border-radius: 20px; -fx-border-color: #444444; -fx-border-width: 1px;" text="SIGN IN" textFill="WHITE">
          <font>
-            <Font size="24.0" />
+            <Font name="@../image/BRHendrix-SemiBold.ttf" size="24.0" />
          </font>
+         <stylesheets>
+            <URL value="@../css/enter.css" />
+         </stylesheets>
       </Button>
       <MenuButton contentDisplay="TOP" layoutX="841.0" layoutY="162.0" mnemonicParsing="false" opacity="0.93" prefHeight="26.0" prefWidth="89.0" style="-fx-background-color: transparent; -fx-font-family: BRHendrix;" text="Languages" textFill="#35aeff">
          

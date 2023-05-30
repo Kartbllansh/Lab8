@@ -18,7 +18,7 @@ public class MainDataBase {
      */
     private static void getConnection() {
         try {
-            connection = DriverManager.getConnection(InfoBase.getUrl(), InfoBase.getLogin(), InfoBase.getPasswd());
+            connection = DriverManager.getConnection("jdbc:postgresql://db:5432/studs", "s368489", "RvcIM5JekHHeToZz");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

@@ -79,7 +79,7 @@ public class InfoBase {
     static {
         Properties properties = new Properties();
         try {
-            properties.load(new FileInputStream("sett.properties"));
+            properties.load(new FileInputStream("data/sett.properties"));
             url = properties.getProperty("url");
             login = properties.getProperty("user");
             passwd = properties.getProperty("password");

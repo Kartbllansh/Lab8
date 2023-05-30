@@ -71,7 +71,6 @@ public class InvokerCommand {
      */
     public void addCommandWithoutArguments(){
         commandWithoutArguments.put("clear_data", new CommandDelData(collectionManager));
-        commandWithoutArguments.put("authorization", new CommandAutorizate(users));
         commandWithoutArguments.put("logout", new CommandLogOut(collectionManager));
         commandWithoutArguments.put("add_if_min", new CommandAddMin(collectionManager));
         commandWithoutArguments.put("add", new CommandAdd(collectionManager));

@@ -55,13 +55,13 @@ public class Users {
         if(decision){
             System.out.println("Пользователь с таким логином существует");
             System.out.println("Войдите в аккаунт "+login);
-            enter(login, scanner);
+
 
 
         } else {
             System.out.println("Пользователя с таким логином не существует");
             System.out.println("Зарегистрируйте аккаунт "+login);
-            registration(login, scanner);
+
         }
 
     }
@@ -70,15 +70,14 @@ public class Users {
      * Метод, позволяющий войти в аккаунт
      *
      * @param login   the login
-     * @param scanner the scanner
+
      */
-    public void enter(String login, Scanner scanner){
+    public static void enter(String login, String passwd){
 
         try {
             int count = 5;
 
         while(count > 0){
-            System.out.println("Введите пароль");
             MessageDigest md = MessageDigest.getInstance("SHA-512");
             ResultSet resultSetSalt = MainDataBase.requestSQLWith("SELECT salt FROM USERS WHERE login = ?", login);
             assert resultSetSalt != null;
@@ -87,7 +86,7 @@ public class Users {
             ResultSet resultSetHash = MainDataBase.requestSQLWith("SELECT hash FROM USERS WHERE login = ?", login);
             assert resultSetHash != null;
             resultSetHash.next();
-            byte[] hash = md.digest(("*63&^mVLC(#" + scanner.nextLine().trim() + salt).getBytes(StandardCharsets.UTF_8));
+            byte[] hash = md.digest(("*63&^mVLC(#" + passwd.trim() + salt).getBytes(StandardCharsets.UTF_8));
             if(Arrays.toString(hash).equals(resultSetHash.getString(1))){
                 System.out.println("Добро пожаловать, "+login);
                 currentUser = login;
@@ -108,17 +107,13 @@ public class Users {
      * Метод, позволяющий зарегестрировать аккаунт
      *
      * @param login   the login
-     * @param scanner the scanner
+
      */
-    public void registration(String login, Scanner scanner){
-        String passwd = null;
+    public static void registration(String login, String password, String dPaswwrd){
         int count =5;
         while (count>0) {
-            System.out.println("Введите пароль");
-            passwd = scanner.nextLine().trim();
-            System.out.println("Введите пароль еще раз");
-            String passwdd = scanner.nextLine().trim();
-            if(!passwdd.equals(passwd)){
+
+            if(!password.equals(dPaswwrd)){
                 System.out.println("Пароли не совпадают. Повторите попытку. Их осталось "+(--count));
             } else {
                 count = -10;
@@ -131,7 +126,7 @@ public class Users {
             throw new RuntimeException(e);
         }
         String salt = SaltGenerate.saltGetter();
-        byte[] hash = md.digest(("*63&^mVLC(#" + passwd + salt).getBytes(StandardCharsets.UTF_8));
+        byte[] hash = md.digest(("*63&^mVLC(#" + password + salt).getBytes(StandardCharsets.UTF_8));
         //MainDataBase.requestSQLWithout("INSERT INTO USERS (login, hash, salt) VALUES (?, ?, ?)", login, Arrays.toString(hash), salt);
         MainDataBase.requestSQLWithout("INSERT INTO USERS (login, hash, salt) VALUES ('" + login + "', '" + Arrays.toString(hash) + "', '" + salt + "')");
         System.out.println("Вы успешно прошли регистрацию");

@@ -48,7 +48,7 @@
          <font>
             <Font name="@../image/BRHendrix-SemiBold.ttf" size="17.0" />
          </font></Text>
-      <TextField layoutX="440.0" layoutY="276.0" opacity="0.51" prefHeight="37.0" prefWidth="372.0" promptText="Login" style="-fx-background-color: #525252;-fx-text-fill: #ffffff; -fx-background-radius: 15px;">
+      <TextField fx:id="name" layoutX="440.0" layoutY="276.0" opacity="0.51" prefHeight="37.0" prefWidth="372.0" promptText="Login" style="-fx-background-color: #525252;-fx-text-fill: #ffffff; -fx-background-radius: 15px;">
          <font>
             <Font name="Arial Rounded MT Bold" size="15.0" />
          </font>
@@ -58,14 +58,14 @@
             <Font name="@../image/BRHendrix-SemiBold.ttf" size="17.0" />
          </font>
       </Text>
-      <TextField layoutX="440.0" layoutY="360.0" opacity="0.51" prefHeight="37.0" prefWidth="372.0" promptText="Password" style="-fx-background-color: #525252;-fx-text-fill: #ffffff; -fx-background-radius: 15px;">
+      <TextField fx:id="psswd" layoutX="440.0" layoutY="360.0" opacity="0.51" prefHeight="37.0" prefWidth="372.0" promptText="Password" style="-fx-background-color: #525252;-fx-text-fill: #ffffff; -fx-background-radius: 15px;">
          <font>
             <Font name="Arial" size="15.0" />
          </font>
       </TextField>
-      <Button layoutX="564.0" layoutY="506.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="199.0" style="-fx-background-color: #754d4a; -fx-background-radius: 20px; -fx-font-family: BRHendrix;" text="SIGN UP" textFill="WHITE">
+      <Button fx:id="enter" layoutX="564.0" layoutY="506.0" opacity="0.89" prefHeight="55.0" prefWidth="199.0" style="-fx-background-color: #754d4a; -fx-background-radius: 20px;-fx-border-radius: 20px; -fx-border-color: #444444; -fx-border-width: 1px;" text="SIGN UP" textFill="WHITE">
          <font>
-            <Font size="24.0" />
+            <Font name="@../image/BRHendrix-SemiBold.ttf" size="24.0" />
          </font>
       </Button>
       <MenuButton contentDisplay="TOP" layoutX="841.0" layoutY="162.0" mnemonicParsing="false" opacity="0.93" prefHeight="26.0" prefWidth="89.0" style="-fx-background-color: transparent; -fx-font-family: BRHendrix;" text="Languages" textFill="#35aeff">
@@ -111,7 +111,7 @@
             <Font name="@../image/BRHendrix-SemiBold.ttf" size="17.0" />
          </font>
       </Text>
-      <TextField layoutX="440.0" layoutY="439.0" opacity="0.51" prefHeight="37.0" prefWidth="372.0" promptText="Repeat password" style="-fx-background-color: #525252; -fx-background-radius: 15px; -fx-text-fill: #ffffff;">
+      <TextField fx:id="dPasswd" layoutX="440.0" layoutY="439.0" opacity="0.51" prefHeight="37.0" prefWidth="372.0" promptText="Repeat password" style="-fx-background-color: #525252; -fx-background-radius: 15px; -fx-text-fill: #ffffff;">
          <font>
             <Font name="Arial" size="15.0" />
          </font>
