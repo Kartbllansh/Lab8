@@ -9,7 +9,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class AutRegController {
-@FXML
+
+    @FXML
     private Button login;
 @FXML
     private void initialize(){

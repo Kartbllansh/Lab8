@@ -1,0 +1,7 @@
+#regist:hover {
+    -fx-font-size: 22pt;
+    -fx-cursor: HAND;
+    -fx-text-fill: #b1b1b1;
+    -fx-underline: true;
+
+}
