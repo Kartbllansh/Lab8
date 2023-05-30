@@ -1,6 +1,7 @@
 module com.example.lab.Apps {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.sql;
 
 
     opens com.example.lab8.Apps to javafx.fxml;
