@@ -5,6 +5,7 @@
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -23,14 +24,17 @@
             <Image url="@../image/Слой 9.png" />
          </image>
       </ImageView>
-      <Button cacheShape="false" centerShape="false" contentDisplay="CENTER" graphicTextGap="10.0" layoutX="440.0" layoutY="180.0" lineSpacing="20.0" mnemonicParsing="false" mouseTransparent="true" prefHeight="70.0" prefWidth="199.0" scaleShape="false" style="-fx-background-color: transparent; -fx-font-family: BRHendrix Bold;" text="LOG IN" textFill="WHITE" textOverrun="CLIP" underline="true" wrapText="true">
+      <Button contentDisplay="CENTER" graphicTextGap="10.0" layoutX="440.0" layoutY="180.0" lineSpacing="20.0" mnemonicParsing="false" mouseTransparent="true" prefHeight="70.0" prefWidth="199.0" style="-fx-background-color: transparent; -fx-font-family: BRHendrix Bold;" text="LOG IN" textFill="WHITE" textOverrun="CLIP" underline="true" wrapText="true">
          <font>
             <Font name="@../image/BRHendrix-SemiBold.ttf" size="31.0" />
          </font>
          <cursor>
             <Cursor fx:constant="DEFAULT" />
-         </cursor></Button>
-      <Button fx:id="regist" graphicTextGap="10.0" layoutX="658.0" layoutY="175.0" lineSpacing="150.0" mnemonicParsing="false" mouseTransparent="false" prefHeight="81.0" prefWidth="210.0" style="-fx-background-color: transparent; -fx-font-family: BRHendrix;" text="SIGN UP"  textOverrun="LEADING_ELLIPSIS" wrapText="true">
+         </cursor>
+         <effect>
+            <Glow level="0.22" />
+         </effect></Button>
+      <Button fx:id="regist" graphicTextGap="10.0" layoutX="658.0" layoutY="175.0" lineSpacing="150.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="210.0" style="-fx-background-color: transparent; -fx-font-family: BRHendrix;" text="SIGN UP" textOverrun="CLIP" wrapText="true">
          <font>
             <Font name="@../image/BRHendrix-SemiBold.ttf" size="31.0" />
          </font>
@@ -39,9 +43,9 @@
          <font>
             <Font name="@../image/BRHendrix-SemiBold.ttf" size="17.0" />
          </font></Text>
-      <TextField layoutX="440.0" layoutY="323.0" opacity="0.51" prefHeight="37.0" prefWidth="372.0" promptText="Login" style="-fx-background-color: #525252; -fx-background-radius: 15px;">
+      <TextField layoutX="440.0" layoutY="323.0" opacity="0.51" prefHeight="37.0" prefWidth="372.0" promptText="Login" style="-fx-background-color: #525252;-fx-text-fill: #ffffff; -fx-background-radius: 15px;">
          <font>
-            <Font name="Bell MT" size="15.0" />
+            <Font name="Arial Rounded MT Bold" size="15.0" />
          </font>
       </TextField>
       <Text fill="#c3c3c3" layoutX="476.0" layoutY="404.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: BRHendrix Bold;" text="Password" wrappingWidth="108.13671875">
@@ -51,17 +55,17 @@
       </Text>
       <TextField layoutX="440.0" layoutY="425.0" opacity="0.51" prefHeight="37.0" prefWidth="372.0" promptText="Password" style="-fx-text-fill: #ffffff; -fx-background-color: #525252; -fx-background-radius: 15px;">
          <font>
-            <Font size="15.0" />
+            <Font name="Arial" size="15.0" />
          </font>
       </TextField>
-      <Button cacheShape="false" centerShape="false" focusTraversable="false" layoutX="564.0" layoutY="506.0" mnemonicParsing="false" mouseTransparent="true" prefHeight="55.0" prefWidth="199.0" scaleShape="false" style="-fx-background-color: #754d4a; -fx-background-radius: 20px; -fx-font-family: BRHendrix;" text="SIGN IN" textFill="WHITE">
+      <Button cacheShape="false" centerShape="false" focusTraversable="false" layoutX="564.0" layoutY="506.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="199.0" scaleShape="false" style="-fx-background-color: #754d4a; -fx-background-radius: 20px; -fx-font-family: BRHendrix;" text="SIGN IN" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <MenuButton layoutX="850.0" layoutY="158.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="85.0" style="-fx-background-color: transparent; -fx-font-family: BRHendrix;" text="Language" textFill="#35aeff">
+      <MenuButton layoutX="850.0" layoutY="158.0" mnemonicParsing="false" opacity="0.93" prefHeight="27.0" prefWidth="85.0" style="-fx-background-color: transparent; -fx-font-family: BRHendrix;" text="Language" textFill="#35aeff">
         <items>
-          <MenuItem mnemonicParsing="false" text="Action 1" />
+          <MenuItem mnemonicParsing="false" text="Русский" />
           <MenuItem mnemonicParsing="false" text="Action 2" />
         </items>
          <font>
