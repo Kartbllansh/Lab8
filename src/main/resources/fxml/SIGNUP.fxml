@@ -25,15 +25,15 @@
             <Image url="@../image/Слой 9.png" />
          </image>
       </ImageView>
-      <Button fx:id="login"  graphicTextGap="10.0" layoutX="440.0" layoutY="180.0" lineSpacing="150.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="199.0" style="-fx-background-color: transparent; -fx-font-family: BRHendrix Bold;" text="LOG IN"  >
+      <Button fx:id="login"   layoutX="440.0" layoutY="180.0"  prefHeight="70.0" prefWidth="199.0" style="-fx-background-color: transparent; " text="LOG IN"  >
          <font>
             <Font name="@../image/BRHendrix-SemiBold.ttf" size="31.0" />
          </font>
          <stylesheets>
-            <URL value="@../css/SignUp.css" />
+            <URL value="@../css/LogIn.css" />
          </stylesheets>
       </Button>
-      <Button  graphicTextGap="10.0" layoutX="658.0" layoutY="175.0" lineSpacing="150.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="210.0" style="-fx-background-color: transparent; -fx-font-family: BRHendrix;" text="SIGN UP" textFill="WHITE" textOverrun="LEADING_ELLIPSIS" underline="true" wrapText="true">
+      <Button  graphicTextGap="10.0" layoutX="658.0" layoutY="175.0" lineSpacing="150.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="210.0" style="-fx-background-color: transparent;" text="SIGN UP" textFill="WHITE" textOverrun="LEADING_ELLIPSIS" underline="true" wrapText="true">
          <font>
             <Font name="@../image/BRHendrix-SemiBold.ttf" size="31.0" />
          </font>

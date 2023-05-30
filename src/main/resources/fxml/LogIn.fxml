@@ -25,7 +25,7 @@
             <Image url="@../image/Слой 9.png" />
          </image>
       </ImageView>
-      <Button  graphicTextGap="10.0" layoutX="440.0" layoutY="180.0" lineSpacing="150.0" mnemonicParsing="false"  prefHeight="70.0" prefWidth="199.0" style="-fx-background-color: transparent; -fx-font-family: BRHendrix Bold;" text="LOG IN" textFill="WHITE"  underline="true" wrapText="true">
+      <Button   layoutX="440.0" layoutY="180.0"   prefHeight="70.0" prefWidth="199.0" style="-fx-background-color: transparent;" text="LOG IN" textFill="WHITE"  underline="true" wrapText="true">
          <font>
             <Font name="@../image/BRHendrix-SemiBold.ttf" size="31.0" />
          </font>
@@ -35,7 +35,7 @@
          <effect>
             <Glow level="0.22" />
          </effect></Button>
-      <Button fx:id="regist" graphicTextGap="10.0" layoutX="658.0" layoutY="175.0" lineSpacing="150.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="210.0" style="-fx-background-color: transparent; -fx-font-family: BRHendrix Bold;" text="SIGN UP"  wrapText="true">
+      <Button fx:id="regist" graphicTextGap="10.0" layoutX="658.0" layoutY="175.0" lineSpacing="150.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="210.0" style="-fx-background-color: transparent;" text="SIGN UP"  wrapText="true">
          <font>
             <Font name="@../image/BRHendrix-SemiBold.ttf" size="31.0" />
          </font>
