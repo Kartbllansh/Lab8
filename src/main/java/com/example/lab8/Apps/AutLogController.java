@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -18,9 +19,15 @@ public class AutLogController {
     public TextField passwd;
     public TextField name;
     @FXML
+    public Button info;
+    @FXML
     private Button regist;
     @FXML
+    private Label textLabel;
+
+    @FXML
     private void initialize(){
+        textLabel = new Label();
 regist.setOnAction(event -> {
     try {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/SIGNUP.fxml"));
@@ -40,7 +47,26 @@ enter.setOnAction(event -> {
         return;
     }
    Users.enter(name.getText(), passwd.getText());
+    openWindowTable();
 });
+info.setOnAction(event -> showText());
+    }
+    @FXML
+    private void showText() {
+        // Установка текста в метку
+        textLabel.setText("Это вылезающий текст!");
+    }
+
+    public void openWindowTable(){
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/tableOrig.fxml"));
+            Scene signUpScene = new Scene(fxmlLoader.load(), 1280, 720);
+
+            Stage currentStage = (Stage) regist.getScene().getWindow();
+            currentStage.setScene(signUpScene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 

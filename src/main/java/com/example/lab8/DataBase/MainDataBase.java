@@ -18,7 +18,7 @@ public class MainDataBase {
      */
     private static void getConnection() {
         try {
-            connection = DriverManager.getConnection("jdbc:postgresql://db:5432/studs", "s368489", "RvcIM5JekHHeToZz");
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Kartbllansh", "postgres", "1234");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

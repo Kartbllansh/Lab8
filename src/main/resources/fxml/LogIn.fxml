@@ -13,6 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+<?import javafx.scene.control.Label?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.lab8.Apps.AutLogController">
    <children>
       <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
@@ -20,11 +21,16 @@
             <Image url="@../image/ajy.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="490.0" fitWidth="576.0" layoutX="375.0" layoutY="141.0" opacity="0.33" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../image/Слой 9.png" />
-         </image>
+      <ImageView fitHeight="490.0" fitWidth="576.0" layoutX="375.0" layoutY="141.0" opacity="0.33" pickOnBounds="true"
+                 preserveRatio="true">
+         <Image url="@../image/Слой 9.png"/>
       </ImageView>
+      <ImageView blendMode="MULTIPLY" fitHeight="23.0" fitWidth="21.0" layoutX="391.0" layoutY="154.0" opacity="0.28"
+                 pickOnBounds="true" preserveRatio="true">
+         <Image url="@../image/info.png"/>
+      </ImageView>
+      <Button fx:id="info" layoutX="385.0" layoutY="149.0" opacity="0.0" prefHeight="26.0" prefWidth="33.0" text="Button" />
+      <Label fx:id="textLabel" />
       <Button layoutX="440.0" layoutY="180.0" prefHeight="70.0" prefWidth="199.0" style="-fx-background-color: transparent;" text="LOG IN" textFill="WHITE" underline="true" wrapText="true">
          <font>
             <Font name="@../image/BRHendrix-SemiBold.ttf" size="31.0" />
