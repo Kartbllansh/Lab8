@@ -230,7 +230,15 @@ public void setCreator(String creator){
         this.head = head;
     }
 
-
+    public double getSize(){
+        return head.getSize();
+    }
+    public int getEyesCount(){
+        return head.getEyesCount();
+    }
+    public long getToothCount(){
+        return head.getToothCount();
+    }
 
 }
 

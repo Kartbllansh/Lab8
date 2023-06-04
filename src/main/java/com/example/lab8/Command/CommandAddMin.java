@@ -21,12 +21,12 @@ public class CommandAddMin implements Command {
         this.collectionManager = collectionManager;
     }
     /**Метод, запускающий работу команды
-     * @see CollectionManager#addIfMin()  */
+     //* @see CollectionManager#addIfMin()  */
     @Override
     public void execute() {
         try {
             if (CheckUser.checkUsers()) {
-                collectionManager.addIfMin();
+               // collectionManager.addIfMin();
             } else {
                 System.out.println("Вы не авторизованы в программе");
             }

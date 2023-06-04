@@ -1,7 +1,10 @@
 #enter:hover {
 
     -fx-cursor: HAND;
-    -fx-background-color: white;
+    -fx-background-color: #ffffff;
+    -fx-text-fill: Black;
+    -fx-border-color: Red;
+    -fx-opacity: 0.5;
 
 
 }

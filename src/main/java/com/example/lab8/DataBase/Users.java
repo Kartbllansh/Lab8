@@ -1,5 +1,9 @@
 package com.example.lab8.DataBase;
 
+import com.example.lab8.Apps.Edition;
+import com.example.lab8.Command.InvokerCommand;
+import com.example.lab8.MyException.NotIdException;
+
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -15,6 +19,9 @@ import java.util.Scanner;
  * Класс, работающий с пользователями
  */
 public class Users {
+
+    public static boolean aut = true;
+    public static boolean reg = true;
     /**
      * Метод, устанавливающий пользователя работающего с коллекцией в данный момент
      *
@@ -65,6 +72,7 @@ public class Users {
         }
 
     }
+    public static int count = 5;
 
     /**
      * Метод, позволяющий войти в аккаунт
@@ -75,8 +83,10 @@ public class Users {
     public static void enter(String login, String passwd){
 
         try {
-            int count = 5;
 
+        if(count==0){
+        System.exit(0);
+        }
         while(count > 0){
             MessageDigest md = MessageDigest.getInstance("SHA-512");
             ResultSet resultSetSalt = MainDataBase.requestSQLWith("SELECT salt FROM USERS WHERE login = ?", login);
@@ -88,14 +98,23 @@ public class Users {
             resultSetHash.next();
             byte[] hash = md.digest(("*63&^mVLC(#" + passwd.trim() + salt).getBytes(StandardCharsets.UTF_8));
             if(Arrays.toString(hash).equals(resultSetHash.getString(1))){
+                //count = -10;
                 System.out.println("Добро пожаловать, "+login);
                 currentUser = login;
                 time = ZonedDateTime.now();
-                count = -10;
+                count =5;
+                return;
+
             } else {
-                System.out.println("Неверный пароль. Осталось попыток: "+(--count));
+                Edition.showAlert("Ошибка", "Неверный пароль. Осталось попыток: "+(--count), "Ошибка при авторизации" );
+                //System.out.println("Неверный пароль. Осталось попыток: "+(--count));
+                aut = false;
+                break;
+
             }
+
         }
+
         } catch (SQLException | NullPointerException | NoSuchAlgorithmException e) {
             System.out.println(e.getMessage());
         }
@@ -109,29 +128,28 @@ public class Users {
      * @param login   the login
 
      */
-    public static void registration(String login, String password, String dPaswwrd){
-        int count =5;
-        while (count>0) {
+    public static void registration(String login, String password, String dPaswwrd) {
 
-            if(!password.equals(dPaswwrd)){
-                System.out.println("Пароли не совпадают. Повторите попытку. Их осталось "+(--count));
-            } else {
-                count = -10;
+            if (!password.equals(dPaswwrd)) {
+                Edition.showAlert("Ошибка", "Введенные пароли не совпадают", "Ошибка при авторизации");
+                //System.out.println("Пароли не совпадают. Повторите попытку. Их осталось ");
+                reg = false;
+                return;
             }
-        }
-        MessageDigest md;
-        try {
-            md = MessageDigest.getInstance("SHA-512");
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
-        }
-        String salt = SaltGenerate.saltGetter();
-        byte[] hash = md.digest(("*63&^mVLC(#" + password + salt).getBytes(StandardCharsets.UTF_8));
-        //MainDataBase.requestSQLWithout("INSERT INTO USERS (login, hash, salt) VALUES (?, ?, ?)", login, Arrays.toString(hash), salt);
-        MainDataBase.requestSQLWithout("INSERT INTO USERS (login, hash, salt) VALUES ('" + login + "', '" + Arrays.toString(hash) + "', '" + salt + "')");
-        System.out.println("Вы успешно прошли регистрацию");
-        currentUser = login;
+        if (reg) {
+            MessageDigest md;
+            try {
+                md = MessageDigest.getInstance("SHA-512");
+            } catch (NoSuchAlgorithmException e) {
+                throw new RuntimeException(e);
+            }
+            String salt = SaltGenerate.saltGetter();
+            byte[] hash = md.digest(("*63&^mVLC(#" + password + salt).getBytes(StandardCharsets.UTF_8));
+            //MainDataBase.requestSQLWithout("INSERT INTO USERS (login, hash, salt) VALUES (?, ?, ?)", login, Arrays.toString(hash), salt);
+            MainDataBase.requestSQLWithout("INSERT INTO USERS (login, hash, salt) VALUES ('" + login + "', '" + Arrays.toString(hash) + "', '" + salt + "')");
+            System.out.println("Вы успешно прошли регистрацию");
+            currentUser = login;
 
+        }
     }
-
 }

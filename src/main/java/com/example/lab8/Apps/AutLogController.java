@@ -43,13 +43,17 @@ regist.setOnAction(event -> {
 enter.setOnAction(event -> {
     boolean why = MainDataBase.checkLogin(name.getText());
     if(!why) {
-        System.out.println("Нет аккаунта с логином - " + name.getText());
+
+        Edition.showAlert("Ошибка", "Нет аккаунта с таким логином", "Ошибка при авторизации");
         return;
+
     }
    Users.enter(name.getText(), passwd.getText());
-    openWindowTable();
+    if(Users.aut) {
+        openWindowTable();
+    }
 });
-info.setOnAction(event -> showText());
+info.setOnAction(event -> getInfo());
     }
     @FXML
     private void showText() {
@@ -67,6 +71,16 @@ info.setOnAction(event -> showText());
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void getInfo(){
+        Stage stage = new Stage();
+        try {
+            Edition.createForm(stage, "/fxml/Info.fxml", "Info", 500, 500);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
 

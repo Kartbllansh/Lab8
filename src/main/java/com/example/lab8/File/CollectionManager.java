@@ -2,6 +2,7 @@ package com.example.lab8.File;
 
 
 
+import com.example.lab8.Apps.Edition;
 import com.example.lab8.Base.Comparator.ComparatorAge;
 import com.example.lab8.Base.Comparator.ComparatorLenght;
 import com.example.lab8.Base.Dragon;
@@ -79,10 +80,17 @@ public class CollectionManager {
     /**
      * Метод, который выводит информацию о коллекции
      */
-    public void getInfo() {
-        System.out.println("Коллекция " + baseList.getClass().getSimpleName());
-        System.out.println("Тип элементов коллекции: " + Dragon.class.getSimpleName());
-        System.out.println("Количество элементов в базе данных : " + baseList.size());
+    public String getInfo() {
+        StringBuilder stringBuilder = new StringBuilder();
+        String first = "Коллекция " + baseList.getClass().getSimpleName();
+        String two = "Тип элементов коллекции: " + Dragon.class.getSimpleName();
+        String third ="Количество элементов в базе данных : " + baseList.size();
+        stringBuilder.append(first);
+        stringBuilder.append("\n");
+        stringBuilder.append(two);
+        stringBuilder.append("\n");
+        stringBuilder.append(third);
+        return stringBuilder.toString();
 
         //System.out.println("Количество элементов созданных вами"+retCreator(baseList).size());
          //String formattedDateTime = Users.time.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
@@ -97,7 +105,7 @@ public class CollectionManager {
      */
     public void removeByType(String type) {
         if(isCollectEmpty(baseList)){
-            System.err.println("Коллекция пуста. Команда бесполезна");
+            Edition.showAlert("Ошибка", "Коллекция пуста, команда не имеет смысла", "Пустая коллекция");
             return;
         }
         boolean check = false;
@@ -115,7 +123,8 @@ public class CollectionManager {
             }
         }
         if(!check){
-            System.err.println("Ни один дракон не удален. Ни у кого нет типа = "+type+ "или же его имеет дракон созданный не вами");
+            String op ="Ни один дракон не удален. Ни у кого нет типа = "+type+ "или же его имеет дракон созданный не вами";
+            Edition.showAlert("Ошибка", op, "Не один дракон не удален");
         }
         votTvoyId.votIdBad(baseList);
     }
@@ -144,7 +153,7 @@ public class CollectionManager {
      */
     public void removeById(Long id) {
         if(isCollectEmpty(baseList)){
-            System.err.println("Коллекция пуста. Команда бесполезна");
+            Edition.showAlert("Ошибка", "Коллекция пуста, команда не имеет смысла", "Пустая коллекция");
             return;
         }
         for (int i = 0; i < baseList.size(); i++) {
@@ -158,12 +167,13 @@ public class CollectionManager {
                 votTvoyId.votIdBad(baseList);
                 return;
             } else {
-                    System.out.println("Дракон принадлежит другому пользователю ( "+dragon.getCreator()+" ). Вы не можете его удалить");
+                    String op ="Дракон принадлежит другому пользователю ( "+dragon.getCreator()+" ). Вы не можете его удалить";
+                    Edition.showAlert("Ошибка", op, "Объект принадлежит другому пользователю ");
                     return;
                 }
             }
         }
-        System.err.println("Дракона с id = " + id + " не существует");
+        Edition.showAlert("Ошибка", "Введенный вами Id не существует", "Нет такого ID");
     }
 
 //готово
@@ -184,10 +194,11 @@ public class CollectionManager {
     /**
      * Метод, выводящий на экран драконов отсортированных по возрасту
      */
-    public void printAscedingAge() {
+    public String printAscedingAge() {
+        StringBuilder stringBuilder = new StringBuilder();
         if(isCollectEmpty(baseList)){
-            System.err.println("Коллекция пуста. Команда бесполезна");
-            return;
+            //System.err.println("Коллекция пуста. Команда бесполезна");
+            return "Коллекция пуста. Команда бесполезна";
         }
         LinkedList<Integer> agess = new LinkedList<>();
         LinkedList<Dragon> age = new LinkedList<>(baseList);
@@ -199,22 +210,26 @@ public class CollectionManager {
             for (int b = 0; b < age.size(); b++) {
                 Dragon dragon = age.get(b);
                 if (Objects.equals(findAge, dragon.getAge())) {
+                    String op =" Возрасту " + findAge + " соответствует дракону " + dragon.getName();
+                    stringBuilder.append(op);
+                    stringBuilder.append("\n");
 
-                    System.out.println(" Возрасту " + findAge + " соответствует дракону " + dragon.getName());
                     age.remove(dragon);
                 }
             }
         }
+        return stringBuilder.toString();
     }
 
 //готово
     /**
      * Метод, выводящий на экран драконов отсортированных по типу
      */
-    public void printDescendingType() {
+    public String printDescendingType() {
+        StringBuilder stringbuilder = new StringBuilder();
         if(isCollectEmpty(baseList)){
-            System.err.println("Коллекция пуста. Команда бесполезна");
-            return;
+            //System.err.println("Коллекция пуста. Команда бесполезна");
+            return "Коллекция пуста. Команда бесполезна";
         }
         ComparatorLenght comparatorLenght = new ComparatorLenght();
         LinkedList<DragonType> dragonTypes = new LinkedList<>();
@@ -230,11 +245,13 @@ public class CollectionManager {
             String findTypeS = findType.toString();
             for (Dragon dragon : baseList) {
                 if (findTypeS.equals(dragon.getType().toString())) {
-                    System.out.println(" Типу " + findTypeS + " соответствует дракону " + dragon.getName());
-
+                   String op =" Типу " + findTypeS + " соответствует дракону " + dragon.getName();
+                    stringbuilder.append(op);
+                    stringbuilder.append("\n");
                 }
             }
         }
+        return stringbuilder.toString();
     }
 
     /**
@@ -258,10 +275,13 @@ public class CollectionManager {
     public void updateId(long id) {
         if(isCollectEmpty(baseList)){
             System.err.println("Коллекция пуста. Команда бесполезна");
+            Edition.showAlert("Ошибка", "Коллекция пуста. Команда бесполезна", "Пустая коллекция");
+
             return;
         }
         if (!Objects.equals(Users.getCurrentUser(), baseList.get((int)id - 1).getCreator())){
             System.out.println("Дракон принадлежит другому пользователю. Вы не можете его удалить");
+            Edition.showAlert("Ошибка", "Дракон принадлежит другому пользователю. Вы не можете его удалить", "Объект принадлежит другому пользователю ");
             return;
         }
         LinkedList<Long> idd =checkId(baseList);
@@ -269,6 +289,8 @@ public class CollectionManager {
             if (!idd.contains(id)) throw new NotIdException();
         } catch (NotIdException e) {
             System.err.println("Дракона с таким id не существует");
+            Edition.showAlert("Ошибка", "Дракона с таким id не существует", "Ошибка с id ");
+
             return;
         }
         System.out.println("Введите данные драконы, на которого хотите заменить дракона с id = " + id);
@@ -278,12 +300,14 @@ public class CollectionManager {
             Dragon dragon = baseList.get(i);
             if (baseList.get(i).getId().equals(id) & Objects.equals(dragon.getCreator(), Users.getCurrentUser())) {
                 baseList.set(i, change);
-                System.out.println("Дракон с ID " + id + " был заменен на дракона с именем "+change.getName());
+                String op ="Дракон с ID " + id + " был заменен на дракона с именем "+change.getName();
+                Edition.showAlertHelp("Успешно", op, "Объект заменен ");
                 votTvoyId.votIdBad(baseList);
                 return;
             }
         }
         System.err.println("Дракон с ID " + id + " не найден в коллекции");
+        Edition.showAlert("Ошибка", "Дракона с таким id не существует", "Ошибка с id ");
     }
 //готово
     /**
@@ -291,12 +315,12 @@ public class CollectionManager {
      * @see AllAdd#groupMethod()
      * @see ComparatorAge#compare(Dragon, Dragon)
      */
-    public void addIfMin() {
+    public void addIfMin(Dragon dragon) {
         if(isCollectEmpty(baseList)){
             System.err.println("Коллекция пуста. Команда бесполезна");
             return;
         }
-        Dragon dragon = allAdd.groupMethod();
+
         baseList.sort(comparatorAge);
         Dragon champion = baseList.get(0);
         int result = comparatorAge.compare(champion, dragon);
@@ -305,6 +329,7 @@ public class CollectionManager {
             votTvoyId.votIdBad(baseList);
         } else {
             System.out.println("У наименьшего элемента коллекции значение меньше");
+            Edition.showAlert("Ошибка", "У наименьшего элемента коллекции значение меньше", "Add_if_min");
         }
         System.out.println("Теперь коллекция содержит "+baseList.size()+" элементов");
     }
@@ -420,6 +445,7 @@ public class CollectionManager {
             votTvoyId.votIdBad(baseList);
         } else {
             System.out.println("Ни один дракон не удален");
+            Edition.showAlertHelp("Уведомление", "Ни один дракон не удален", "Никто не удален");
         }
         System.out.println("Теперь коллекция содержит "+baseList.size()+" элементов");
     }

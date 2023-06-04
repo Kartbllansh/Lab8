@@ -12,7 +12,7 @@ import java.util.NoSuchElementException;
 public class Home {
     CollectionManager collection;
     IOUser ioUser;
-    InvokerCommand invokerCommand;
+    static InvokerCommand invokerCommand;
 
 
     //уведомление что вы гость
@@ -33,7 +33,9 @@ public class Home {
      * Переменная подсказка для первого запуска
      */
     int clue = 0;
-
+    public static void commandInvok(String command){
+        invokerCommand.execute(command);
+    }
     /**
      * Метод, выполняющий циклическое чтение команд из строки ввода
      * @see IOUser#printText(String)
