@@ -58,6 +58,16 @@ public class CollectionManager {
      return dragons.size() == 0;
  }
 
+ public static LinkedList<Dragon> creatorCollection(){
+        LinkedList<Dragon> dd = new LinkedList<>();
+        for(Dragon dragon : baseList){
+          if(Users.getCurrentUser().equals(dragon.getCreator()))  {
+              dd.add(dragon);
+          }
+        }
+        return dd;
+ }
+
  public LinkedList<Dragon> retCreator(LinkedList<Dragon> dragons){
      LinkedList<Dragon> dragonss = new LinkedList<>();
      for(Dragon dragon : dragons){

@@ -86,7 +86,7 @@ public class DragonAnimation {
     }
     private void changeFrameRight() {
         currentFrameIndex = (currentFrameIndex + 1) % FRAME_COUNT;
-        Image frameImage = new Image("/animation/white/dragon_frame_" + currentFrameIndex + "_rever.png");
+        Image frameImage = new Image("/animation/orange/dragon_frame_" + currentFrameIndex + "_rever.png");
         dragonImageView.setImage(frameImage);
         dragonImageView.setTranslateX(dragonImageView.getTranslateX() + SHIFT_AMOUNT_Right);
         if (getDragonPosition().getX() >= checkRightWall.getX()) {
