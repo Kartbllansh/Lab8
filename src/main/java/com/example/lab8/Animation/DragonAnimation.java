@@ -8,6 +8,7 @@ import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -18,6 +19,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.Objects;
 import java.util.Random;
 
@@ -36,14 +38,14 @@ public class DragonAnimation {
     public  static Timeline animation;
     public static MediaPlayer mediaPlayer;
 
-    @FXML
-    void initialize() {
 
-    }
 
     public static Stage primaryStage = new Stage();
     public void startAnimation()  {
+
+        LinkedList<DragonAnimated> dragonAnimateds = new LinkedList<>();
         StackPane root = new StackPane();
+
 
         Image backgroundImage = new Image("/image/Без имени-1.jpg");
         ImageView backgroundImageView = new ImageView(backgroundImage);
@@ -67,6 +69,7 @@ public class DragonAnimation {
                     })
             );
             DragonAnimated dragonAnimated = new DragonAnimated(ff, timeline);
+            dragonAnimateds.add(dragonAnimated);
             dragonAnimated.getAnimation().setCycleCount(Animation.INDEFINITE);
             dragonAnimated.getAnimation().play();
             root.getChildren().add(dragonAnimated.getImageView());
@@ -97,6 +100,24 @@ public class DragonAnimation {
         primaryStage.setScene(new Scene(root, 1280, 720));
         primaryStage.setTitle("Dragon Animation");
         primaryStage.show();
+        primaryStage.setOnCloseRequest(event -> {
+            // Остановка анимации и сброс текущего кадра для каждого DragonAnimated
+            for (DragonAnimated dragonAnimated : dragonAnimateds) {
+                dragonAnimated.getAnimation().stop();
+
+            }
+
+            // Остановка воспроизведения музыки
+            mediaPlayer.stop();
+            currentFrameIndex = 0;
+        });
+
+
+
+
+
+
+
     }
     private void fly(ImageView a){
         Random random = new Random();
