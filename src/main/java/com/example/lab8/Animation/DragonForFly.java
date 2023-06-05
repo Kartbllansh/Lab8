@@ -3,6 +3,7 @@ package com.example.lab8.Animation;
 import com.example.lab8.Base.Color;
 import com.example.lab8.Base.Dragon;
 import com.example.lab8.Base.DragonHead;
+import javafx.scene.image.ImageView;
 
 import java.util.LinkedList;
 
@@ -12,12 +13,34 @@ public class DragonForFly {
     private Double size;
     private int group;
 
+    public String getColor() {
+        return color;
+    }
 
-    public DragonForFly(long id, String color, Double size, int group) {
+    public Double getSize() {
+        return size;
+    }
+
+    public ImageView getDragonImageView() {
+        return dragonImageView;
+    }
+
+    private  ImageView dragonImageView;
+
+    public int getCurrentFrameIndex() {
+        return currentFrameIndex;
+    }
+
+    private int currentFrameIndex = 0;
+
+
+    public DragonForFly(long id, String color, Double size, int group, ImageView dragonImageView, int currentFrameIndex) {
         this.color = color;
         this.size = size;
         this.group = group;
         this.id = id;
+        this.dragonImageView = dragonImageView;
+        this.currentFrameIndex = currentFrameIndex;
     }
 
     public static LinkedList<DragonForFly> getNewColl(LinkedList<Dragon> baselist) {
@@ -40,7 +63,7 @@ public class DragonForFly {
             } else {
                 group = 1;
             }
-            DragonForFly dragonForFly = new DragonForFly(id, color, size, group);
+            DragonForFly dragonForFly = new DragonForFly(id, color, size, group, null, 0);
             newColl.add(dragonForFly);
         }
         return newColl;
@@ -58,5 +81,8 @@ public class DragonForFly {
         } else {
             return 1.5;
         }
+    }
+    public void setDragonImageView(ImageView imageView) {
+        this.dragonImageView = imageView;
     }
 }

@@ -86,7 +86,6 @@ public class TableController {
     map.setOnAction(event -> {
 
         dragonAnimation.startAnimation();
-
     });
     DragonAnimation.primaryStage.setOnCloseRequest(event -> DragonAnimation.IfCloseWindow());
     help.setOnAction(event -> {
