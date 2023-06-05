@@ -19,6 +19,7 @@ public class RemoveController {
        remove_id.setOnAction(event -> {
            try{
          collectionManager.removeById(Long.parseLong(fieldId.getText()));
+         collectionManager.save();
          tableController.update();
            } catch  (IndexOutOfBoundsException ex) {
                Edition.showAlert("Ошибка с аргуметом", "Не указаны аргументы команды", "Ошибка с аргуметом");
@@ -30,6 +31,7 @@ public class RemoveController {
        remove_type.setOnAction(event -> {
            try{
            collectionManager.removeByType(fieldType.getText());
+           collectionManager.save();
                tableController.update();
            } catch ( IndexOutOfBoundsException ex) { //
                System.err.println("Не указаны аргументы команды.");
@@ -46,6 +48,7 @@ public class RemoveController {
        remove_great.setOnAction(event -> {
            try{
         collectionManager.gread(Double.parseDouble(fieldAge.getText()));
+        collectionManager.save();
                tableController.update();
            } catch  ( IndexOutOfBoundsException ex) { //IndexOutOfBoundsException
                System.err.println("Не указаны аргументы команды.");

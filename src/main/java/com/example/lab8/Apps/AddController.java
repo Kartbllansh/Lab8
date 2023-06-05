@@ -68,11 +68,21 @@ public class AddController {
           orange.setOnAction(event1 -> change.setColor(Color.ORANGE));
           yellow.setOnAction(event1 -> change.setColor(Color.YELLOW));
           white.setOnAction(event1 -> change.setColor(Color.WHITE));
-          add.setOnAction(event1 -> CollectionManager.getDragons().add(change) );
-          addMin.setOnAction(event1 -> collectionManager.addIfMin(change));
+          add.setOnAction(event1 -> {
+              CollectionManager.getDragons().add(change);
+              collectionManager.save();
+              tableController.update();
+          });
+          addMin.setOnAction(event1 -> {
+              collectionManager.addIfMin(change);
+              collectionManager.save();
+              tableController.update();
+          });
           update.setOnAction(event1 -> {
               try{
               collectionManager.updateId(Long.parseLong(idField.getText()));
+              collectionManager.save();
+                  tableController.update();
               } catch  (IndexOutOfBoundsException ex) {
                   Edition.showAlert("Ошибка с аргуметом", "Не указаны аргументы команды", "Ошибка с аргументом ID");
                   //System.err.println("Не указаны аргументы команды.");
@@ -81,7 +91,7 @@ public class AddController {
                   Edition.showAlert("Ошибка с аргуметом", "Требуется ввести число, чтобы команда работала", "Ошибка с аргументом ID");
               }
           });
-          tableController.update();
+
       });
 
 

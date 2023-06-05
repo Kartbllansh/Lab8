@@ -48,7 +48,7 @@ public class TableController {
     public TableColumn<Dragon, Long> toothCount;
     public TableColumn<Dragon, ZonedDateTime> creationDate;
     public TableColumn<Dragon, String> creator;
-    public TableView<Dragon> table;
+    public TableView<Dragon> table = new TableView<>();
     public Text username;
     public TextArea desk;
     public Button printAge;
