@@ -24,9 +24,16 @@ public class DragonAnimated {
         this.animation = animation;
     }
 
-    public DragonAnimated(ImageView imageView, Timeline animation, int direction) {
+    public DragonAnimated(ImageView imageView, Timeline animation) {
         this.imageView = imageView;
         this.animation = animation;
-        this.direction =direction;
+    }
+
+    public int getDirection() {
+        return direction;
+    }
+
+    public DragonAnimated(int direction) {
+        this.direction = direction;
     }
 }

@@ -12,6 +12,8 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -30,8 +32,9 @@ public class DragonAnimation {
     private static int currentFrameIndex = 0;
     Point2D checkLeftWall = new Point2D(-830, 0);
     Point2D checkRightWall = new Point2D(820, 0);
-    private static int direction = 1;
+    private int direction = 1;
     public  static Timeline animation;
+    public static MediaPlayer mediaPlayer;
 
     @FXML
     void initialize() {
@@ -52,6 +55,7 @@ public class DragonAnimation {
 
             // Генерация случайного числа -1 или 1
             int randomValue = random.nextInt(2) * 2 - 1;
+            DragonAnimated dragDir = new DragonAnimated(randomValue);
             ImageView ff = new ImageView();
             Timeline timeline =  new Timeline(
                     new KeyFrame(Duration.millis(FRAME_DURATION), event -> {
@@ -62,7 +66,7 @@ public class DragonAnimation {
                         }
                     })
             );
-            DragonAnimated dragonAnimated = new DragonAnimated(ff, timeline, randomValue);
+            DragonAnimated dragonAnimated = new DragonAnimated(ff, timeline);
             dragonAnimated.getAnimation().setCycleCount(Animation.INDEFINITE);
             dragonAnimated.getAnimation().play();
             root.getChildren().add(dragonAnimated.getImageView());
@@ -84,6 +88,12 @@ public class DragonAnimation {
 
            /* root.getChildren().add(dragonImageView);
             StackPane.setAlignment(dragonImageView, Pos.CENTER);*/
+        String musicPath = Objects.requireNonNull(getClass().getResource("/music/Bomba.mp3")).toExternalForm();
+        Media media = new Media(musicPath);
+       mediaPlayer = new MediaPlayer(media);
+
+        // Воспроизведение музыки при запуске окна
+        mediaPlayer.play();
         primaryStage.setScene(new Scene(root, 1280, 720));
         primaryStage.setTitle("Dragon Animation");
         primaryStage.show();

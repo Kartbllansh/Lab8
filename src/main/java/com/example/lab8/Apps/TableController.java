@@ -87,7 +87,11 @@ public class TableController {
 
         dragonAnimation.startAnimation();
     });
-    DragonAnimation.primaryStage.setOnCloseRequest(event -> DragonAnimation.IfCloseWindow());
+    DragonAnimation.primaryStage.setOnCloseRequest(event -> {
+        DragonAnimation.IfCloseWindow();
+        DragonAnimation.mediaPlayer.stop();
+
+    });
     help.setOnAction(event -> {
         Stage stage = new Stage();
         try {
