@@ -13,12 +13,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.converter.IntegerStringConverter;
 
 import java.io.IOException;
 import java.time.ZonedDateTime;
+import java.util.LinkedList;
+import java.util.Objects;
 
 public class TableController {
     public MenuButton print;
@@ -59,7 +63,7 @@ public class TableController {
         table.setFixedCellSize(30);
         table.setRowFactory(tv -> {
             TableRow<Dragon> row = new TableRow<>();
-            row.setStyle("-fx-background-color: #9f6456; -fx-text-fill: white; -fx-border-color: transparent transparent black transparent; -fx-font-family: Arial"); // Устанавливаем цвет фона строки
+            row.setStyle("-fx-background-color: #9f6456; -fx-text-fill: white; -fx-border-color:  white ; -fx-font-family: Arial"); // Устанавливаем цвет фона строки
             return row;
         });
         username.setText(Users.getCurrentUser());
@@ -74,7 +78,59 @@ public class TableController {
         toothCount.setCellValueFactory(new PropertyValueFactory<>("toothCount"));
         creationDate.setCellValueFactory(new PropertyValueFactory<>("creationDate"));
         creator.setCellValueFactory(new PropertyValueFactory<>("creator"));
-    update();
+        table.setEditable(true);
+        name.setCellFactory(TextFieldTableCell.forTableColumn()); // Здесь 'name' - название колонки, в которой нужно включить редактирование
+        name.setOnEditCommit(event -> {
+            Dragon dragon = event.getRowValue();
+            String n = event.getNewValue();
+            if (!(n == null)) {
+                dragon.setName(n);
+                int index = table.getItems().indexOf(dragon); // Получаем индекс дракона в коллекции
+                if (index >= 0) {
+                    table.getItems().set(index, dragon); // Обновляем дракона в коллекции
+                    collectionManager.save();
+                }
+                // Добавьте код для обновления данных в соответствующем списке или базе данных
+            } else {
+                Edition.showAlert("Ошибка", "Введено некорректное значение имени", "Ошибка при изменении данных");
+            }
+        });
+
+        table.setEditable(true);
+        age.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        age.setOnEditCommit(event -> {
+            try{
+            Dragon dragon = event.getRowValue();
+            int previousValue = dragon.getAge(); // Сохраняем предыдущее значение
+
+                int newValue = event.getNewValue();
+
+
+            //System.out.println(newValue);
+            if (newValue > 0) {
+                dragon.setAge(newValue);
+                int index = table.getItems().indexOf(dragon);
+                if (index >= 0) {
+                    table.getItems().set(index, dragon);
+                    collectionManager.save();
+                }
+                // Добавьте код для обновления данных в соответствующем списке или базе данных
+            } else {
+                Edition.showAlert("Ошибка", "Возраст не может быть отрицательным", "Ошибка при изменении данных");
+                dragon.setAge(previousValue); // Восстанавливаем предыдущее значение
+                table.refresh(); // Обновляем таблицу, чтобы отобразить предыдущее значение
+            }
+            } catch (NumberFormatException | NullPointerException e) {
+                Edition.showAlert("Ошибка", "Введено некорректное значение для возраста", "Ошибка при изменении данных");
+                //dragon.setAge(previousValue); // Восстанавливаем предыдущее значение
+                table.refresh(); // Обновляем таблицу, чтобы отобразить предыдущее значение
+            }
+
+        });
+
+
+
+        update();
 
     print_age.setOnAction(event ->desk.setText(collectionManager.printAscedingAge()));
     print_type.setOnAction(event -> desk.setText(collectionManager.printDescendingType()));
@@ -134,11 +190,13 @@ public class TableController {
             throw new RuntimeException(e);
         }
     });
+
     }
     public  void update(){
-        ObservableList<Dragon> list = FXCollections.observableArrayList(CollectionManager.getDragons());
-        table.setItems(list);
+        LinkedList<Dragon> updatedList = new LinkedList<>(CollectionManager.getDragons());
+        table.setItems(FXCollections.observableArrayList(updatedList));
     }
+
 
 
 }

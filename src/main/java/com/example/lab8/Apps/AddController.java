@@ -72,11 +72,13 @@ public class AddController {
               CollectionManager.getDragons().add(change);
               collectionManager.save();
               tableController.update();
+              tableController.table.refresh();
           });
           addMin.setOnAction(event1 -> {
               collectionManager.addIfMin(change);
               collectionManager.save();
               tableController.update();
+              tableController.table.refresh();
           });
           update.setOnAction(event1 -> {
               try{
