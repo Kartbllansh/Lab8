@@ -19,6 +19,7 @@ public class SetCollection {
      * Метод, в котором информация из базы данных записывается в коллекцию
      */
     public static void getDragonsFromDB() {
+        //фыыы
 
         try {
 
