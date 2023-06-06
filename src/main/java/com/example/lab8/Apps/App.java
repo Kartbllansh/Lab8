@@ -1,5 +1,6 @@
 package com.example.lab8.Apps;
 
+import com.example.lab8.Animation.DragonAnimation;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -22,5 +23,7 @@ public class App extends Application {
 
     public static void go() {
         launch();
+
     }
+
     }

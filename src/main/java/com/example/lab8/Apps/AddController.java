@@ -14,6 +14,7 @@ import java.time.ZonedDateTime;
 import java.util.Scanner;
 
 public class AddController {
+    private int des=0;
     public RadioButton update;
     public TextField idField;
     CollectionManager collectionManager = new CollectionManager();
@@ -49,19 +50,10 @@ public class AddController {
         underground.setToggleGroup(tp);
         add.setToggleGroup(dcs);
         addMin.setToggleGroup(dcs);
-      start.setOnAction(event -> {
-          allCheck();
+
+
           Dragon change = new Dragon();
-          change.setCreationDate(ZonedDateTime.now());
-          change.setCreator(Users.getCurrentUser());
-          VotTvoyId.votDragon(change);
-          change.setAge(Integer.parseInt(ageField.getText()));
-          change.setName(nameField.getText());
-          change.setWeight(Long.parseLong(weightField.getText()));
-          DragonHead dragonHead = new DragonHead(Double.parseDouble(sizeField.getText()),Integer.parseInt(eyesField.getText()), Long.parseLong(toothField.getText()));
-          change.setHead(dragonHead);
-          Coordinates coordinates = new Coordinates(Float.parseFloat(xField.getText()), Float.parseFloat(yField.getText()));
-          change.setCoordinates(coordinates);
+
           water.setOnAction(event1 -> change.setType(DragonType.WATER));
           air.setOnAction(event1 -> change.setType(DragonType.AIR));
           underground.setOnAction(event1 -> change.setType(DragonType.UNDERGROUND));
@@ -69,32 +61,58 @@ public class AddController {
           yellow.setOnAction(event1 -> change.setColor(Color.YELLOW));
           white.setOnAction(event1 -> change.setColor(Color.WHITE));
           add.setOnAction(event1 -> {
-              CollectionManager.getDragons().add(change);
-              collectionManager.save();
-              tableController.update();
-              tableController.table.refresh();
+              System.out.println(change);
+            des=2;
           });
           addMin.setOnAction(event1 -> {
-              collectionManager.addIfMin(change);
-              collectionManager.save();
-              tableController.update();
-              tableController.table.refresh();
+              des=1;
+
           });
           update.setOnAction(event1 -> {
-              try{
-              collectionManager.updateId(Long.parseLong(idField.getText()));
-              collectionManager.save();
-                  tableController.update();
-              } catch  (IndexOutOfBoundsException ex) {
-                  Edition.showAlert("Ошибка с аргуметом", "Не указаны аргументы команды", "Ошибка с аргументом ID");
-                  //System.err.println("Не указаны аргументы команды.");
-
-              } catch (NumberFormatException ex) {
-                  Edition.showAlert("Ошибка с аргуметом", "Требуется ввести число, чтобы команда работала", "Ошибка с аргументом ID");
-              }
+              des=3;
           });
+        start.setOnAction(event -> {
+            allCheck();
+            change.setCreationDate(ZonedDateTime.now());
+            change.setCreator(Users.getCurrentUser());
+            VotTvoyId.votDragon(change);
+            change.setAge(Integer.parseInt(ageField.getText()));
+            change.setName(nameField.getText());
+            change.setWeight(Long.parseLong(weightField.getText()));
+            DragonHead dragonHead = new DragonHead(Double.parseDouble(sizeField.getText()),Integer.parseInt(eyesField.getText()), Long.parseLong(toothField.getText()));
+            change.setHead(dragonHead);
+            Coordinates coordinates = new Coordinates(Float.parseFloat(xField.getText()), Float.parseFloat(yField.getText()));
+            change.setCoordinates(coordinates);
+            if(des==1){
+                collectionManager.addIfMin(change);
+                collectionManager.save();
+                tableController.update();
+                Edition.showAlert("Успешно", "Успешно", "Успешно");
+            } else if (des==2) {
 
-      });
+             CollectionManager.getDragons().add(change) ;
+             collectionManager.save();
+                tableController.update();
+                Edition.showAlert("Успешно", "Успешно", "Успешно");
+            } else if (des==3) {
+                try{
+                    collectionManager.updateId(Long.parseLong(idField.getText()));
+                    collectionManager.save();
+                    tableController.update();
+                    Edition.showAlert("Успешно", "Успешно", "Успешно");
+                } catch  (IndexOutOfBoundsException ex) {
+                    Edition.showAlert("Ошибка с аргуметом", "Не указаны аргументы команды", "Ошибка с аргументом ID");
+                    //System.err.println("Не указаны аргументы команды.");
+
+                } catch (NumberFormatException ex) {
+                    Edition.showAlert("Ошибка с аргуметом", "Требуется ввести число, чтобы команда работала", "Ошибка с аргументом ID");
+                }
+
+            } else {
+                Edition.showAlert("Ошибка", "Выберите команду", "Не выбрана команда");
+            }
+        });
+
 
 
     }

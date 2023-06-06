@@ -1,5 +1,6 @@
 package com.example.lab8.Animation;
 import com.example.lab8.Apps.Edition;
+import com.example.lab8.Client;
 import com.example.lab8.File.CollectionManager;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -10,11 +11,14 @@ import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -38,13 +42,12 @@ public class DragonAnimation {
     public  static Timeline animation;
     public static MediaPlayer mediaPlayer;
 
-
-
     public static Stage primaryStage = new Stage();
     public void startAnimation()  {
 
         LinkedList<DragonAnimated> dragonAnimateds = new LinkedList<>();
         StackPane root = new StackPane();
+
 
 
         Image backgroundImage = new Image("/image/Без имени-1.jpg");
@@ -57,7 +60,7 @@ public class DragonAnimation {
 
             // Генерация случайного числа -1 или 1
             int randomValue = random.nextInt(2) * 2 - 1;
-            DragonAnimated dragDir = new DragonAnimated(randomValue);
+           // DragonAnimated dragDir = new DragonAnimated(randomValue);
             ImageView ff = new ImageView();
             Timeline timeline =  new Timeline(
                     new KeyFrame(Duration.millis(FRAME_DURATION), event -> {
@@ -70,6 +73,8 @@ public class DragonAnimation {
             );
             DragonAnimated dragonAnimated = new DragonAnimated(ff, timeline);
             dragonAnimateds.add(dragonAnimated);
+            Tooltip tooltip = new Tooltip(dragonAnimated.toString());
+            Tooltip.install(dragonAnimated.getImageView(), tooltip);
             dragonAnimated.getAnimation().setCycleCount(Animation.INDEFINITE);
             dragonAnimated.getAnimation().play();
             root.getChildren().add(dragonAnimated.getImageView());
@@ -183,6 +188,8 @@ public class DragonAnimation {
 
 
     }
+
+
 }
 
 

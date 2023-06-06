@@ -32,9 +32,9 @@
             <TableColumn fx:id="creator" prefWidth="132.80002441406248" style="-fx-text-fill: white; -fx-font-family: BRHendrix" text="Creator" />
         </columns>
       </TableView>
-      <Text fx:id="username" fill="WHITE" layoutX="62.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" wrappingWidth="98.93670654296875">
+      <Text fx:id="username" fill="WHITE" layoutX="62.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" wrappingWidth="134.13668823242188">
          <font>
-            <Font size="34.0" />
+            <Font size="18.0" />
          </font>
       </Text>
       <Button fx:id="logout" layoutX="35.0" layoutY="100.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="94.0" style="-fx-background-color: #b10c0c; -fx-background-radius: 15px;" text="LogOut" textFill="WHITE">
@@ -90,7 +90,7 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <Button fx:id="map" layoutX="183.0" layoutY="278.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="103.0" style="-fx-background-color: #adf8ff; -fx-background-radius: 15px;" text="Map">
+      <Button fx:id="map" layoutX="167.0" layoutY="158.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="103.0" style="-fx-background-color: #adf8ff; -fx-background-radius: 15px;" text="Map">
          <font>
             <Font size="18.0" />
          </font>

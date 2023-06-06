@@ -148,10 +148,11 @@ public class CollectionManager {
     public void clear() {
         for(int i=0; i< baseList.size(); i++){
             Dragon dragon = baseList.get(i);
-            if(Objects.equals(dragon.getCreator(), Users.getCurrentUser())){
+            if(dragon.getCreator().equals(Users.getCurrentUser())){
                 baseList.remove(dragon);
             }
         }
+        save();
         System.out.println("Коллекция удалена успешна");
     }
 
