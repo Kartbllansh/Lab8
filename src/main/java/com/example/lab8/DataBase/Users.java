@@ -2,6 +2,7 @@ package com.example.lab8.DataBase;
 
 import com.example.lab8.Apps.Edition;
 import com.example.lab8.Command.InvokerCommand;
+import com.example.lab8.File.CollectionManager;
 import com.example.lab8.MyException.NotIdException;
 
 import java.nio.charset.StandardCharsets;
@@ -35,6 +36,7 @@ public class Users {
      * Поле, хранящее ссылку на объект
      */
     public static ZonedDateTime time;
+    private static CollectionManager collectionManager = new CollectionManager();
     /**
      * Поле, хранящее информацию о пользователе
      */
@@ -99,7 +101,9 @@ public class Users {
             byte[] hash = md.digest(("*63&^mVLC(#" + passwd.trim() + salt).getBytes(StandardCharsets.UTF_8));
             if(Arrays.toString(hash).equals(resultSetHash.getString(1))){
                 //count = -10;
+                aut=true;
                 System.out.println("Добро пожаловать, "+login);
+                collectionManager.show();
                 currentUser = login;
                 time = ZonedDateTime.now();
                 count =5;

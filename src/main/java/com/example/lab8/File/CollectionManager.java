@@ -58,6 +58,10 @@ public class CollectionManager {
      return dragons.size() == 0;
  }
 
+ public void idget(){
+        votTvoyId.votIdBad(baseList);
+ }
+
  public static LinkedList<Dragon> creatorCollection(){
         LinkedList<Dragon> dd = new LinkedList<>();
         for(Dragon dragon : baseList){
@@ -146,10 +150,16 @@ public class CollectionManager {
      * Метод, очищающий коллекцию
      */
     public void clear() {
-        for(int i=0; i< baseList.size(); i++){
+        int size = baseList.size();
+        for(int i=0; i< size; i++){
+            if(isCollectEmpty(baseList)){
+                break;
+            }
             Dragon dragon = baseList.get(i);
             if(dragon.getCreator().equals(Users.getCurrentUser())){
                 baseList.remove(dragon);
+                i--;
+                votTvoyId.votIdBad(baseList);
             }
         }
         save();
@@ -269,8 +279,8 @@ public class CollectionManager {
      * Метод добавляющий драконов в коллекцию
      * @see AllAdd#groupMethod()
      */
-    public void add() {
-        Dragon change = allAdd.groupMethod();
+    public void add(Dragon change) {
+        //Dragon change = allAdd.groupMethod();
         baseList.add(change);
         System.out.println("Дракон добавлен");
         System.out.println("Теперь коллекция содержит "+baseList.size()+" элементов");

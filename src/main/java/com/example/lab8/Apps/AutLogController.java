@@ -27,6 +27,7 @@ public class AutLogController {
 
     @FXML
     private void initialize(){
+
         textLabel = new Label();
 regist.setOnAction(event -> {
     try {
@@ -63,6 +64,7 @@ info.setOnAction(event -> getInfo());
 
     public void openWindowTable(){
         try {
+            System.out.println("check");
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/tableOrig.fxml"));
             Scene signUpScene = new Scene(fxmlLoader.load(), 1280, 720);
 

@@ -7,10 +7,12 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
@@ -45,15 +47,21 @@ public class DragonAnimation {
     public static Stage primaryStage = new Stage();
     public void startAnimation()  {
 
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/image/animation.fxml"));
         LinkedList<DragonAnimated> dragonAnimateds = new LinkedList<>();
-        StackPane root = new StackPane();
+        StackPane root = null;
+        try {
+            root = fxmlLoader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
-
-
-        Image backgroundImage = new Image("/image/Без имени-1.jpg");
-        ImageView backgroundImageView = new ImageView(backgroundImage);
-        root.getChildren().add(backgroundImageView);
+        int i = 0;
+        //Image backgroundImage = new Image("/image/Без имени-1.jpg");
+        //ImageView backgroundImageView = new ImageView(backgroundImage);
+       // root.getChildren().add(backgroundImageView);
         for(DragonForFly dragonForFly : DragonForFly.getNewColl(CollectionManager.creatorCollection())) {
+            i++;
             String color = dragonForFly.getColor();
             double size = dragonForFly.getSize();
             Random random = new Random();
@@ -62,6 +70,7 @@ public class DragonAnimation {
             int randomValue = random.nextInt(2) * 2 - 1;
            // DragonAnimated dragDir = new DragonAnimated(randomValue);
             ImageView ff = new ImageView();
+            ff.setId("image"+i);
             Timeline timeline =  new Timeline(
                     new KeyFrame(Duration.millis(FRAME_DURATION), event -> {
                         if (direction == -1) {
@@ -99,6 +108,10 @@ public class DragonAnimation {
         String musicPath = Objects.requireNonNull(getClass().getResource("/music/Bomba.mp3")).toExternalForm();
         Media media = new Media(musicPath);
        mediaPlayer = new MediaPlayer(media);
+        Button button = new Button("Кнопка");
+        root.getChildren().add(button);
+        StackPane.setAlignment(button, Pos.CENTER);
+
 
         // Воспроизведение музыки при запуске окна
         mediaPlayer.play();

@@ -17,19 +17,24 @@
        <ImageView fitHeight="731.0" fitWidth="1294.0" layoutX="-8.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true">
            <Image url="@../image/фонтабл.jpg" />
        </ImageView>
-      <TableView fx:id="table" layoutX="325.0" layoutY="75.0" prefHeight="406.0" prefWidth="960.0">
+      <ImageView fitHeight="411.0" fitWidth="322.0" layoutX="13.0" layoutY="248.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/gyu.png" />
+         </image>
+      </ImageView>
+      <TableView fx:id="table"  layoutX="325.0" layoutY="75.0" prefHeight="406.0" prefWidth="960.0">
         <columns>
           <TableColumn fx:id="id" prefWidth="40.26664352416992" style="-fx-text-fill: white; -fx-font-family: BRHendrix" text="Id" />
           <TableColumn fx:id="name" prefWidth="74.933349609375" style="-fx-text-fill: white; -fx-font-family: BRHendrix" text="name" />
             <TableColumn fx:id="color" prefWidth="85.5999755859375" style="-fx-text-fill: white; -fx-font-family: BRHendrix" text="Color" />
-            <TableColumn fx:id="weight" minWidth="0.0" prefWidth="64.800048828125" style="-fx-text-fill: white;-fx-font-family: BRHendrix" text="Weight" />
-            <TableColumn fx:id="age" prefWidth="40.79998779296875" style="-fx-text-fill: white; -fx-font-family: BRHendrix" text="Age" />
-            <TableColumn fx:id="type" prefWidth="92.800048828125" style="-fx-text-fill: white; -fx-font-family: BRHendrix" text="Type" />
+            <TableColumn fx:id="weight" minWidth="0.0" prefWidth="73.60003662109375" style="-fx-text-fill: white;-fx-font-family: BRHendrix" text="Weight" />
+            <TableColumn fx:id="age" prefWidth="50.39996337890625" style="-fx-text-fill: white; -fx-font-family: BRHendrix" text="Age" />
+            <TableColumn fx:id="type" prefWidth="76.0" style="-fx-text-fill: white; -fx-font-family: BRHendrix" text="Type" />
             <TableColumn fx:id="size" prefWidth="71.99993896484375" style="-fx-text-fill: white; -fx-font-family: BRHendrix" text="Size" />
             <TableColumn fx:id="eyesCount" prefWidth="81.06655883789062" style="-fx-text-fill: white; -fx-font-family: BRHendrix" text="eyesCount" />
             <TableColumn fx:id="toothCount" prefWidth="78.93341064453125" style="-fx-text-fill: white; -fx-font-family: BRHendrix" text="toothCount" />
             <TableColumn fx:id="creationDate" prefWidth="173.60009765625" style="-fx-text-fill: white; -fx-font-family: BRHendrix" text="Data" />
-            <TableColumn fx:id="creator" prefWidth="132.80002441406248" style="-fx-text-fill: white; -fx-font-family: BRHendrix" text="Creator" />
+            <TableColumn fx:id="creator" prefWidth="150.4000244140625" style="-fx-text-fill: white; -fx-font-family: BRHendrix" text="Creator" />
         </columns>
       </TableView>
       <Text fx:id="username" fill="WHITE" layoutX="62.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" wrappingWidth="134.13668823242188">
@@ -37,36 +42,36 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <Button fx:id="logout" layoutX="35.0" layoutY="100.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="94.0" style="-fx-background-color: #b10c0c; -fx-background-radius: 15px;" text="LogOut" textFill="WHITE">
+      <Button fx:id="logout" layoutX="35.0" layoutY="100.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="103.0" style="-fx-background-color: #b10c0c; -fx-background-radius: 15px;" text="LogOut" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button fx:id="help" layoutX="435.0" layoutY="16.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="103.0" style="-fx-background-color: #adf8ff; -fx-background-radius: 15px;" text="Help">
+      <Button fx:id="help" layoutX="408.0" layoutY="17.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="103.0" style="-fx-background-color: #adf8ff; -fx-background-radius: 15px;" text="Help">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="info" layoutX="205.0" layoutY="18.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="94.0" style="-fx-background-color: WHITE; -fx-background-radius: 15px;" text="Info">
+      <Button fx:id="info" layoutX="205.0" layoutY="17.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="103.0" style="-fx-background-color: WHITE; -fx-background-radius: 15px;" text="Info">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="save" layoutX="172.0" layoutY="100.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="94.0" style="-fx-background-color: GREEN; -fx-background-radius: 15px;" text="Save" textFill="WHITE">
+      <Button fx:id="save" layoutX="172.0" layoutY="100.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="103.0" style="-fx-background-color: GREEN; -fx-background-radius: 15px;" text="Save" textFill="WHITE">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="clear" layoutX="605.0" layoutY="17.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="103.0" style="-fx-background-color: #adf8ff; -fx-background-radius: 15px;" text="Clear">
+      <Button fx:id="clear" layoutX="587.0" layoutY="17.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="103.0" style="-fx-background-color: #adf8ff; -fx-background-radius: 15px;" text="Clear">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
       <TextArea fx:id="desk" editable="false" layoutX="323.0" layoutY="480.0" prefHeight="242.0" prefWidth="960.0" promptText="Поле для вывода информации" style="-fx-background-color: transparent;">
          <font>
-            <Font name="Bell MT" size="27.0" />
+            <Font name="Arial" size="27.0" />
          </font></TextArea>
-      <MenuButton fx:id="print" layoutX="1059.0" layoutY="16.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="106.0" style="-fx-background-radius: 15px; -fx-background-color: #adf8ff;" text="Print">
+      <MenuButton fx:id="print" layoutX="1083.0" layoutY="17.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="103.0" style="-fx-background-radius: 15px; -fx-background-color: #adf8ff;" text="Print">
         <items>
           <MenuItem fx:id="print_age" mnemonicParsing="false" text="Print_Age" />
           <MenuItem fx:id="print_type" mnemonicParsing="false" text="Print_Type" />
@@ -75,22 +80,22 @@
             <Font name="Arial" size="20.0" />
          </font>
       </MenuButton>
-      <Button fx:id="remove" layoutX="750.0" layoutY="14.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="118.0" style="-fx-background-color: #adf8ff; -fx-background-radius: 15px;" text="Remove">
+      <Button fx:id="remove" layoutX="751.0" layoutY="17.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="103.0" style="-fx-background-color: #adf8ff; -fx-background-radius: 15px;" text="Remove">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="add" layoutX="906.0" layoutY="17.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="110.0" style="-fx-background-color: #adf8ff; -fx-background-radius: 15px;" text="Add">
+      <Button fx:id="add" layoutX="916.0" layoutY="17.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="103.0" style="-fx-background-color: #adf8ff; -fx-background-radius: 15px;" text="Add">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="exit" layoutX="35.0" layoutY="158.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="94.0" style="-fx-background-color: #b10c0c; -fx-background-radius: 15px;" text="Exit" textFill="WHITE">
+      <Button fx:id="exit" layoutX="35.0" layoutY="158.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="103.0" style="-fx-background-color: #b10c0c; -fx-background-radius: 15px;" text="Exit" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button fx:id="map" layoutX="167.0" layoutY="158.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="103.0" style="-fx-background-color: #adf8ff; -fx-background-radius: 15px;" text="Map">
+      <Button fx:id="map" layoutX="172.0" layoutY="158.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="103.0" style="-fx-background-color: #adf8ff; -fx-background-radius: 15px;" text="Map">
          <font>
             <Font size="18.0" />
          </font>

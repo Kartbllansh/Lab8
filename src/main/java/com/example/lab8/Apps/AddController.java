@@ -61,7 +61,7 @@ public class AddController {
           yellow.setOnAction(event1 -> change.setColor(Color.YELLOW));
           white.setOnAction(event1 -> change.setColor(Color.WHITE));
           add.setOnAction(event1 -> {
-              System.out.println(change);
+              //System.out.println(change);
             des=2;
           });
           addMin.setOnAction(event1 -> {
@@ -85,20 +85,27 @@ public class AddController {
             change.setCoordinates(coordinates);
             if(des==1){
                 collectionManager.addIfMin(change);
+                collectionManager.idget();
                 collectionManager.save();
                 tableController.update();
+                //tableController.refresh();
                 Edition.showAlert("Успешно", "Успешно", "Успешно");
             } else if (des==2) {
 
-             CollectionManager.getDragons().add(change) ;
+             collectionManager.add(change); ;
+             collectionManager.idget();
+             collectionManager.show();
              collectionManager.save();
                 tableController.update();
+                //tableController.refresh();
                 Edition.showAlert("Успешно", "Успешно", "Успешно");
             } else if (des==3) {
                 try{
                     collectionManager.updateId(Long.parseLong(idField.getText()));
+                    collectionManager.idget();
                     collectionManager.save();
                     tableController.update();
+                    //tableController.refresh();
                     Edition.showAlert("Успешно", "Успешно", "Успешно");
                 } catch  (IndexOutOfBoundsException ex) {
                     Edition.showAlert("Ошибка с аргуметом", "Не указаны аргументы команды", "Ошибка с аргументом ID");

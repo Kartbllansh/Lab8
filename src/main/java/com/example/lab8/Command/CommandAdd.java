@@ -18,12 +18,13 @@ public class CommandAdd implements Command {
         this.collectionManager = collectionManager;
     }
     /**Метод, запускающий работу команды
-     * @see CollectionManager#add() */
+     //* @see CollectionManager#add() */
     @Override
     public void execute() {
         try {
             if(CheckUser.checkUsers()) {
-                collectionManager.add();
+              //  collectionManager.add();
+                System.out.println("kkkddk");
             } else {
                 System.out.println("Вы не авторизованы в программе");
             }
