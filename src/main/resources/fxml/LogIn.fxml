@@ -29,7 +29,7 @@
       </ImageView>
       <Button fx:id="info" layoutX="385.0" layoutY="149.0" opacity="0.0" prefHeight="26.0" prefWidth="33.0" text="Button" />
       <Label fx:id="textLabel" />
-      <Button layoutX="440.0" layoutY="180.0" prefHeight="70.0" prefWidth="199.0" style="-fx-background-color: transparent;" text="LOG IN" textFill="WHITE" underline="true" wrapText="true">
+      <Button fx:id="loginn" layoutX="440.0" layoutY="180.0" prefHeight="70.0" prefWidth="199.0" style="-fx-background-color: transparent;" text="LOG IN" textFill="WHITE" underline="true" wrapText="true">
          <font>
             <Font name="@../image/BRHendrix-SemiBold.ttf" size="31.0" />
          </font>
@@ -47,7 +47,7 @@
             <URL value="@../css/SignUp.css" />
          </stylesheets>
       </Button>
-      <Text fill="#c3c3c3" layoutX="476.0" layoutY="303.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: BRHendrix;" text="Username" wrappingWidth="108.13671875">
+      <Text fx:id="username" fill="#c3c3c3" layoutX="476.0" layoutY="303.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: BRHendrix;" text="Username" wrappingWidth="108.13671875">
          <font>
             <Font name="@../image/BRHendrix-SemiBold.ttf" size="17.0" />
          </font></Text>
@@ -56,7 +56,7 @@
             <Font name="Arial Rounded MT Bold" size="15.0" />
          </font>
       </TextField>
-      <Text fill="#c3c3c3" layoutX="476.0" layoutY="404.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: BRHendrix Bold;" text="Password" wrappingWidth="108.13671875">
+      <Text fx:id="passw" fill="#c3c3c3" layoutX="476.0" layoutY="404.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: BRHendrix Bold;" text="Password" wrappingWidth="108.13671875">
          <font>
             <Font name="@../image/BRHendrix-SemiBold.ttf" size="17.0" />
          </font>
@@ -74,12 +74,12 @@
             <URL value="@../css/enter.css" />
          </stylesheets>
       </Button>
-      <MenuButton contentDisplay="TOP" layoutX="841.0" layoutY="162.0" mnemonicParsing="false" opacity="0.93" prefHeight="26.0" prefWidth="89.0" style="-fx-background-color: transparent; -fx-font-family: BRHendrix;" text="Languages" textFill="#35aeff">
+      <MenuButton fx:id="lang" contentDisplay="TOP" layoutX="841.0" layoutY="162.0" mnemonicParsing="false" opacity="0.93" prefHeight="26.0" prefWidth="89.0" style="-fx-background-color: transparent; -fx-font-family: BRHendrix;" text="Languages" textFill="#35aeff">
          
          <items>
             <MenuItem mnemonicParsing="false">
                <graphic>
-                  <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="Slovenský">
+                  <Button fx:id="sloven" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Slovenský">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -88,7 +88,7 @@
             </MenuItem>
             <MenuItem mnemonicParsing="false">
                <graphic>
-                  <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="Русский">
+                  <Button fx:id="russia" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Русский">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Button>
@@ -96,7 +96,7 @@
             </MenuItem>
             <MenuItem mnemonicParsing="false">
                <graphic>
-                  <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="Svenska">
+                  <Button fx:id="sven" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Svenska">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Button>
@@ -104,7 +104,7 @@
             </MenuItem>
             <MenuItem mnemonicParsing="false">
                <graphic>
-                  <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="Español">
+                  <Button fx:id="Esp" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Español">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Button>

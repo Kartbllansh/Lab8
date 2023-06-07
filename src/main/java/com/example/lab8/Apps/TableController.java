@@ -19,6 +19,7 @@ import javafx.scene.text.Text;
 
 import javafx.stage.Stage;
 import javafx.util.converter.DoubleStringConverter;
+import javafx.util.converter.FloatStringConverter;
 import javafx.util.converter.IntegerStringConverter;
 import javafx.util.converter.LongStringConverter;
 
@@ -40,6 +41,8 @@ public class TableController {
     public Button add;
     public Button exit;
     public Button map;
+    public TableColumn<Dragon, Float> x;
+    public TableColumn<Dragon, Float> y;
     CollectionManager collectionManager = new CollectionManager();
     DragonAnimation dragonAnimation = new DragonAnimation();
 
@@ -55,13 +58,14 @@ public class TableController {
     public TableColumn<Dragon, Long> toothCount;
     public TableColumn<Dragon, ZonedDateTime> creationDate;
     public TableColumn<Dragon, String> creator;
-    public static TableView<Dragon> table = new TableView<>();
+    public static TableView<Dragon> table;
     public Text username;
     public TextArea desk;
     public Button printAge;
 
     @FXML
     void initialize() {
+        table = new TableView<>();
         //update();
         table.setFixedCellSize(30);
         table.setRowFactory(tv -> {
@@ -72,6 +76,7 @@ public class TableController {
         username.setText(Users.getCurrentUser());
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
+        //color.setCellValueFactory(new PropertyValueFactory<>("color"));
         color.setCellValueFactory(dragonStringCellDataFeatures ->
                 dragonStringCellDataFeatures.getValue().getColor() == null
                         ? new SimpleStringProperty("null")
@@ -82,7 +87,7 @@ public class TableController {
                 boolean a = true;
                 Dragon dragon = event.getRowValue();
                 if (!dragon.getCreator().equals(Users.getCurrentUser())) {
-                    Edition.showAlert("Ошибка", "Этот дракон принадлежит не вам", "Изменение запрещено");
+                    Edition.showAlert("Ошибка", "Объект принадлежит другому пользователю ", "");
                     a = false;
                 }
                 if (a) {
@@ -104,40 +109,141 @@ public class TableController {
             // Добавьте код для обновления данных в соответствующем списке или базе данных
             table.refresh();
         });
-        weight.setCellValueFactory(new PropertyValueFactory<>("weight"));
-        weight.setCellFactory(TextFieldTableCell.forTableColumn(new LongStringConverter()));
-        weight.setOnEditCommit(event -> {
+        x.setCellValueFactory(new PropertyValueFactory<>("x"));
+        x.setCellFactory(TextFieldTableCell.forTableColumn(new FloatStringConverter()));
+        x.setOnEditCommit(event -> {
+            System.out.println("sssss");
             try{
                 boolean a = true;
                 Dragon dragon = event.getRowValue();
                 if(!dragon.getCreator().equals(Users.getCurrentUser())){
-                    Edition.showAlert("Ошибка", "Этот дракон принадлежит не вам", "Изменение запрещено");
-                    a=false;
+                    Edition.showAlert("Ошибка", "Объект принадлежит другому пользователю ", "");
+                    a = false;
                 }
                 if(a) {
-                    long previousValue = dragon.getWeight(); // Сохраняем предыдущее значение
+                    float previousValue = dragon.getCoordinates().getX(); // Сохраняем предыдущее значение
+                    String i = event.getNewValue().toString();
+                    System.out.println(i);
+                    if (!i.matches("\\d*")) {
+                        Edition.showAlert("Ошибка", "Неправильно введено поле", "");
+                        a = false;
+                    }
+                    if (a) {
+                        float newValue = Float.parseFloat(event.getNewValue().toString());
 
-                    long newValue = event.getNewValue();
 
-
-                    //System.out.println(newValue);
-                    if (newValue > 0) {
-                        dragon.setWeight(newValue);
-                        int index = table.getItems().indexOf(dragon);
-                        if (index >= 0) {
-                            table.getItems().set(index, dragon);
-                            collectionManager.save();
-                            table.refresh();
+                        //System.out.println(newValue);
+                        if (newValue > 0) {
+                            dragon.getCoordinates().setX(newValue);
+                            int index = table.getItems().indexOf(dragon);
+                            if (index >= 0) {
+                                table.getItems().set(index, dragon);
+                                collectionManager.save();
+                            }
+                            // Добавьте код для обновления данных в соответствующем списке или базе данных
+                        } else {
+                            Edition.showAlert("Ошибка", "Введено некорректное значение", "");
+                            dragon.getCoordinates().setX(previousValue); // Восстанавливаем предыдущее значение
+                            table.refresh(); // Обновляем таблицу, чтобы отобразить предыдущее значение
                         }
-                        // Добавьте код для обновления данных в соответствующем списке или базе данных
-                    } else {
-                        Edition.showAlert("Ошибка", "Возраст не может быть отрицательным", "Ошибка при изменении данных");
-                        dragon.setWeight(previousValue); // Восстанавливаем предыдущее значение
-                        table.refresh(); // Обновляем таблицу, чтобы отобразить предыдущее значение
                     }
                 }
             } catch (NumberFormatException | NullPointerException e) {
-                Edition.showAlert("Ошибка", "Введено некорректное значение для веса", "Ошибка при изменении данных");
+                Edition.showAlert("Ошибка", "Введено некорректное значение", "");
+                //dragon.setAge(previousValue); // Восстанавливаем предыдущее значение
+                table.refresh(); // Обновляем таблицу, чтобы отобразить предыдущее значение
+            }
+            table.refresh();
+
+        });
+        y.setCellValueFactory(new PropertyValueFactory<>("y"));
+        y.setCellFactory(TextFieldTableCell.forTableColumn(new FloatStringConverter()));
+        y.setOnEditCommit(event -> {
+            System.out.println("sssss");
+            try{
+                boolean a = true;
+                Dragon dragon = event.getRowValue();
+                if(!dragon.getCreator().equals(Users.getCurrentUser())){
+                    Edition.showAlert("Ошибка", "Объект принадлежит другому пользователю ", "");
+                    a = false;
+                }
+                if(a) {
+                    float previousValue = dragon.getCoordinates().getY(); // Сохраняем предыдущее значение
+                    String i = event.getNewValue().toString();
+                    System.out.println(i);
+                    if (!i.matches("\\d*")) {
+                        Edition.showAlert("Ошибка", "Введено некорректное значение", "");
+                        a = false;
+                    }
+                    if (a) {
+                        float newValue = Float.parseFloat(event.getNewValue().toString());
+
+
+                        //System.out.println(newValue);
+                        if (newValue > 0) {
+                            dragon.getCoordinates().setY(newValue);
+                            int index = table.getItems().indexOf(dragon);
+                            if (index >= 0) {
+                                table.getItems().set(index, dragon);
+                                collectionManager.save();
+                            }
+                            // Добавьте код для обновления данных в соответствующем списке или базе данных
+                        } else {
+                            Edition.showAlert("Ошибка", "Введено некорректное значение", "");
+                            dragon.getCoordinates().setX(previousValue); // Восстанавливаем предыдущее значение
+                            table.refresh(); // Обновляем таблицу, чтобы отобразить предыдущее значение
+                        }
+                    }
+                }
+            } catch (NumberFormatException | NullPointerException e) {
+                Edition.showAlert("Ошибка", "Введено некорректное значение", "");
+                //dragon.setAge(previousValue); // Восстанавливаем предыдущее значение
+                table.refresh(); // Обновляем таблицу, чтобы отобразить предыдущее значение
+            }
+            table.refresh();
+
+        });
+        weight.setCellValueFactory(new PropertyValueFactory<>("weight"));
+        weight.setCellFactory(TextFieldTableCell.forTableColumn(new LongStringConverter()));
+        weight.setOnEditCommit(event -> {
+            System.out.println("sssss");
+            try{
+                boolean a = true;
+                Dragon dragon = event.getRowValue();
+                if(!dragon.getCreator().equals(Users.getCurrentUser())){
+                    Edition.showAlert("Ошибка", "Объект принадлежит другому пользователю ", "");
+                    a = false;
+                }
+                if(a) {
+                    long previousValue = dragon.getWeight(); // Сохраняем предыдущее значение
+                    String i = event.getNewValue().toString();
+                    System.out.println(i);
+                    if (!i.matches("\\d*")) {
+                        Edition.showAlert("Ошибка", "Введено некорректное значение", "");
+                        a = false;
+                    }
+                    if (a) {
+                        long newValue = Long.parseLong(event.getNewValue().toString());
+
+
+                        //System.out.println(newValue);
+                        if (newValue > 0) {
+                            dragon.setWeight(newValue);
+                            int index = table.getItems().indexOf(dragon);
+                            if (index >= 0) {
+                                table.getItems().set(index, dragon);
+                                collectionManager.save();
+                            }
+                            // Добавьте код для обновления данных в соответствующем списке или базе данных
+                        } else {
+                            Edition.showAlert("Ошибка", "Введено некорректное значение", "");
+                            dragon.setWeight(previousValue); // Восстанавливаем предыдущее значение
+                            table.refresh(); // Обновляем таблицу, чтобы отобразить предыдущее значение
+                        }
+                    }
+                }
+            } catch (NumberFormatException | NullPointerException e) {
+                Edition.showAlert("Ошибка", "Введено некорректное значение", "");
                 //dragon.setAge(previousValue); // Восстанавливаем предыдущее значение
                 table.refresh(); // Обновляем таблицу, чтобы отобразить предыдущее значение
             }
@@ -147,43 +253,51 @@ public class TableController {
         age.setCellValueFactory(new PropertyValueFactory<>("age"));
         age.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
         age.setOnEditCommit(event -> {
-            boolean a =true;
-            try {
+            System.out.println("sssss");
+            try{
+                boolean a = true;
                 Dragon dragon = event.getRowValue();
-                if (!dragon.getCreator().equals(Users.getCurrentUser())) {
-                    Edition.showAlert("Ошибка", "Этот дракон принадлежит не вам", "Изменение запрещено");
+                if(!dragon.getCreator().equals(Users.getCurrentUser())){
+                    Edition.showAlert("Ошибка", "Объект принадлежит другому пользователю ", "");
                     a = false;
                 }
-                if (a) {
+                if(a) {
                     int previousValue = dragon.getAge(); // Сохраняем предыдущее значение
+                    String i = event.getNewValue().toString();
+                    System.out.println(i);
+                    if (!i.matches("\\d*")) {
+                        Edition.showAlert("Ошибка", "Введено некорректное значение", "");
+                        a = false;
+                    }
+                    if (a) {
+                        int newValue = Integer.parseInt(event.getNewValue().toString());
 
-                    int newValue = Integer.parseInt(String.valueOf(event.getNewValue()));
 
-
-                    //System.out.println(newValue);
-                    if (newValue > 0) {
-                        dragon.setAge(newValue);
-                        int index = table.getItems().indexOf(dragon);
-                        if (index >= 0) {
-                            table.getItems().set(index, dragon);
-                            collectionManager.save();
-                            table.refresh();
+                        //System.out.println(newValue);
+                        if (newValue > 0) {
+                            dragon.setAge(newValue);
+                            int index = table.getItems().indexOf(dragon);
+                            if (index >= 0) {
+                                table.getItems().set(index, dragon);
+                                collectionManager.save();
+                            }
+                            // Добавьте код для обновления данных в соответствующем списке или базе данных
+                        } else {
+                            Edition.showAlert("Ошибка", "Введено некорректное значение", "");
+                            dragon.setAge(previousValue); // Восстанавливаем предыдущее значение
+                            table.refresh(); // Обновляем таблицу, чтобы отобразить предыдущее значение
                         }
-                        // Добавьте код для обновления данных в соответствующем списке или базе данных
-                    } else {
-                        Edition.showAlert("Ошибка", "Возраст не может быть отрицательным", "Ошибка при изменении данных");
-                        dragon.setAge(previousValue); // Восстанавливаем предыдущее значение
-                        table.refresh(); // Обновляем таблицу, чтобы отобразить предыдущее значение
                     }
                 }
-            }catch (NumberFormatException | NullPointerException e) {
-                Edition.showAlert("Ошибка", "Введено некорректное значение для возраста", "Ошибка при изменении данных");
+            } catch (NumberFormatException | NullPointerException e) {
+                Edition.showAlert("Ошибка", "Введено некорректное значение", "");
                 //dragon.setAge(previousValue); // Восстанавливаем предыдущее значение
                 table.refresh(); // Обновляем таблицу, чтобы отобразить предыдущее значение
             }
         table.refresh();
         });
-        //type.setCellValueFactory(new PropertyValueFactory<>("type"));
+       //type.setCellValueFactory(new PropertyValueFactory<>("type"));
+
         type.setCellValueFactory(dragonStringCellDataFeatures ->
                 dragonStringCellDataFeatures.getValue().getType() == null
                         ? new SimpleStringProperty("null")
@@ -194,7 +308,7 @@ public class TableController {
                 boolean a = true;
                 Dragon dragon = event.getRowValue();
                 if (!dragon.getCreator().equals(Users.getCurrentUser())) {
-                    Edition.showAlert("Ошибка", "Этот дракон принадлежит не вам", "Изменение запрещено");
+                    Edition.showAlert("Ошибка", "Объект принадлежит другому пользователю ", "");
                     a = false;
                 }
                 if (a) {
@@ -209,7 +323,7 @@ public class TableController {
                     collectionManager.save();
                 }
             }catch (IllegalArgumentException e){
-                Edition.showAlert("Ошибка", "Введено некорректное значение для тип", "Ошибка при изменении данных");
+                Edition.showAlert("Ошибка", "Введено некорректное значение", "");
                 table.refresh();
             }
             table.refresh();
@@ -218,80 +332,94 @@ public class TableController {
         size.setCellValueFactory(new PropertyValueFactory<>("size"));
         size.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
         size.setOnEditCommit(event -> {
-            try {
+            System.out.println("sssss");
+            try{
                 boolean a = true;
                 Dragon dragon = event.getRowValue();
-                if (!dragon.getCreator().equals(Users.getCurrentUser())) {
-                    Edition.showAlert("Ошибка", "Этот дракон принадлежит не вам", "Изменение запрещено");
+                if(!dragon.getCreator().equals(Users.getCurrentUser())){
+                    Edition.showAlert("Ошибка", "Объект принадлежит другому пользователю ", "");
                     a = false;
                 }
-                if (a) {
+                if(a) {
                     double previousValue = dragon.getHead().getSize(); // Сохраняем предыдущее значение
+                    String i = event.getNewValue().toString();
+                    System.out.println(i);
+                    if (!i.matches("\\d*")) {
+                        Edition.showAlert("Ошибка", "Введено некорректное значение", "");
+                        a = false;
+                    }
+                    if (a) {
+                        double newValue = Double.parseDouble(event.getNewValue().toString());
 
-                    double newValue = event.getNewValue();
 
-
-                    //System.out.println(newValue);
-                    if (newValue > 0) {
-                        dragon.getHead().setSize(newValue);
-                        int index = table.getItems().indexOf(dragon);
-                        if (index >= 0) {
-                            table.getItems().set(index, dragon);
-                            collectionManager.save();
+                        //System.out.println(newValue);
+                        if (newValue > 0) {
+                            dragon.getHead().setSize(newValue);
+                            int index = table.getItems().indexOf(dragon);
+                            if (index >= 0) {
+                                table.getItems().set(index, dragon);
+                                collectionManager.save();
+                            }
+                            // Добавьте код для обновления данных в соответствующем списке или базе данных
+                        } else {
+                            Edition.showAlert("Ошибка", "Введено некорректное значение", "");
+                            dragon.getHead().setSize(previousValue); // Восстанавливаем предыдущее значение
+                            table.refresh(); // Обновляем таблицу, чтобы отобразить предыдущее значение
                         }
-                        // Добавьте код для обновления данных в соответствующем списке или базе данных
-                    } else {
-                        Edition.showAlert("Ошибка", "Возраст не может быть отрицательным", "Ошибка при изменении данных");
-                        dragon.getHead().setSize(previousValue); // Восстанавливаем предыдущее значение
-                        table.refresh(); // Обновляем таблицу, чтобы отобразить предыдущее значение
                     }
                 }
-            }catch (NumberFormatException | NullPointerException e) {
-                Edition.showAlert("Ошибка", "Введено некорректное значение для размера", "Ошибка при изменении данных");
+            } catch (NumberFormatException | NullPointerException e) {
+                Edition.showAlert("Ошибка", "Введено некорректное значение", "");
                 //dragon.setAge(previousValue); // Восстанавливаем предыдущее значение
                 table.refresh(); // Обновляем таблицу, чтобы отобразить предыдущее значение
             }
             table.refresh();
-
         });
         eyesCount.setCellValueFactory(new PropertyValueFactory<>("eyesCount"));
         eyesCount.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
         eyesCount.setOnEditCommit(event -> {
-            try {
+            System.out.println("sssss");
+            try{
                 boolean a = true;
                 Dragon dragon = event.getRowValue();
-                if (!dragon.getCreator().equals(Users.getCurrentUser())) {
-                    Edition.showAlert("Ошибка", "Этот дракон принадлежит не вам", "Изменение запрещено");
+                if(!dragon.getCreator().equals(Users.getCurrentUser())){
+                    Edition.showAlert("Ошибка", "Объект принадлежит другому пользователю ", "");
                     a = false;
                 }
-                if (a) {
+                if(a) {
                     int previousValue = dragon.getHead().getEyesCount(); // Сохраняем предыдущее значение
+                    String i = event.getNewValue().toString();
+                    System.out.println(i);
+                    if (!i.matches("\\d*")) {
+                        Edition.showAlert("Ошибка", "Введено некорректное значение", "");
+                        a = false;
+                    }
+                    if (a) {
+                        int newValue = Integer.parseInt(event.getNewValue().toString());
 
-                    int newValue = event.getNewValue();
 
-
-                    //System.out.println(newValue);
-                    if (newValue > 0) {
-                        dragon.getHead().setEyesCount(newValue);
-                        int index = table.getItems().indexOf(dragon);
-                        if (index >= 0) {
-                            table.getItems().set(index, dragon);
-                            collectionManager.save();
+                        //System.out.println(newValue);
+                        if (newValue > 0) {
+                            dragon.getHead().setEyesCount(newValue);
+                            int index = table.getItems().indexOf(dragon);
+                            if (index >= 0) {
+                                table.getItems().set(index, dragon);
+                                collectionManager.save();
+                            }
+                            // Добавьте код для обновления данных в соответствующем списке или базе данных
+                        } else {
+                            Edition.showAlert("Ошибка", "Введено некорректное значение", "");
+                            dragon.getHead().setEyesCount(previousValue); // Восстанавливаем предыдущее значение
+                            table.refresh(); // Обновляем таблицу, чтобы отобразить предыдущее значение
                         }
-                        // Добавьте код для обновления данных в соответствующем списке или базе данных
-                    } else {
-                        Edition.showAlert("Ошибка", "Возраст не может быть отрицательным", "Ошибка при изменении данных");
-                        dragon.getHead().setEyesCount(previousValue); // Восстанавливаем предыдущее значение
-                        table.refresh(); // Обновляем таблицу, чтобы отобразить предыдущее значение
                     }
                 }
-            }catch (NumberFormatException | NullPointerException e) {
-                Edition.showAlert("Ошибка", "Введено некорректное значение для количества глаз", "Ошибка при изменении данных");
+            } catch (NumberFormatException | NullPointerException e) {
+                Edition.showAlert("Ошибка", "Введено некорректное значение", "");
                 //dragon.setAge(previousValue); // Восстанавливаем предыдущее значение
                 table.refresh(); // Обновляем таблицу, чтобы отобразить предыдущее значение
             }
             table.refresh();
-
         });
         toothCount.setCellValueFactory(new PropertyValueFactory<>("toothCount"));
         toothCount.setCellFactory(TextFieldTableCell.forTableColumn(new LongStringConverter()));
@@ -301,7 +429,7 @@ public class TableController {
                 boolean a = true;
                 Dragon dragon = event.getRowValue();
                 if(!dragon.getCreator().equals(Users.getCurrentUser())){
-                    Edition.showAlert("Ошибка", "Этот дракон принадлежит не вам", "Изменение запрещено");
+                    Edition.showAlert("Ошибка", "Объект принадлежит другому пользователю ", "");
                     a = false;
                 }
                 if(a) {
@@ -309,7 +437,7 @@ public class TableController {
                     String i = event.getNewValue().toString();
                     System.out.println(i);
                     if (!i.matches("\\d*")) {
-                        Edition.showAlert("Ошибка", "Неправильно введено поле", "Изменение запрещено");
+                        Edition.showAlert("Ошибка", "Введено некорректное значение", "");
                         a = false;
                     }
                     if (a) {
@@ -326,14 +454,14 @@ public class TableController {
                             }
                             // Добавьте код для обновления данных в соответствующем списке или базе данных
                         } else {
-                            Edition.showAlert("Ошибка", "Возраст не может быть отрицательным", "Ошибка при изменении данных");
+                            Edition.showAlert("Ошибка", "Введено некорректное значение", "");
                             dragon.getHead().setToothCount(previousValue); // Восстанавливаем предыдущее значение
                             table.refresh(); // Обновляем таблицу, чтобы отобразить предыдущее значение
                         }
                     }
                 }
             } catch (NumberFormatException | NullPointerException e) {
-                Edition.showAlert("Ошибка", "Введено некорректное значение для количества зубов", "Ошибка при изменении данных");
+                Edition.showAlert("Ошибка", "Введено некорректное значение", "");
                 //dragon.setAge(previousValue); // Восстанавливаем предыдущее значение
                 table.refresh(); // Обновляем таблицу, чтобы отобразить предыдущее значение
             }
@@ -349,7 +477,7 @@ public class TableController {
             Dragon dragon = event.getRowValue();
             String OldNAme = dragon.getName();
             if (!dragon.getCreator().equals(Users.getCurrentUser())) {
-                Edition.showAlert("Ошибка", "Этот дракон принадлежит не вам", "Изменение запрещено");
+                Edition.showAlert("Ошибка", "Объект принадлежит другому пользователю ", "");
                 a = false;
             }
             if (a) {
@@ -363,7 +491,7 @@ public class TableController {
                     }
                     // Добавьте код для обновления данных в соответствующем списке или базе данных
                 } else {
-                    Edition.showAlert("Ошибка", "Введено некорректное значение имени", "Ошибка при изменении данных");
+                    Edition.showAlert("Ошибка", "Введено некорректное значение", "");
                     dragon.setName(OldNAme);
                     table.refresh();
                 }
@@ -371,19 +499,13 @@ public class TableController {
             table.refresh();
         });
 
-        table.setEditable(true);
-
-
-
-
-        update();
-
+     update();
     print_age.setOnAction(event ->desk.setText(collectionManager.printAscedingAge()));
     print_type.setOnAction(event -> desk.setText(collectionManager.printDescendingType()));
     clear.setOnAction(event -> {
         collectionManager.clear();
         update();
-        table.refresh();
+        //table.refresh();
     });
     info.setOnAction(event -> desk.setText(collectionManager.getInfo()));
     map.setOnAction(event -> {
@@ -440,12 +562,12 @@ public class TableController {
 
     }
     public  void update(){
-        LinkedList<Dragon> updatedList = new LinkedList<>(CollectionManager.getDragons());
+
+        LinkedList<Dragon> updatedList = CollectionManager.getDragons();
+        System.out.println(updatedList.toString()+",kdmddjjdjdjdjdjdjd");
         table.setItems(FXCollections.observableArrayList(updatedList));
     }
 
-public void refresh(){
-        table.refresh();
-}
+
 
 }

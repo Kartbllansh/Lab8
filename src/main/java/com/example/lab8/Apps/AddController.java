@@ -72,6 +72,14 @@ public class AddController {
               des=3;
           });
         start.setOnAction(event -> {
+            if(change.getColor()==null){
+                Edition.showAlert("Ошибка с аргуметом", "Не выбран цвет", "Ошибка с аргументом Color");
+                return;
+            }
+            if(change.getType()==null){
+                Edition.showAlert("Ошибка с аргуметом", "Не выбран type", "Ошибка с аргументом Type");
+                return;
+            }
             allCheck();
             change.setCreationDate(ZonedDateTime.now());
             change.setCreator(Users.getCurrentUser());

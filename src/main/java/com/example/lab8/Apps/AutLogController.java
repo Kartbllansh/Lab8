@@ -7,7 +7,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -20,6 +22,14 @@ public class AutLogController {
     public TextField name;
     @FXML
     public Button info;
+    public Button Esp;
+    public Button sven;
+    public Button russia;
+    public Button sloven;
+    public MenuButton lang;
+    public Text passw;
+    public Text username;
+    public Button loginn;
     @FXML
     private Button regist;
     @FXML

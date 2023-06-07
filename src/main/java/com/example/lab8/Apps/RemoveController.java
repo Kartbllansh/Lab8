@@ -22,10 +22,10 @@ public class RemoveController {
          collectionManager.save();
          tableController.update();
            } catch  (IndexOutOfBoundsException ex) {
-               Edition.showAlert("Ошибка с аргуметом", "Не указаны аргументы команды", "Ошибка с аргуметом");
+               Edition.showAlert("Ошибка с аргуметом", "Не указаны аргументы команды", "");
                //System.err.println("Не указаны аргументы команды.");
            } catch (NumberFormatException ex) {
-               Edition.showAlert("Ошибка с аргуметом", "Требуется ввести число, чтобы команда работала", "Ошибка с аргуметом");
+               Edition.showAlert("Ошибка с аргуметом", "Требуется ввести число, чтобы команда работала", "");
            }
        });
        remove_type.setOnAction(event -> {
@@ -35,14 +35,14 @@ public class RemoveController {
                tableController.update();
            } catch ( IndexOutOfBoundsException ex) { //
                System.err.println("Не указаны аргументы команды.");
-               Edition.showAlert("Ошибка с аргуметом", "Не указаны аргументы команды.", "Ошибка с аргуметом");
+               Edition.showAlert("Ошибка с аргуметом", "Не указаны аргументы команды.", "");
 
            } catch (NumberFormatException ex) {
                System.err.println("Формат аргумента не соответствует целочисленному");
-               Edition.showAlert("Ошибка с аргуметом", "Формат аргумента не соответствует", "Ошибка с аргуметом");
+               Edition.showAlert("Ошибка с аргуметом", "Формат аргумента не соответствует", "");
            } catch (IllegalArgumentException e){
                System.err.println("Не существует такого типа");
-               Edition.showAlert("Ошибка с аргуметом", "Не существует такого типа", "Ошибка с аргуметом");
+               Edition.showAlert("Ошибка с аргуметом", "Не существует такого типа", "");
            }
        });
        remove_great.setOnAction(event -> {
@@ -52,10 +52,10 @@ public class RemoveController {
                tableController.update();
            } catch  ( IndexOutOfBoundsException ex) { //IndexOutOfBoundsException
                System.err.println("Не указаны аргументы команды.");
-               Edition.showAlert("Ошибка с аргуметом", "Формат аргумента не соответствует", "Ошибка с аргуметом");
+               Edition.showAlert("Ошибка с аргуметом", "Формат аргумента не соответствует", "");
            } catch (NumberFormatException ex) {
                System.err.println("Формат аргумента не соответствует целочисленному");
-               Edition.showAlert("Ошибка с аргуметом", "Формат аргумента не соответствует", "Ошибка с аргуметом");
+               Edition.showAlert("Ошибка с аргуметом", "Формат аргумента не соответствует", "");
            }
        });
     }

@@ -119,7 +119,7 @@ public class CollectionManager {
      */
     public void removeByType(String type) {
         if(isCollectEmpty(baseList)){
-            Edition.showAlert("Ошибка", "Коллекция пуста, команда не имеет смысла", "Пустая коллекция");
+            Edition.showAlert("Ошибка", "Коллекция пуста, команда не имеет смысла", "");
             return;
         }
         boolean check = false;
@@ -138,7 +138,7 @@ public class CollectionManager {
         }
         if(!check){
             String op ="Ни один дракон не удален. Ни у кого нет типа = "+type+ "или же его имеет дракон созданный не вами";
-            Edition.showAlert("Ошибка", op, "Не один дракон не удален");
+            Edition.showAlert("Ошибка", "", "Не один дракон не удален");
         }
         votTvoyId.votIdBad(baseList);
     }
@@ -174,7 +174,7 @@ public class CollectionManager {
      */
     public void removeById(Long id) {
         if(isCollectEmpty(baseList)){
-            Edition.showAlert("Ошибка", "Коллекция пуста, команда не имеет смысла", "Пустая коллекция");
+            Edition.showAlert("Ошибка", "Коллекция пуста, команда не имеет смысла", "");
             return;
         }
         for (int i = 0; i < baseList.size(); i++) {
@@ -189,12 +189,12 @@ public class CollectionManager {
                 return;
             } else {
                     String op ="Дракон принадлежит другому пользователю ( "+dragon.getCreator()+" ). Вы не можете его удалить";
-                    Edition.showAlert("Ошибка", op, "Объект принадлежит другому пользователю ");
+                    Edition.showAlert("Ошибка", "", "Объект принадлежит другому пользователю ");
                     return;
                 }
             }
         }
-        Edition.showAlert("Ошибка", "Введенный вами Id не существует", "Нет такого ID");
+        Edition.showAlert("Ошибка", "Введенный вами Id не существует", "");
     }
 
 //готово
@@ -296,13 +296,13 @@ public class CollectionManager {
     public void updateId(long id) {
         if(isCollectEmpty(baseList)){
             System.err.println("Коллекция пуста. Команда бесполезна");
-            Edition.showAlert("Ошибка", "Коллекция пуста. Команда бесполезна", "Пустая коллекция");
+            Edition.showAlert("Ошибка", "Коллекция пуста. Команда бесполезна", "");
 
             return;
         }
         if (!Objects.equals(Users.getCurrentUser(), baseList.get((int)id - 1).getCreator())){
             System.out.println("Дракон принадлежит другому пользователю. Вы не можете его удалить");
-            Edition.showAlert("Ошибка", "Дракон принадлежит другому пользователю. Вы не можете его удалить", "Объект принадлежит другому пользователю ");
+            Edition.showAlert("Ошибка", "", "Объект принадлежит другому пользователю ");
             return;
         }
         LinkedList<Long> idd =checkId(baseList);
@@ -310,7 +310,7 @@ public class CollectionManager {
             if (!idd.contains(id)) throw new NotIdException();
         } catch (NotIdException e) {
             System.err.println("Дракона с таким id не существует");
-            Edition.showAlert("Ошибка", "Дракона с таким id не существует", "Ошибка с id ");
+            Edition.showAlert("Ошибка", "Дракона с таким id не существует", "Ошибка");
 
             return;
         }
@@ -322,13 +322,13 @@ public class CollectionManager {
             if (baseList.get(i).getId().equals(id) & Objects.equals(dragon.getCreator(), Users.getCurrentUser())) {
                 baseList.set(i, change);
                 String op ="Дракон с ID " + id + " был заменен на дракона с именем "+change.getName();
-                Edition.showAlertHelp("Успешно", op, "Объект заменен ");
+                Edition.showAlertHelp("Успешно", "", "Объект заменен ");
                 votTvoyId.votIdBad(baseList);
                 return;
             }
         }
         System.err.println("Дракон с ID " + id + " не найден в коллекции");
-        Edition.showAlert("Ошибка", "Дракона с таким id не существует", "Ошибка с id ");
+        Edition.showAlert("Ошибка", "Введенный вами Id не существует", "");
     }
 //готово
     /**
@@ -350,7 +350,7 @@ public class CollectionManager {
             votTvoyId.votIdBad(baseList);
         } else {
             System.out.println("У наименьшего элемента коллекции значение меньше");
-            Edition.showAlert("Ошибка", "У наименьшего элемента коллекции значение меньше", "Add_if_min");
+            Edition.showAlert("Ошибка", "У наименьшего элемента коллекции значение меньше", "");
         }
         System.out.println("Теперь коллекция содержит "+baseList.size()+" элементов");
     }
@@ -412,6 +412,7 @@ public class CollectionManager {
 
         if(isCollectEmpty(baseList)){
             System.err.println("Коллекция пуста. Команда бесполезна");
+            Edition.showAlert("Ошибка", "Коллекция пуста, команда не имеет смысла", "");
             return;
         }
         LinkedList<Dragon> greader = new LinkedList<>();
@@ -439,6 +440,8 @@ public class CollectionManager {
         votTvoyId.votIdBad(baseList);
         if(!checkGreader){
             System.err.println("Ни один дракон не удален");
+            Edition.showAlert("Ошибка", "Ни один дракон не удален", "");
+
         }
     }
     /**

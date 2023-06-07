@@ -82,6 +82,11 @@ public class DragonAnimation {
             );
             DragonAnimated dragonAnimated = new DragonAnimated(ff, timeline);
             dragonAnimateds.add(dragonAnimated);
+            //double initialY = random.nextDouble() * (root.getHeight() - dragonAnimated.getImageView().getHeight());
+
+            // Установка начальной позиции дракона
+            dragonAnimated.getImageView().setTranslateX(dragonForFly.getX());
+            dragonAnimated.getImageView().setTranslateY(dragonForFly.getY());
             Tooltip tooltip = new Tooltip(dragonAnimated.toString());
             Tooltip.install(dragonAnimated.getImageView(), tooltip);
             dragonAnimated.getAnimation().setCycleCount(Animation.INDEFINITE);

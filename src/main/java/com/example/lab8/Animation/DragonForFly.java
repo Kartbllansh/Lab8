@@ -8,10 +8,10 @@ import javafx.scene.image.ImageView;
 import java.util.LinkedList;
 
 public class DragonForFly {
-    private long id;
+    private double x;
     private String color;
     private Double size;
-    private int group;
+    private double y;
 
     public String getColor() {
         return color;
@@ -34,36 +34,35 @@ public class DragonForFly {
     private int currentFrameIndex = 0;
 
 
-    public DragonForFly(long id, String color, Double size, int group, ImageView dragonImageView, int currentFrameIndex) {
+    public DragonForFly(double x, String color, Double size, double y, ImageView dragonImageView, int currentFrameIndex) {
         this.color = color;
         this.size = size;
-        this.group = group;
-        this.id = id;
+        this.y = y;
+        this.x = x;
         this.dragonImageView = dragonImageView;
         this.currentFrameIndex = currentFrameIndex;
+    }
+
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
     }
 
     public static LinkedList<DragonForFly> getNewColl(LinkedList<Dragon> baselist) {
         LinkedList<DragonForFly> newColl = new LinkedList<>();
         for (Dragon dragon : baselist) {
-            long id = dragon.getId();
             String color = dragon.getColor().toString().toLowerCase();
             double sizes = dragon.getHead().getSize();
             double size = kfSize(sizes);
             float x = dragon.getCoordinates().getX();
             float y = dragon.getCoordinates().getY();
-            int group;
-            if (x < 410 & y < 340) {
-                group = 4;
-            } else if (x > 410 & y < 340) {
-                group = 3;
-            } else if (x > 410 & y > 340) {
-                group = 1;
+            double yy = kfY(y);
+            double xx = kfX(x);
 
-            } else {
-                group = 1;
-            }
-            DragonForFly dragonForFly = new DragonForFly(id, color, size, group, null, 0);
+            DragonForFly dragonForFly = new DragonForFly(xx, color, size, yy, null, 0);
             newColl.add(dragonForFly);
         }
         return newColl;
@@ -80,6 +79,32 @@ public class DragonForFly {
         return 1.2;
         } else {
             return 1.5;
+        }
+    }
+    private static double kfY(float size){
+        if(size<-200){
+            return -250;
+        } else if (size>=-200 & size<-50) {
+            return -105;
+        } else if (size>=-50 & size<200) {
+            return 0;
+        } else if (size>=200 & size<1000) {
+            return 105;
+        } else {
+            return 250;
+        }
+    }
+    private static double kfX(float size){
+        if(size<-200){
+            return -500;
+        } else if (size>=-200 & size<-50) {
+            return -250;
+        } else if (size>=-50 & size<200) {
+            return 0;
+        } else if (size>=200 & size<1000) {
+            return 250;
+        } else {
+            return 500;
         }
     }
     public void setDragonImageView(ImageView imageView) {

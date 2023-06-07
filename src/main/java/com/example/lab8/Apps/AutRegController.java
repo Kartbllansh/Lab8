@@ -6,8 +6,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -21,6 +23,14 @@ public class AutRegController {
     public TextField psswd ;
     @FXML
     public TextField name;
+    public Button Esp;
+    public Button sven;
+    public Button russia;
+    public Button sloven;
+    public MenuButton lang;
+    public Text passwd;
+    public Text username;
+    public Button now;
     @FXML
     private Button login;
 @FXML
@@ -39,14 +49,14 @@ public class AutRegController {
     enter.setOnAction(event -> {
         boolean why = MainDataBase.checkLogin(name.getText());
         if(why) {
-            Edition.showAlert("Ошибка", "Аккаунт с логином ( "+ name.getText()+" ) уже есть", "Ошибка при авторизации" );
+            Edition.showAlert("Ошибка", "Аккаунт уже есть с логином  "+ name.getText(), "Ошибка при авторизации" );
             //System.out.println("Аккаунт с логином ( "+ name.getText()+" ) уже есть" );
             return;
         }
 
             Users.registration(name.getText(), psswd.getText(), dPasswd.getText());
         if(Users.reg) {
-            Edition.showAlert("Выполнено", "Успешная регистрация аккаунта" + name.getText(), "Перейдите в LogIn и войдите в аккаунт");
+            Edition.showAlert("Выполнено", "Успешная регистрация аккаунта" + name.getText(), "");
             System.out.println("Успешная регистрация");
         }
     });
