@@ -113,9 +113,7 @@ public class DragonAnimation {
         String musicPath = Objects.requireNonNull(getClass().getResource("/music/Bomba.mp3")).toExternalForm();
         Media media = new Media(musicPath);
        mediaPlayer = new MediaPlayer(media);
-        Button button = new Button("Кнопка");
-        root.getChildren().add(button);
-        StackPane.setAlignment(button, Pos.CENTER);
+
 
 
         // Воспроизведение музыки при запуске окна

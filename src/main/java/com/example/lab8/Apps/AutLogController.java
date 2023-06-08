@@ -2,8 +2,11 @@ package com.example.lab8.Apps;
 
 import com.example.lab8.DataBase.MainDataBase;
 import com.example.lab8.DataBase.Users;
+import com.example.lab8.Languagesss.CurrentLanguage;
+import com.example.lab8.Languagesss.Language;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -13,8 +16,11 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class AutLogController {
+public class AutLogController implements Initializable {
+
 
     @FXML
     public Button enter;
@@ -35,8 +41,9 @@ public class AutLogController {
     @FXML
     private Label textLabel;
 
-    @FXML
-    private void initialize(){
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources){
 
         textLabel = new Label();
 regist.setOnAction(event -> {
@@ -65,6 +72,26 @@ enter.setOnAction(event -> {
     }
 });
 info.setOnAction(event -> getInfo());
+Esp.setOnAction(event -> {
+    CurrentLanguage.setCurrentLanguage(Language.esp);
+    CurrentLanguage.setCurrentLanguageString("esp");
+    setLang();
+});
+russia.setOnAction(event -> {
+    CurrentLanguage.setCurrentLanguage(Language.ru);
+    CurrentLanguage.setCurrentLanguageString("ru");
+    setLang();
+});
+sloven.setOnAction(event -> {
+    CurrentLanguage.setCurrentLanguage(Language.sl);
+    CurrentLanguage.setCurrentLanguageString("sl");
+    setLang();
+});
+sven.setOnAction(event -> {
+    CurrentLanguage.setCurrentLanguage(Language.swe);
+    CurrentLanguage.setCurrentLanguageString("swe");
+    setLang();
+});
     }
     @FXML
     private void showText() {
@@ -94,6 +121,15 @@ info.setOnAction(event -> getInfo());
         }
 
     }
+    public void setLang(){
+        ResourceBundle currentLanguage = CurrentLanguage.getCurrentLanguage();
+        enter.setText(currentLanguage.getString("SIGN IN"));
+        passw.setText(currentLanguage.getString("Password"));
+        passwd.setText(currentLanguage.getString("Password"));
+        lang.setText(currentLanguage.getString("Languages"));
+
+    }
+
 
 
 }

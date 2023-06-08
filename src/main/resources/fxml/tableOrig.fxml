@@ -35,8 +35,8 @@
             <TableColumn fx:id="toothCount" prefWidth="77.60003662109375" style="-fx-text-fill: white; -fx-font-family: BRHendrix" text="toothCount" />
             <TableColumn fx:id="creationDate" prefWidth="128.79998779296875" style="-fx-text-fill: white; -fx-font-family: BRHendrix" text="Data" />
             <TableColumn fx:id="creator" prefWidth="62.4000244140625" style="-fx-text-fill: white; -fx-font-family: BRHendrix" text="Creator" />
-            <TableColumn fx:id="x" prefWidth="69.60009765625" style="-fx-text-fill: white; -fx-font-family: BRHendrix" text="x" />
-            <TableColumn fx:id="y" prefWidth="71.199951171875" style="-fx-text-fill: white; -fx-font-family: BRHendrix" text="y" />
+            <TableColumn fx:id="x" prefWidth="69.60009765625" style="-fx-text-fill: white; -fx-font-family: BRHendrix" text="X" />
+            <TableColumn fx:id="y" prefWidth="71.199951171875" style="-fx-text-fill: white; -fx-font-family: BRHendrix" text="Y" />
         </columns>
       </TableView>
       <Text fx:id="username" fill="WHITE" layoutX="62.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" wrappingWidth="134.13668823242188">

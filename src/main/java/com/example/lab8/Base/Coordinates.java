@@ -5,7 +5,7 @@ package com.example.lab8.Base;
  */
 public class Coordinates {
     private Float x; //Значение поля должно быть больше -474, Поле не может быть null
-    private float y;
+    private Float y;
 
     /**
      * Instantiates a new Coordinates.
@@ -13,8 +13,8 @@ public class Coordinates {
      * @param x the x - координата указывающая положение по х
      * @param y the y - координата указывающая положение по y
      */
-    public Coordinates(Float x, float y){
-    this.setX(x);
+    public Coordinates(Float x, Float y){
+    this.x =x;
     this.y = y;
 }
 
@@ -46,7 +46,7 @@ public String toString(){
      *
      * @return the y
      */
-    public float getY() {
+    public Float getY() {
         return y;
     }
 
@@ -65,7 +65,7 @@ public String toString(){
      *
      * @param y the y
      */
-    public void setY(float y) {
+    public void setY(Float y) {
         this.y = y;
     }
 }

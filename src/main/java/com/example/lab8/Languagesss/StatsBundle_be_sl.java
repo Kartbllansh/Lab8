@@ -1,8 +1,8 @@
-package com.example.lab8.Language;
+package com.example.lab8.Languagesss;
 
 import java.util.ListResourceBundle;
 
-public class StatsBundle_be_Sl extends ListResourceBundle {
+public class StatsBundle_be_sl extends ListResourceBundle {
     @Override
     public Object[][] getContents() {
         return contents;

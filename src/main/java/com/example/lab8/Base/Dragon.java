@@ -37,11 +37,11 @@ public class Dragon  {
         this.creationDate = creationDate;
         this.name = name;
         this.creationDate = ZonedDateTime.now();
-        this.coordinates = coordinates;
+        this.setCoordinates(coordinates);
         this.setAge(age);
         this.setWeight(weight);
-        this.color = color;
-        this.type = type;
+        this.setColor(color);
+        this.setType(type);
         this.setHead(head);
         this.creator = creator;
     }
@@ -231,15 +231,20 @@ public void setCreator(String creator){
     }
 
     public double getSize(){
-        return head.getSize();
+        return getHead().getSize();
     }
     public int getEyesCount(){
-        return head.getEyesCount();
+        return getHead().getEyesCount();
     }
     public long getToothCount(){
-        return head.getToothCount();
+        return getHead().getToothCount();
     }
-
+public float getX(){
+        return getCoordinates().getX();
+}
+public float getY(){
+        return getCoordinates().getY();
+}
 }
 
 

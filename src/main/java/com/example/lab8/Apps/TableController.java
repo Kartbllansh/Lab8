@@ -25,6 +25,7 @@ import javafx.util.converter.LongStringConverter;
 
 import java.io.IOException;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 
@@ -41,10 +42,11 @@ public class TableController {
     public Button add;
     public Button exit;
     public Button map;
-    public TableColumn<Dragon, Float> x;
-    public TableColumn<Dragon, Float> y;
+
     CollectionManager collectionManager = new CollectionManager();
     DragonAnimation dragonAnimation = new DragonAnimation();
+    public TableColumn<Dragon, Float> x;
+    public TableColumn<Dragon, Float> y;
 
     public TableColumn<Dragon, Integer> id;
     public TableColumn<Dragon, String> name;
@@ -58,14 +60,14 @@ public class TableController {
     public TableColumn<Dragon, Long> toothCount;
     public TableColumn<Dragon, ZonedDateTime> creationDate;
     public TableColumn<Dragon, String> creator;
-    public static TableView<Dragon> table;
+    public  TableView<Dragon> table = new TableView<>();
     public Text username;
     public TextArea desk;
     public Button printAge;
 
     @FXML
     void initialize() {
-        table = new TableView<>();
+
         //update();
         table.setFixedCellSize(30);
         table.setRowFactory(tv -> {
@@ -74,14 +76,43 @@ public class TableController {
             return row;
         });
         username.setText(Users.getCurrentUser());
+        creationDate.setCellValueFactory(new PropertyValueFactory<>("creationDate"));
+        creator.setCellValueFactory(new PropertyValueFactory<>("creator"));
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
-        //color.setCellValueFactory(new PropertyValueFactory<>("color"));
+        name.setCellFactory(TextFieldTableCell.forTableColumn()); // Здесь 'name' - название колонки, в которой нужно включить редактирование
+        name.setOnEditCommit(event -> {
+            boolean a = true;
+            Dragon dragon = event.getRowValue();
+            String OldNAme = dragon.getName();
+            if (!dragon.getCreator().equals(Users.getCurrentUser())) {
+                Edition.showAlert("Ошибка", "Объект принадлежит другому пользователю ", "");
+                a = false;
+            }
+            if (a) {
+                String n = event.getNewValue();
+                if (!(n.equals("")) & dragon.getCreator().equals(Users.getCurrentUser())) {
+                    dragon.setName(n);
+                    int index = table.getItems().indexOf(dragon); // Получаем индекс дракона в коллекции
+                    if (index >= 0) {
+                        table.getItems().set(index, dragon); // Обновляем дракона в коллекции
+                        collectionManager.save();
+                    }
+                    // Добавьте код для обновления данных в соответствующем списке или базе данных
+                } else {
+                    Edition.showAlert("Ошибка", "Введено некорректное значение", "");
+                    dragon.setName(OldNAme);
+                    table.refresh();
+                }
+            }
+            table.refresh();
+        });
+        color.setCellValueFactory(new PropertyValueFactory<>("color"));
         color.setCellValueFactory(dragonStringCellDataFeatures ->
                 dragonStringCellDataFeatures.getValue().getColor() == null
                         ? new SimpleStringProperty("null")
                         : new SimpleStringProperty(dragonStringCellDataFeatures.getValue().getColor().toString()));
-        color.setCellFactory(TextFieldTableCell.forTableColumn()); // Здесь 'name' - название колонки, в которой нужно включить редактирование
+      color.setCellFactory(TextFieldTableCell.forTableColumn()); // Здесь 'name' - название колонки, в которой нужно включить редактирование
         color.setOnEditCommit(event -> {
             try {
                 boolean a = true;
@@ -110,7 +141,7 @@ public class TableController {
             table.refresh();
         });
         x.setCellValueFactory(new PropertyValueFactory<>("x"));
-        x.setCellFactory(TextFieldTableCell.forTableColumn(new FloatStringConverter()));
+     x.setCellFactory(TextFieldTableCell.forTableColumn(new FloatStringConverter()));
         x.setOnEditCommit(event -> {
             System.out.println("sssss");
             try{
@@ -157,7 +188,7 @@ public class TableController {
 
         });
         y.setCellValueFactory(new PropertyValueFactory<>("y"));
-        y.setCellFactory(TextFieldTableCell.forTableColumn(new FloatStringConverter()));
+       y.setCellFactory(TextFieldTableCell.forTableColumn(new FloatStringConverter()));
         y.setOnEditCommit(event -> {
             System.out.println("sssss");
             try{
@@ -251,7 +282,7 @@ public class TableController {
 
         });
         age.setCellValueFactory(new PropertyValueFactory<>("age"));
-        age.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+      age.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
         age.setOnEditCommit(event -> {
             System.out.println("sssss");
             try{
@@ -296,9 +327,8 @@ public class TableController {
             }
         table.refresh();
         });
-       //type.setCellValueFactory(new PropertyValueFactory<>("type"));
-
-        type.setCellValueFactory(dragonStringCellDataFeatures ->
+        type.setCellValueFactory(new PropertyValueFactory<>("type"));
+       type.setCellValueFactory(dragonStringCellDataFeatures ->
                 dragonStringCellDataFeatures.getValue().getType() == null
                         ? new SimpleStringProperty("null")
                         : new SimpleStringProperty(dragonStringCellDataFeatures.getValue().getType().toString()));
@@ -330,7 +360,7 @@ public class TableController {
             // Добавьте код для обновления данных в соответствующем списке или базе данных
         });
         size.setCellValueFactory(new PropertyValueFactory<>("size"));
-        size.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
+       size.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
         size.setOnEditCommit(event -> {
             System.out.println("sssss");
             try{
@@ -443,8 +473,6 @@ public class TableController {
                     if (a) {
                         long newValue = Long.parseLong(event.getNewValue().toString());
 
-
-                        //System.out.println(newValue);
                         if (newValue > 0) {
                             dragon.getHead().setToothCount(newValue);
                             int index = table.getItems().indexOf(dragon);
@@ -468,38 +496,8 @@ public class TableController {
             table.refresh();
 
         });
-        creationDate.setCellValueFactory(new PropertyValueFactory<>("creationDate"));
-        creator.setCellValueFactory(new PropertyValueFactory<>("creator"));
+        update();
         table.setEditable(true);
-        name.setCellFactory(TextFieldTableCell.forTableColumn()); // Здесь 'name' - название колонки, в которой нужно включить редактирование
-        name.setOnEditCommit(event -> {
-            boolean a = true;
-            Dragon dragon = event.getRowValue();
-            String OldNAme = dragon.getName();
-            if (!dragon.getCreator().equals(Users.getCurrentUser())) {
-                Edition.showAlert("Ошибка", "Объект принадлежит другому пользователю ", "");
-                a = false;
-            }
-            if (a) {
-                String n = event.getNewValue();
-                if (!(n.equals("")) & dragon.getCreator().equals(Users.getCurrentUser())) {
-                    dragon.setName(n);
-                    int index = table.getItems().indexOf(dragon); // Получаем индекс дракона в коллекции
-                    if (index >= 0) {
-                        table.getItems().set(index, dragon); // Обновляем дракона в коллекции
-                        collectionManager.save();
-                    }
-                    // Добавьте код для обновления данных в соответствующем списке или базе данных
-                } else {
-                    Edition.showAlert("Ошибка", "Введено некорректное значение", "");
-                    dragon.setName(OldNAme);
-                    table.refresh();
-                }
-            }
-            table.refresh();
-        });
-
-     update();
     print_age.setOnAction(event ->desk.setText(collectionManager.printAscedingAge()));
     print_type.setOnAction(event -> desk.setText(collectionManager.printDescendingType()));
     clear.setOnAction(event -> {
@@ -559,15 +557,16 @@ public class TableController {
             throw new RuntimeException(e);
         }
     });
-
+    update();
     }
     public  void update(){
 
-        LinkedList<Dragon> updatedList = CollectionManager.getDragons();
-        System.out.println(updatedList.toString()+",kdmddjjdjdjdjdjdjd");
+       LinkedList<Dragon> updatedList = new LinkedList<>(CollectionManager.getDragons());
+       System.out.println(updatedList.toString()+",kdmddjjdjdjdjdjdjd");
         table.setItems(FXCollections.observableArrayList(updatedList));
+       // table.setItems(FXCollections.observableList(new ArrayList<>(CollectionManager.getDragons())));
+    }
     }
 
 
 
-}
