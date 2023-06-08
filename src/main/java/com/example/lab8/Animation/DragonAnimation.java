@@ -60,7 +60,7 @@ public class DragonAnimation {
         //Image backgroundImage = new Image("/image/Без имени-1.jpg");
         //ImageView backgroundImageView = new ImageView(backgroundImage);
        // root.getChildren().add(backgroundImageView);
-        for(DragonForFly dragonForFly : DragonForFly.getNewColl(CollectionManager.creatorCollection())) {
+        for(DragonForFly dragonForFly : DragonForFly.getNewColl(CollectionManager.getDragons())) {
             i++;
             String color = dragonForFly.getColor();
             double size = dragonForFly.getSize();

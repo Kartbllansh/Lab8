@@ -2,8 +2,11 @@ package com.example.lab8.Apps;
 
 import com.example.lab8.DataBase.MainDataBase;
 import com.example.lab8.DataBase.Users;
+import com.example.lab8.Languagesss.CurrentLanguage;
+import com.example.lab8.Languagesss.Language;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
@@ -13,8 +16,10 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class AutRegController {
+public class AutRegController implements Initializable {
     @FXML
     public Button enter;
     @FXML
@@ -31,10 +36,12 @@ public class AutRegController {
     public Text passwd;
     public Text username;
     public Button now;
+    public Text ps;
     @FXML
     private Button login;
-@FXML
-    private void initialize(){
+@Override
+    public void initialize(URL location, ResourceBundle resources){
+    setLang();
     login.setOnAction(event -> {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/LogIn.fxml"));
@@ -60,5 +67,36 @@ public class AutRegController {
             System.out.println("Успешная регистрация");
         }
     });
+    Esp.setOnAction(event -> {
+        CurrentLanguage.setCurrentLanguage(Language.esp);
+        CurrentLanguage.setCurrentLanguageString("esp");
+        setLang();
+    });
+    russia.setOnAction(event -> {
+        CurrentLanguage.setCurrentLanguage(Language.ru);
+        CurrentLanguage.setCurrentLanguageString("ru");
+        setLang();
+    });
+    sloven.setOnAction(event -> {
+        CurrentLanguage.setCurrentLanguage(Language.sl);
+        CurrentLanguage.setCurrentLanguageString("sl");
+        setLang();
+    });
+    sven.setOnAction(event -> {
+        CurrentLanguage.setCurrentLanguage(Language.swe);
+        CurrentLanguage.setCurrentLanguageString("swe");
+        setLang();
+    });
 }
+    public void setLang(){
+        ResourceBundle currentLanguage = CurrentLanguage.getCurrentLanguage();
+        enter.setText(currentLanguage.getString("regist"));
+        //dPasswd.setText(currentLanguage.getString("Password"));
+        passwd.setText(currentLanguage.getString("Password"));
+        ps.setText(currentLanguage.getString("Password"));
+        lang.setText(currentLanguage.getString("Languages"));
+        username.setText(currentLanguage.getString("Username"));
+        //psswd.setText(currentLanguage.getString("Password"));
+        //name.setText(currentLanguage.getString("Username"));
+    }
 }

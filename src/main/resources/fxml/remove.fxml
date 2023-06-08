@@ -27,9 +27,9 @@
          <font>
             <Font size="15.0" />
          </font></Button>
-      <Text fill="WHITE" layoutX="327.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Поле для ввода Id" wrappingWidth="121.33679008483887" />
-      <Text fill="WHITE" layoutX="327.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Поле для ввода Type" wrappingWidth="121.33679008483887" />
-      <Text fill="WHITE" layoutX="327.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Поле для ввода Size" wrappingWidth="121.33679008483887" />
+      <Text fx:id="idF" fill="WHITE" layoutX="327.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Поле для ввода Id" wrappingWidth="121.33679008483887" />
+      <Text fx:id="typeF" fill="WHITE" layoutX="327.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Поле для ввода Type" wrappingWidth="121.33679008483887" />
+      <Text fx:id="sizeF" fill="WHITE" layoutX="327.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Поле для ввода Size" wrappingWidth="121.33679008483887" />
       <TextField fx:id="fieldId" layoutX="306.0" layoutY="42.0" />
       <TextField fx:id="fieldType" layoutX="306.0" layoutY="127.0" />
       <TextField fx:id="fieldAge" layoutX="306.0" layoutY="217.0" />

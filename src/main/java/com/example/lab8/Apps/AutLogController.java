@@ -44,7 +44,7 @@ public class AutLogController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources){
-
+        setLang();
         textLabel = new Label();
 regist.setOnAction(event -> {
     try {
@@ -71,7 +71,7 @@ enter.setOnAction(event -> {
         openWindowTable();
     }
 });
-info.setOnAction(event -> getInfo());
+/*info.setOnAction(event -> getInfo());*/
 Esp.setOnAction(event -> {
     CurrentLanguage.setCurrentLanguage(Language.esp);
     CurrentLanguage.setCurrentLanguageString("esp");
@@ -125,9 +125,10 @@ sven.setOnAction(event -> {
         ResourceBundle currentLanguage = CurrentLanguage.getCurrentLanguage();
         enter.setText(currentLanguage.getString("SIGN IN"));
         passw.setText(currentLanguage.getString("Password"));
-        passwd.setText(currentLanguage.getString("Password"));
+        //passwd.setText(currentLanguage.getString("Password"));
         lang.setText(currentLanguage.getString("Languages"));
-
+        username.setText(currentLanguage.getString("Username"));
+        //name.setText(currentLanguage.getString("Username"));
     }
 
 

@@ -16,48 +16,48 @@
             <Image url="@../image/addFon.jpg" />
          </image>
       </ImageView>
-      <Text fill="WHITE" layoutX="648.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Вес">
+      <Text fx:id="weight" fill="WHITE" layoutX="648.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Вес">
          <font>
             <Font size="19.0" />
          </font></Text>
-      <RadioButton fx:id="add" layoutX="92.0" layoutY="471.0" mnemonicParsing="false" text="Add" textFill="WHITE">
+      <RadioButton fx:id="add" layoutX="70.0" layoutY="471.0" mnemonicParsing="false" text="Add" textFill="WHITE">
          <font>
             <Font size="26.0" />
          </font>
       </RadioButton>
-      <Text fill="WHITE" layoutX="43.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Имя дракона">
+      <Text fx:id="name" fill="WHITE" layoutX="43.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Имя дракона">
          <font>
             <Font size="19.0" />
          </font></Text>
-      <Text fill="WHITE" layoutX="346.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Возраст">
+      <Text fx:id="age" fill="WHITE" layoutX="346.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Возраст">
          <font>
             <Font size="19.0" />
          </font></Text>
-      <Text fill="WHITE" layoutX="163.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Тип">
+      <Text fx:id="type" fill="WHITE" layoutX="163.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Тип">
          <font>
             <Font size="19.0" />
          </font></Text>
-      <Text fill="WHITE" layoutX="590.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Цвет">
+      <Text fx:id="color" fill="WHITE" layoutX="590.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Цвет">
          <font>
             <Font size="19.0" />
          </font></Text>
-      <Text fill="WHITE" layoutX="304.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Количество зубов">
+      <Text fx:id="tooth" fill="WHITE" layoutX="304.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Количество зубов">
          <font>
             <Font size="19.0" />
          </font></Text>
-      <Text fill="WHITE" layoutX="577.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Количество глаз">
+      <Text fx:id="eyes" fill="WHITE" layoutX="577.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Количество глаз">
          <font>
             <Font size="19.0" />
          </font></Text>
-      <Text fill="WHITE" layoutX="70.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Размер">
+      <Text fx:id="size" fill="WHITE" layoutX="70.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Размер">
          <font>
             <Font size="20.0" />
          </font></Text>
-      <Text fill="WHITE" layoutX="472.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Координату X">
+      <Text fill="WHITE" layoutX="472.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Координату X" fx:id="x">
          <font>
             <Font size="19.0" />
          </font></Text>
-      <Text fill="WHITE" layoutX="174.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Координату Y">
+      <Text fx:id="y" fill="WHITE" layoutX="174.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Координату Y">
          <font>
             <Font size="20.0" />
          </font></Text>
@@ -131,7 +131,7 @@
             <Font size="14.0" />
          </font>
       </TextField>
-      <RadioButton fx:id="addMin" layoutX="315.0" layoutY="471.0" mnemonicParsing="false" text="Add_If_Min" textFill="WHITE">
+      <RadioButton fx:id="addMin" layoutX="279.0" layoutY="471.0" mnemonicParsing="false" text="Add_If_Min" textFill="WHITE">
          <font>
             <Font size="26.0" />
          </font>
@@ -141,11 +141,11 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <RadioButton fx:id="update" layoutX="583.0" layoutY="471.0" mnemonicParsing="false" text="Update_Id" textFill="WHITE">
+      <RadioButton fx:id="update" layoutX="545.0" layoutY="471.0" mnemonicParsing="false" text="Update_Id" textFill="WHITE">
          <font>
             <Font size="26.0" />
          </font>
       </RadioButton>
-      <TextField fx:id="idField" layoutX="615.0" layoutY="521.0" prefHeight="26.0" prefWidth="125.0" promptText="Введите Id" />
+      <TextField fx:id="idField" layoutX="569.0" layoutY="520.0" prefHeight="26.0" prefWidth="125.0" promptText="Введите Id" />
    </children>
 </AnchorPane>

@@ -7,10 +7,12 @@ import com.example.lab8.Base.DragonType;
 import com.example.lab8.DataBase.Users;
 import com.example.lab8.File.CollectionManager;
 
+import com.example.lab8.Languagesss.CurrentLanguage;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -24,12 +26,14 @@ import javafx.util.converter.IntegerStringConverter;
 import javafx.util.converter.LongStringConverter;
 
 import java.io.IOException;
+import java.net.URL;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.ResourceBundle;
 
 
-public class TableController {
+public class TableController implements Initializable {
     public MenuButton print;
     public MenuItem print_type;
     public MenuItem print_age;
@@ -65,16 +69,11 @@ public class TableController {
     public TextArea desk;
     public Button printAge;
 
-    @FXML
-    void initialize() {
+    @Override
+   public void initialize(URL location, ResourceBundle resources) {
 
         //update();
-        table.setFixedCellSize(30);
-        table.setRowFactory(tv -> {
-            TableRow<Dragon> row = new TableRow<>();
-            row.setStyle("-fx-background-color: #9f6456; -fx-text-fill: white; -fx-border-color:  white ; -fx-font-family: Arial"); // Устанавливаем цвет фона строки
-            return row;
-        });
+        //table.setFixedCellSize(30);
         username.setText(Users.getCurrentUser());
         creationDate.setCellValueFactory(new PropertyValueFactory<>("creationDate"));
         creator.setCellValueFactory(new PropertyValueFactory<>("creator"));
@@ -558,6 +557,7 @@ public class TableController {
         }
     });
     update();
+    appLang();
     }
     public  void update(){
 
@@ -565,6 +565,33 @@ public class TableController {
        System.out.println(updatedList.toString()+",kdmddjjdjdjdjdjdjd");
         table.setItems(FXCollections.observableArrayList(updatedList));
        // table.setItems(FXCollections.observableList(new ArrayList<>(CollectionManager.getDragons())));
+    }
+
+    public void appLang(){
+        ResourceBundle currentLanguage = CurrentLanguage.getCurrentLanguage();
+        print.setText(currentLanguage.getString("Print"));
+        print_type.setText(currentLanguage.getString("PrintType"));
+        //printAge.setText(currentLanguage.getString("PrintAge"));
+        clear.setText(currentLanguage.getString("Clear"));
+        info.setText(currentLanguage.getString("Info"));
+        help.setText(currentLanguage.getString("Help"));
+        logout.setText(currentLanguage.getString("LogOut"));
+        remove.setText(currentLanguage.getString("Remove"));
+        add.setText(currentLanguage.getString("Add"));
+        map.setText(currentLanguage.getString("Map"));
+        exit.setText(currentLanguage.getString("Exit"));
+        id.setText(currentLanguage.getString("id"));
+        name.setText(currentLanguage.getString("name"));
+        weight.setText(currentLanguage.getString("weight"));
+        age.setText(currentLanguage.getString("age"));
+        toothCount.setText(currentLanguage.getString("tooth"));
+        eyesCount.setText(currentLanguage.getString("eyes"));
+        size.setText(currentLanguage.getString("size"));
+        x.setText(currentLanguage.getString("x"));
+        y.setText(currentLanguage.getString("y"));
+        color.setText(currentLanguage.getString("color"));
+        creationDate.setText(currentLanguage.getString("data"));
+        type.setText(currentLanguage.getString("type"));
     }
     }
 

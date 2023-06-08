@@ -4,16 +4,31 @@ import com.example.lab8.Base.*;
 import com.example.lab8.DataBase.Users;
 import com.example.lab8.File.CollectionManager;
 import com.example.lab8.File.VotTvoyId;
+import com.example.lab8.Languagesss.CurrentLanguage;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.text.Text;
 
+import java.net.URL;
 import java.time.ZonedDateTime;
+import java.util.ResourceBundle;
 import java.util.Scanner;
 
-public class AddController {
+public class AddController implements Initializable {
+    public Text weight;
+    public Text name;
+    public Text age;
+    public Text type;
+    public Text color;
+    public Text tooth;
+    public Text eyes;
+    public Text size;
+    public Text x;
+    public Text y;
     private int des=0;
     public RadioButton update;
     public TextField idField;
@@ -37,8 +52,9 @@ public class AddController {
     public TextField xField;
     public RadioButton add;
     public RadioButton addMin;
-    @FXML
-    private void initialize(){
+    @Override
+    public void initialize(URL location, ResourceBundle resources){
+
         ToggleGroup clr = new ToggleGroup();
         ToggleGroup tp = new ToggleGroup();
         ToggleGroup dcs = new ToggleGroup();
@@ -129,7 +145,7 @@ public class AddController {
         });
 
 
-
+        appLang();
     }
 
     private void checkName(){
@@ -269,7 +285,26 @@ public class AddController {
         }
 
     }
-    private void add(){
-
-    }
+   public void appLang(){
+       ResourceBundle currentLanguage = CurrentLanguage.getCurrentLanguage();
+        weight.setText(currentLanguage.getString("weightA"));
+        name.setText(currentLanguage.getString("nameA"));
+        age.setText(currentLanguage.getString("ageA"));
+        x.setText(currentLanguage.getString("xA"));
+        y.setText(currentLanguage.getString("yA"));
+        color.setText(currentLanguage.getString("colorA"));
+        type.setText(currentLanguage.getString("typeA"));
+        tooth.setText(currentLanguage.getString("toothA"));
+        eyes.setText(currentLanguage.getString("eyesA"));
+        size.setText(currentLanguage.getString("sizeA"));
+        yellow.setText(currentLanguage.getString("yellow"));
+        orange.setText(currentLanguage.getString("orange"));
+        white.setText(currentLanguage.getString("white"));
+        air.setText(currentLanguage.getString("air"));
+        water.setText(currentLanguage.getString("water"));
+        underground.setText(currentLanguage.getString("underground"));
+        update.setText(currentLanguage.getString("updateIdA"));
+        add.setText(currentLanguage.getString("addA"));
+        addMin.setText(currentLanguage.getString("addminA"));
+   }
 }

@@ -5,25 +5,24 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.lab8.Apps.HelpController">
    <children>
       <ImageView fitHeight="535.0" fitWidth="877.0" layoutX="-69.0" layoutY="-29.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/remFon.jpg" />
          </image>
       </ImageView>
-      <Text fill="WHITE" layoutX="28.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="add: Команда добавляет новый элемент в коллекцию" wrappingWidth="404.5366973876953" />
-      <Text fill="WHITE" layoutX="28.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="add_if_min: Команда добавляет новый элемент в коллекцию, если его значение меньше, чем у наименьшего элемента этой коллекции" wrappingWidth="404.5366973876953" />
-      <Text fill="WHITE" layoutX="28.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="print_age: Команда выводит значения поля age всех элементов в порядке возрастания" wrappingWidth="404.5366973876953" />
-      <Text fill="WHITE" layoutX="28.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="exit: Команда завершает работу программы" wrappingWidth="404.5366973876953" />
-      <Text fill="WHITE" layoutX="28.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="logout: Команда позволяет выйти из аккаунта" wrappingWidth="404.5366973876953" />
-      <Text fill="WHITE" layoutX="28.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="help: Команда выводит  справку по доступным командам" wrappingWidth="404.5366973876953" />
-      <Text fill="WHITE" layoutX="28.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="update_id: Команда обновляет значение элемента коллекции, id которого равен заданному" wrappingWidth="404.5366973876953" />
-      <Text fill="WHITE" layoutX="28.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="info: Команда выводит в стандартный поток вывода информацию о коллекции (тип, дата инициализации, количество элементов и т.д.)info: Команда выводит в стандартный поток вывода информацию о коллекции (тип, дата инициализации, количество элементов и т.д.)" wrappingWidth="404.5366973876953" />
-      <Text fill="WHITE" layoutX="28.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="print_type: Команда выводит значения поля type всех элементов в порядке убыванияprint_type: Команда выводит значения поля type всех элементов в порядке убывания" wrappingWidth="404.5366973876953" />
-      <Text fill="WHITE" layoutX="28.0" layoutY="379.0" strokeType="OUTSIDE" strokeWidth="0.0" text="clear: Команда  очищает коллекциюclear: Команда  очищает коллекцию" wrappingWidth="404.5366973876953" />
-      <Text fill="WHITE" layoutX="28.0" layoutY="407.0" strokeType="OUTSIDE" strokeWidth="0.0" text="remove_by_type: Команда удаляет из коллекции один элемент, значение поля type которого эквивалентно заданному" wrappingWidth="404.5366973876953" />
-      <Text fill="WHITE" layoutX="28.0" layoutY="274.0" strokeType="OUTSIDE" strokeWidth="0.0" text="remove_greater: Команда удаляет из коллекции все элементы, превышающие заданный. Работает по полю size" wrappingWidth="404.5366973876953" />
-      <Text fill="WHITE" layoutX="28.0" layoutY="441.0" strokeType="OUTSIDE" strokeWidth="0.0" text="remove_by_index: удаляет элемент, находящийся в заданной позиции коллекции (index)" wrappingWidth="404.5366973876953" />
+      <Text fx:id="add" fill="WHITE" layoutX="28.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="add: Команда добавляет новый элемент в коллекцию" wrappingWidth="404.5366973876953" />
+      <Text fx:id="addIf" fill="WHITE" layoutX="28.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="add_if_min: Команда добавляет новый элемент в коллекцию, если его значение меньше, чем у наименьшего элемента этой коллекции" wrappingWidth="404.5366973876953" />
+      <Text fx:id="printAge" fill="WHITE" layoutX="28.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="print_age: Команда выводит значения поля age всех элементов в порядке возрастания" wrappingWidth="404.5366973876953" />
+      <Text fx:id="exit" fill="WHITE" layoutX="28.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="exit: Команда завершает работу программы" wrappingWidth="404.5366973876953" />
+      <Text fx:id="logout" fill="WHITE" layoutX="28.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="logout: Команда позволяет выйти из аккаунта" wrappingWidth="404.5366973876953" />
+      <Text fx:id="help" fill="WHITE" layoutX="28.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="help: Команда выводит  справку по доступным командам" wrappingWidth="404.5366973876953" />
+      <Text fx:id="update" fill="WHITE" layoutX="28.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="update_id: Команда обновляет значение элемента коллекции, id которого равен заданному" wrappingWidth="404.5366973876953" />
+      <Text fx:id="info" fill="WHITE" layoutX="28.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="info: Команда выводит в стандартный поток вывода информацию о коллекции (тип, дата инициализации, количество элементов и т.д.)info: Команда выводит в стандартный поток вывода информацию о коллекции (тип, дата инициализации, количество элементов и т.д.)" wrappingWidth="404.5366973876953" />
+      <Text fx:id="printType" fill="WHITE" layoutX="28.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="print_type: Команда выводит значения поля type всех элементов в порядке убыванияprint_type: Команда выводит значения поля type всех элементов в порядке убывания" wrappingWidth="404.5366973876953" />
+      <Text fx:id="clear" fill="WHITE" layoutX="28.0" layoutY="379.0" strokeType="OUTSIDE" strokeWidth="0.0" text="clear: Команда  очищает коллекциюclear: Команда  очищает коллекцию" wrappingWidth="404.5366973876953" />
+      <Text fx:id="removeType" fill="WHITE" layoutX="28.0" layoutY="407.0" strokeType="OUTSIDE" strokeWidth="0.0" text="remove_by_type: Команда удаляет из коллекции один элемент, значение поля type которого эквивалентно заданному" wrappingWidth="404.5366973876953" />
+      <Text fx:id="removeGreat" fill="WHITE" layoutX="28.0" layoutY="274.0" strokeType="OUTSIDE" strokeWidth="0.0" text="remove_greater: Команда удаляет из коллекции все элементы, превышающие заданный. Работает по полю size" wrappingWidth="404.5366973876953" />
    </children>
 </AnchorPane>

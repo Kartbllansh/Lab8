@@ -47,7 +47,7 @@
             <URL value="@../css/SignUp.css" />
          </stylesheets>
       </Button>
-      <Text fx:id="username" fill="#c3c3c3" layoutX="476.0" layoutY="303.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: BRHendrix;" text="Username" wrappingWidth="108.13671875">
+      <Text fx:id="username" fill="#c3c3c3" layoutX="476.0" layoutY="301.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: BRHendrix;" text="Username" wrappingWidth="284.936767578125">
          <font>
             <Font name="@../image/BRHendrix-SemiBold.ttf" size="17.0" />
          </font></Text>
@@ -74,7 +74,7 @@
             <URL value="@../css/enter.css" />
          </stylesheets>
       </Button>
-      <MenuButton fx:id="lang" contentDisplay="TOP" layoutX="841.0" layoutY="162.0" mnemonicParsing="false" opacity="0.93" prefHeight="26.0" prefWidth="89.0" style="-fx-background-color: transparent; -fx-font-family: BRHendrix;" text="Languages" textFill="#35aeff">
+      <MenuButton fx:id="lang" contentDisplay="TOP" layoutX="801.0" layoutY="162.0" mnemonicParsing="false" opacity="0.93" prefHeight="26.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-font-family: BRHendrix;" text="Languages" textFill="#35aeff">
          
          <items>
             <MenuItem mnemonicParsing="false">
