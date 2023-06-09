@@ -89,6 +89,7 @@ public class StatsBundle_be_sl extends ListResourceBundle {
             {"notDelete", "Žiadny drak nebol odstránený"},
             {"notUser", "Objekt patrí inému používateľovi"},
             {"notExistId", "Zadané ID neexistuje"},
+            {"succ", "úspešne"},
             {"changeObj", "Objekt bol zmenený"},
             {"addMin", "U najmenšieho prvku v kolekcii je hodnota menšia"},
             {"not1delete", "Žiadny drak nebol odstránený"},

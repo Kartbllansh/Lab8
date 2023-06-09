@@ -91,6 +91,7 @@ public class StatsBundle_be_swe extends ListResourceBundle {
             {"notDelete", "Ingen drake har tagits bort"},
             {"notUser", "Objektet tillhör en annan användare"},
             {"notExistId", "Det angivna ID:t existerar inte"},
+            {"succ", "framgångsrikt"},
             {"changeObj", "Objektet har ändrats"},
             {"addMin", "Värdet för det minsta elementet i samlingen är mindre"},
             {"not1delete", "Ingen drake har tagits bort"},

@@ -31,10 +31,10 @@ public class RemoveController implements Initializable {
          collectionManager.save();
          tableController.update();
            } catch  (IndexOutOfBoundsException ex) {
-               Edition.showAlert("Ошибка с аргуметом", "Не указаны аргументы команды", "");
+               Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("errArg"), CurrentLanguage.getCurrentLanguage().getString("argComm"), "");
                //System.err.println("Не указаны аргументы команды.");
            } catch (NumberFormatException ex) {
-               Edition.showAlert("Ошибка с аргуметом", "Требуется ввести число, чтобы команда работала", "");
+               Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("errArg"), CurrentLanguage.getCurrentLanguage().getString("needNumber"), "");
            }
        });
        remove_type.setOnAction(event -> {
@@ -44,14 +44,14 @@ public class RemoveController implements Initializable {
                tableController.update();
            } catch ( IndexOutOfBoundsException ex) { //
                System.err.println("Не указаны аргументы команды.");
-               Edition.showAlert("Ошибка с аргуметом", "Не указаны аргументы команды.", "");
+               Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("errArg"), CurrentLanguage.getCurrentLanguage().getString("argComm"), "");
 
            } catch (NumberFormatException ex) {
                System.err.println("Формат аргумента не соответствует целочисленному");
-               Edition.showAlert("Ошибка с аргуметом", "Формат аргумента не соответствует", "");
+               Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("errArg"), CurrentLanguage.getCurrentLanguage().getString("argForm"), "");
            } catch (IllegalArgumentException e){
                System.err.println("Не существует такого типа");
-               Edition.showAlert("Ошибка с аргуметом", "Не существует такого типа", "");
+               Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("errArg"), CurrentLanguage.getCurrentLanguage().getString("notExistType"), "");
            }
        });
        remove_great.setOnAction(event -> {
@@ -61,10 +61,10 @@ public class RemoveController implements Initializable {
                tableController.update();
            } catch  ( IndexOutOfBoundsException ex) { //IndexOutOfBoundsException
                System.err.println("Не указаны аргументы команды.");
-               Edition.showAlert("Ошибка с аргуметом", "Формат аргумента не соответствует", "");
+               Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("errArg"), CurrentLanguage.getCurrentLanguage().getString("argForm"), "");
            } catch (NumberFormatException ex) {
                System.err.println("Формат аргумента не соответствует целочисленному");
-               Edition.showAlert("Ошибка с аргуметом", "Формат аргумента не соответствует", "");
+               Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("errArg"), CurrentLanguage.getCurrentLanguage().getString("argForm"), "");
            }
        });
        appLang();

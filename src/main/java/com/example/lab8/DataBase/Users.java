@@ -3,6 +3,7 @@ package com.example.lab8.DataBase;
 import com.example.lab8.Apps.Edition;
 import com.example.lab8.Command.InvokerCommand;
 import com.example.lab8.File.CollectionManager;
+import com.example.lab8.Languagesss.CurrentLanguage;
 import com.example.lab8.MyException.NotIdException;
 
 import java.nio.charset.StandardCharsets;
@@ -110,7 +111,7 @@ public class Users {
                 return;
 
             } else {
-                Edition.showAlert("Ошибка", "Неверный пароль. Осталось попыток: "+(--count), "Ошибка при авторизации" );
+                Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), CurrentLanguage.getCurrentLanguage().getString("wrongPasswd")+(--count), CurrentLanguage.getCurrentLanguage().getString("LoginErr") );
                 //System.out.println("Неверный пароль. Осталось попыток: "+(--count));
                 aut = false;
                 break;
@@ -135,7 +136,7 @@ public class Users {
     public static void registration(String login, String password, String dPaswwrd) {
 
             if (!password.equals(dPaswwrd)) {
-                Edition.showAlert("Ошибка", "Введенные пароли не совпадают", "Ошибка при авторизации");
+                Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), CurrentLanguage.getCurrentLanguage().getString("notPasswd"), CurrentLanguage.getCurrentLanguage().getString("LoginErr"));
                 //System.out.println("Пароли не совпадают. Повторите попытку. Их осталось ");
                 reg = false;
                 return;

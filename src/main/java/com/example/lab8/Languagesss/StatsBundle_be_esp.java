@@ -90,6 +90,7 @@ public class StatsBundle_be_esp extends ListResourceBundle {
             {"notDelete", "No se ha eliminado ningún dragón"},
             {"notUser", "El objeto pertenece a otro usuario"},
             {"notExistId", "El ID ingresado no existe"},
+            {"succ", "con éxito"},
             {"changeObj", "El objeto ha sido modificado"},
             {"addMin", "El valor del elemento más pequeño en la colección es menor"},
             {"not1delete", "No se ha eliminado ningún dragón"},

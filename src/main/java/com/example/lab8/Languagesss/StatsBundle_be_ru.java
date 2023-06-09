@@ -89,6 +89,7 @@ public class StatsBundle_be_ru extends ListResourceBundle {
             {"notDelete", "Не один дракон не удален"},
             {"notUser", "Объект принадлежит другому пользователю "},
             {"notExistId", "Введенный вами Id не существует"},
+            {"succ", "Успешно"},
             {"changeObj", "Объект заменен "},
             {"addMin", "У наименьшего элемента коллекции значение меньше"},
             {"not1delete", "Ни один дракон не удален"},

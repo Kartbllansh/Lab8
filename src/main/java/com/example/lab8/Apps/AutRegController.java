@@ -56,14 +56,14 @@ public class AutRegController implements Initializable {
     enter.setOnAction(event -> {
         boolean why = MainDataBase.checkLogin(name.getText());
         if(why) {
-            Edition.showAlert("Ошибка", "Аккаунт уже есть с логином  "+ name.getText(), "Ошибка при авторизации" );
+            Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), CurrentLanguage.getCurrentLanguage().getString("yetExist")+ name.getText(), CurrentLanguage.getCurrentLanguage().getString("LoginErr") );
             //System.out.println("Аккаунт с логином ( "+ name.getText()+" ) уже есть" );
             return;
         }
 
             Users.registration(name.getText(), psswd.getText(), dPasswd.getText());
         if(Users.reg) {
-            Edition.showAlert("Выполнено", "Успешная регистрация аккаунта" + name.getText(), "");
+            Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("succ"), CurrentLanguage.getCurrentLanguage().getString("succReg") + name.getText(), "");
             System.out.println("Успешная регистрация");
         }
     });

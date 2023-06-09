@@ -62,7 +62,7 @@ enter.setOnAction(event -> {
     boolean why = MainDataBase.checkLogin(name.getText());
     if(!why) {
 
-        Edition.showAlert("Ошибка", "Нет аккаунта с таким логином", "Ошибка при авторизации");
+        Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), CurrentLanguage.getCurrentLanguage().getString("notAcc"), CurrentLanguage.getCurrentLanguage().getString("LoginErr"));
         return;
 
     }

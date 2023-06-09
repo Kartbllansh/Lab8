@@ -85,7 +85,7 @@ public class TableController implements Initializable {
             Dragon dragon = event.getRowValue();
             String OldNAme = dragon.getName();
             if (!dragon.getCreator().equals(Users.getCurrentUser())) {
-                Edition.showAlert("Ошибка", "Объект принадлежит другому пользователю ", "");
+                Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), CurrentLanguage.getCurrentLanguage().getString("notUser"), "");
                 a = false;
             }
             if (a) {
@@ -117,7 +117,7 @@ public class TableController implements Initializable {
                 boolean a = true;
                 Dragon dragon = event.getRowValue();
                 if (!dragon.getCreator().equals(Users.getCurrentUser())) {
-                    Edition.showAlert("Ошибка", "Объект принадлежит другому пользователю ", "");
+                    Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), CurrentLanguage.getCurrentLanguage().getString("notUser"), "");
                     a = false;
                 }
                 if (a) {
@@ -133,7 +133,7 @@ public class TableController implements Initializable {
                     collectionManager.save();
                 }
             }catch (IllegalArgumentException e){
-                Edition.showAlert("Ошибка", "Введено некорректное значение для цвета", "Ошибка при изменении данных");
+                Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), CurrentLanguage.getCurrentLanguage().getString("necorrName"), "");
                 table.refresh();
             }
             // Добавьте код для обновления данных в соответствующем списке или базе данных
@@ -147,7 +147,7 @@ public class TableController implements Initializable {
                 boolean a = true;
                 Dragon dragon = event.getRowValue();
                 if(!dragon.getCreator().equals(Users.getCurrentUser())){
-                    Edition.showAlert("Ошибка", "Объект принадлежит другому пользователю ", "");
+                    Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), CurrentLanguage.getCurrentLanguage().getString("notUser"), "");
                     a = false;
                 }
                 if(a) {
@@ -155,7 +155,7 @@ public class TableController implements Initializable {
                     String i = event.getNewValue().toString();
                     System.out.println(i);
                     if (!i.matches("\\d*")) {
-                        Edition.showAlert("Ошибка", "Неправильно введено поле", "");
+                        Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), CurrentLanguage.getCurrentLanguage().getString("necorrName"), "");
                         a = false;
                     }
                     if (a) {
@@ -172,14 +172,14 @@ public class TableController implements Initializable {
                             }
                             // Добавьте код для обновления данных в соответствующем списке или базе данных
                         } else {
-                            Edition.showAlert("Ошибка", "Введено некорректное значение", "");
+                            Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), CurrentLanguage.getCurrentLanguage().getString("necorrName"), "");
                             dragon.getCoordinates().setX(previousValue); // Восстанавливаем предыдущее значение
                             table.refresh(); // Обновляем таблицу, чтобы отобразить предыдущее значение
                         }
                     }
                 }
             } catch (NumberFormatException | NullPointerException e) {
-                Edition.showAlert("Ошибка", "Введено некорректное значение", "");
+                Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), CurrentLanguage.getCurrentLanguage().getString("necorrName"), "");
                 //dragon.setAge(previousValue); // Восстанавливаем предыдущее значение
                 table.refresh(); // Обновляем таблицу, чтобы отобразить предыдущее значение
             }
@@ -194,7 +194,7 @@ public class TableController implements Initializable {
                 boolean a = true;
                 Dragon dragon = event.getRowValue();
                 if(!dragon.getCreator().equals(Users.getCurrentUser())){
-                    Edition.showAlert("Ошибка", "Объект принадлежит другому пользователю ", "");
+                    Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), CurrentLanguage.getCurrentLanguage().getString("notUser"), "");
                     a = false;
                 }
                 if(a) {
@@ -202,7 +202,7 @@ public class TableController implements Initializable {
                     String i = event.getNewValue().toString();
                     System.out.println(i);
                     if (!i.matches("\\d*")) {
-                        Edition.showAlert("Ошибка", "Введено некорректное значение", "");
+                        Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), CurrentLanguage.getCurrentLanguage().getString("necorrName"), "");
                         a = false;
                     }
                     if (a) {
@@ -219,14 +219,14 @@ public class TableController implements Initializable {
                             }
                             // Добавьте код для обновления данных в соответствующем списке или базе данных
                         } else {
-                            Edition.showAlert("Ошибка", "Введено некорректное значение", "");
+                            Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), CurrentLanguage.getCurrentLanguage().getString("necorrName"), "");
                             dragon.getCoordinates().setX(previousValue); // Восстанавливаем предыдущее значение
                             table.refresh(); // Обновляем таблицу, чтобы отобразить предыдущее значение
                         }
                     }
                 }
             } catch (NumberFormatException | NullPointerException e) {
-                Edition.showAlert("Ошибка", "Введено некорректное значение", "");
+                Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), CurrentLanguage.getCurrentLanguage().getString("necorrName"), "");
                 //dragon.setAge(previousValue); // Восстанавливаем предыдущее значение
                 table.refresh(); // Обновляем таблицу, чтобы отобразить предыдущее значение
             }
@@ -241,7 +241,7 @@ public class TableController implements Initializable {
                 boolean a = true;
                 Dragon dragon = event.getRowValue();
                 if(!dragon.getCreator().equals(Users.getCurrentUser())){
-                    Edition.showAlert("Ошибка", "Объект принадлежит другому пользователю ", "");
+                    Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), CurrentLanguage.getCurrentLanguage().getString("notUser"), "");
                     a = false;
                 }
                 if(a) {
@@ -249,7 +249,7 @@ public class TableController implements Initializable {
                     String i = event.getNewValue().toString();
                     System.out.println(i);
                     if (!i.matches("\\d*")) {
-                        Edition.showAlert("Ошибка", "Введено некорректное значение", "");
+                        Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), CurrentLanguage.getCurrentLanguage().getString("necorrName"), "");
                         a = false;
                     }
                     if (a) {
@@ -266,14 +266,14 @@ public class TableController implements Initializable {
                             }
                             // Добавьте код для обновления данных в соответствующем списке или базе данных
                         } else {
-                            Edition.showAlert("Ошибка", "Введено некорректное значение", "");
+                            Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), CurrentLanguage.getCurrentLanguage().getString("necorrName"), "");
                             dragon.setWeight(previousValue); // Восстанавливаем предыдущее значение
                             table.refresh(); // Обновляем таблицу, чтобы отобразить предыдущее значение
                         }
                     }
                 }
             } catch (NumberFormatException | NullPointerException e) {
-                Edition.showAlert("Ошибка", "Введено некорректное значение", "");
+                Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), CurrentLanguage.getCurrentLanguage().getString("necorrName"), "");
                 //dragon.setAge(previousValue); // Восстанавливаем предыдущее значение
                 table.refresh(); // Обновляем таблицу, чтобы отобразить предыдущее значение
             }
@@ -288,7 +288,7 @@ public class TableController implements Initializable {
                 boolean a = true;
                 Dragon dragon = event.getRowValue();
                 if(!dragon.getCreator().equals(Users.getCurrentUser())){
-                    Edition.showAlert("Ошибка", "Объект принадлежит другому пользователю ", "");
+                    Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), CurrentLanguage.getCurrentLanguage().getString("notUser"), "");
                     a = false;
                 }
                 if(a) {
@@ -296,7 +296,7 @@ public class TableController implements Initializable {
                     String i = event.getNewValue().toString();
                     System.out.println(i);
                     if (!i.matches("\\d*")) {
-                        Edition.showAlert("Ошибка", "Введено некорректное значение", "");
+                        Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), CurrentLanguage.getCurrentLanguage().getString("necorrName"), "");
                         a = false;
                     }
                     if (a) {
@@ -313,14 +313,14 @@ public class TableController implements Initializable {
                             }
                             // Добавьте код для обновления данных в соответствующем списке или базе данных
                         } else {
-                            Edition.showAlert("Ошибка", "Введено некорректное значение", "");
+                            Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), CurrentLanguage.getCurrentLanguage().getString("necorrName"), "");
                             dragon.setAge(previousValue); // Восстанавливаем предыдущее значение
                             table.refresh(); // Обновляем таблицу, чтобы отобразить предыдущее значение
                         }
                     }
                 }
             } catch (NumberFormatException | NullPointerException e) {
-                Edition.showAlert("Ошибка", "Введено некорректное значение", "");
+                Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), CurrentLanguage.getCurrentLanguage().getString("necorrName"), "");
                 //dragon.setAge(previousValue); // Восстанавливаем предыдущее значение
                 table.refresh(); // Обновляем таблицу, чтобы отобразить предыдущее значение
             }
@@ -337,7 +337,7 @@ public class TableController implements Initializable {
                 boolean a = true;
                 Dragon dragon = event.getRowValue();
                 if (!dragon.getCreator().equals(Users.getCurrentUser())) {
-                    Edition.showAlert("Ошибка", "Объект принадлежит другому пользователю ", "");
+                    Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), CurrentLanguage.getCurrentLanguage().getString("notUser"), "");
                     a = false;
                 }
                 if (a) {
@@ -352,7 +352,7 @@ public class TableController implements Initializable {
                     collectionManager.save();
                 }
             }catch (IllegalArgumentException e){
-                Edition.showAlert("Ошибка", "Введено некорректное значение", "");
+                Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), CurrentLanguage.getCurrentLanguage().getString("necorrName"), "");
                 table.refresh();
             }
             table.refresh();
@@ -366,7 +366,7 @@ public class TableController implements Initializable {
                 boolean a = true;
                 Dragon dragon = event.getRowValue();
                 if(!dragon.getCreator().equals(Users.getCurrentUser())){
-                    Edition.showAlert("Ошибка", "Объект принадлежит другому пользователю ", "");
+                    Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), CurrentLanguage.getCurrentLanguage().getString("notUser"), "");
                     a = false;
                 }
                 if(a) {
@@ -374,7 +374,7 @@ public class TableController implements Initializable {
                     String i = event.getNewValue().toString();
                     System.out.println(i);
                     if (!i.matches("\\d*")) {
-                        Edition.showAlert("Ошибка", "Введено некорректное значение", "");
+                        Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), CurrentLanguage.getCurrentLanguage().getString("necorrName"), "");
                         a = false;
                     }
                     if (a) {
@@ -391,14 +391,14 @@ public class TableController implements Initializable {
                             }
                             // Добавьте код для обновления данных в соответствующем списке или базе данных
                         } else {
-                            Edition.showAlert("Ошибка", "Введено некорректное значение", "");
+                            Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), CurrentLanguage.getCurrentLanguage().getString("necorrName"), "");
                             dragon.getHead().setSize(previousValue); // Восстанавливаем предыдущее значение
                             table.refresh(); // Обновляем таблицу, чтобы отобразить предыдущее значение
                         }
                     }
                 }
             } catch (NumberFormatException | NullPointerException e) {
-                Edition.showAlert("Ошибка", "Введено некорректное значение", "");
+                Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), CurrentLanguage.getCurrentLanguage().getString("necorrName"), "");
                 //dragon.setAge(previousValue); // Восстанавливаем предыдущее значение
                 table.refresh(); // Обновляем таблицу, чтобы отобразить предыдущее значение
             }
@@ -412,7 +412,7 @@ public class TableController implements Initializable {
                 boolean a = true;
                 Dragon dragon = event.getRowValue();
                 if(!dragon.getCreator().equals(Users.getCurrentUser())){
-                    Edition.showAlert("Ошибка", "Объект принадлежит другому пользователю ", "");
+                    Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), CurrentLanguage.getCurrentLanguage().getString("notUser"), "");
                     a = false;
                 }
                 if(a) {
@@ -420,7 +420,7 @@ public class TableController implements Initializable {
                     String i = event.getNewValue().toString();
                     System.out.println(i);
                     if (!i.matches("\\d*")) {
-                        Edition.showAlert("Ошибка", "Введено некорректное значение", "");
+                        Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), CurrentLanguage.getCurrentLanguage().getString("necorrName"), "");
                         a = false;
                     }
                     if (a) {
@@ -437,14 +437,14 @@ public class TableController implements Initializable {
                             }
                             // Добавьте код для обновления данных в соответствующем списке или базе данных
                         } else {
-                            Edition.showAlert("Ошибка", "Введено некорректное значение", "");
+                            Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), CurrentLanguage.getCurrentLanguage().getString("necorrName"), "");
                             dragon.getHead().setEyesCount(previousValue); // Восстанавливаем предыдущее значение
                             table.refresh(); // Обновляем таблицу, чтобы отобразить предыдущее значение
                         }
                     }
                 }
             } catch (NumberFormatException | NullPointerException e) {
-                Edition.showAlert("Ошибка", "Введено некорректное значение", "");
+                Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), CurrentLanguage.getCurrentLanguage().getString("necorrName"), "");
                 //dragon.setAge(previousValue); // Восстанавливаем предыдущее значение
                 table.refresh(); // Обновляем таблицу, чтобы отобразить предыдущее значение
             }
@@ -458,7 +458,7 @@ public class TableController implements Initializable {
                 boolean a = true;
                 Dragon dragon = event.getRowValue();
                 if(!dragon.getCreator().equals(Users.getCurrentUser())){
-                    Edition.showAlert("Ошибка", "Объект принадлежит другому пользователю ", "");
+                    Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), CurrentLanguage.getCurrentLanguage().getString("notUser"), "");
                     a = false;
                 }
                 if(a) {
@@ -466,7 +466,7 @@ public class TableController implements Initializable {
                     String i = event.getNewValue().toString();
                     System.out.println(i);
                     if (!i.matches("\\d*")) {
-                        Edition.showAlert("Ошибка", "Введено некорректное значение", "");
+                        Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), CurrentLanguage.getCurrentLanguage().getString("necorrName"), "");
                         a = false;
                     }
                     if (a) {
@@ -481,14 +481,14 @@ public class TableController implements Initializable {
                             }
                             // Добавьте код для обновления данных в соответствующем списке или базе данных
                         } else {
-                            Edition.showAlert("Ошибка", "Введено некорректное значение", "");
+                            Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), CurrentLanguage.getCurrentLanguage().getString("necorrName"), "");
                             dragon.getHead().setToothCount(previousValue); // Восстанавливаем предыдущее значение
                             table.refresh(); // Обновляем таблицу, чтобы отобразить предыдущее значение
                         }
                     }
                 }
             } catch (NumberFormatException | NullPointerException e) {
-                Edition.showAlert("Ошибка", "Введено некорректное значение", "");
+                Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), CurrentLanguage.getCurrentLanguage().getString("necorrName"), "");
                 //dragon.setAge(previousValue); // Восстанавливаем предыдущее значение
                 table.refresh(); // Обновляем таблицу, чтобы отобразить предыдущее значение
             }
