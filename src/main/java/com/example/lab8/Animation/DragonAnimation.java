@@ -25,6 +25,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Objects;
 import java.util.Random;
@@ -43,6 +44,10 @@ public class DragonAnimation {
     private int direction = 1;
     public  static Timeline animation;
     public static MediaPlayer mediaPlayer;
+    public HashMap<ImageView, DragonForFly> hashMap = new HashMap<>();
+    public HashMap<ImageView, DragonForFly> getHashMap(){
+        return hashMap;
+    }
 
     public static Stage primaryStage = new Stage();
     public void startAnimation()  {
@@ -57,7 +62,7 @@ public class DragonAnimation {
         }
 
         int i = 0;
-        //Image backgroundImage = new Image("/image/Без имени-1.jpg");
+        //Image backgroundImage = new Image("/image/Безимени-1.jpg");
         //ImageView backgroundImageView = new ImageView(backgroundImage);
        // root.getChildren().add(backgroundImageView);
         for(DragonForFly dragonForFly : DragonForFly.getNewColl(CollectionManager.getDragons())) {
@@ -70,7 +75,6 @@ public class DragonAnimation {
             int randomValue = random.nextInt(2) * 2 - 1;
            // DragonAnimated dragDir = new DragonAnimated(randomValue);
             ImageView ff = new ImageView();
-            ff.setId("image"+i);
             Timeline timeline =  new Timeline(
                     new KeyFrame(Duration.millis(FRAME_DURATION), event -> {
                         if (direction == -1) {
@@ -83,16 +87,15 @@ public class DragonAnimation {
             DragonAnimated dragonAnimated = new DragonAnimated(ff, timeline);
             dragonAnimateds.add(dragonAnimated);
             //double initialY = random.nextDouble() * (root.getHeight() - dragonAnimated.getImageView().getHeight());
-
+            hashMap.put(ff, dragonForFly);
             // Установка начальной позиции дракона
             dragonAnimated.getImageView().setTranslateX(dragonForFly.getX());
             dragonAnimated.getImageView().setTranslateY(dragonForFly.getY());
-            Tooltip tooltip = new Tooltip(dragonAnimated.toString());
-            Tooltip.install(dragonAnimated.getImageView(), tooltip);
             dragonAnimated.getAnimation().setCycleCount(Animation.INDEFINITE);
             dragonAnimated.getAnimation().play();
             root.getChildren().add(dragonAnimated.getImageView());
             StackPane.setAlignment(dragonAnimated.getImageView(), Pos.CENTER);
+            System.out.println(hashMap);
         }
             /*dragonImageView = new ImageView();
             animation = new Timeline(

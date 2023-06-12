@@ -525,15 +525,19 @@ public class TableController implements Initializable {
 
     save.setOnAction(event -> collectionManager.save());
     exit.setOnAction(event -> System.exit(0));
-    add.setOnAction(event -> {
         Stage stage = new Stage();
+    add.setOnAction(event -> {
+
         try {
             Edition.createForm(stage,"/fxml/add.fxml", "Add Command", 800, 600);
 
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
+        stage.setOnCloseRequest(event1 -> {
+            update();
+            table.refresh();
+        });
 
     });
     logout.setOnAction(event -> {
@@ -548,13 +552,18 @@ public class TableController implements Initializable {
             e.printStackTrace();
         }
     });
+        Stage stages = new Stage();
     remove.setOnAction(event -> {
-        Stage stage = new Stage();
+
         try {
-            Edition.createForm(stage, "/fxml/remove.fxml", "Remove Command", 500, 300);
+            Edition.createForm(stages, "/fxml/remove.fxml", "Remove Command", 500, 300);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    });
+    stages.setOnCloseRequest(event -> {
+        update();
+        table.refresh();
     });
     update();
     appLang();
@@ -592,6 +601,9 @@ public class TableController implements Initializable {
         color.setText(currentLanguage.getString("color"));
         creationDate.setText(currentLanguage.getString("data"));
         type.setText(currentLanguage.getString("type"));
+    }
+    public void ref(){
+        table.refresh();
     }
     }
 

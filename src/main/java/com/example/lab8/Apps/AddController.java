@@ -89,11 +89,11 @@ public class AddController implements Initializable {
           });
         start.setOnAction(event -> {
             if(change.getColor()==null){
-                Edition.showAlert("Ошибка с аргуметом", "Не выбран цвет", "Ошибка с аргументом Color");
+                Edition.showAlert("Ошибка с аргуметом", "Не выбран цвет", "");
                 return;
             }
             if(change.getType()==null){
-                Edition.showAlert("Ошибка с аргуметом", "Не выбран type", "Ошибка с аргументом Type");
+                Edition.showAlert("Ошибка с аргуметом", "Не выбран type", "");
                 return;
             }
             allCheck();
@@ -112,7 +112,6 @@ public class AddController implements Initializable {
                 collectionManager.idget();
                 collectionManager.save();
                 tableController.update();
-                //tableController.refresh();
                 Edition.showAlert("Успешно", "Успешно", "Успешно");
             } else if (des==2) {
 
@@ -121,7 +120,7 @@ public class AddController implements Initializable {
              collectionManager.show();
              collectionManager.save();
                 tableController.update();
-                //tableController.refresh();
+                //tableController.ref();
                 Edition.showAlert("Успешно", "Успешно", "Успешно");
             } else if (des==3) {
                 try{
@@ -132,11 +131,11 @@ public class AddController implements Initializable {
                     //tableController.refresh();
                     Edition.showAlert("Успешно", "Успешно", "Успешно");
                 } catch  (IndexOutOfBoundsException ex) {
-                    Edition.showAlert("Ошибка с аргуметом", "Не указаны аргументы команды", "Ошибка с аргументом ID");
+                    Edition.showAlert("Ошибка с аргуметом", "Не указаны аргументы команды", "");
                     //System.err.println("Не указаны аргументы команды.");
 
                 } catch (NumberFormatException ex) {
-                    Edition.showAlert("Ошибка с аргуметом", "Требуется ввести число, чтобы команда работала", "Ошибка с аргументом ID");
+                    Edition.showAlert("Ошибка с аргуметом", "Требуется ввести число, чтобы команда работала", "");
                 }
 
             } else {

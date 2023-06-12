@@ -32,15 +32,19 @@ public class DragonForFly {
     }
 
     private int currentFrameIndex = 0;
+    public String name;
+    public String creator;
 
 
-    public DragonForFly(double x, String color, Double size, double y, ImageView dragonImageView, int currentFrameIndex) {
+    public DragonForFly(double x, String color, Double size, double y, ImageView dragonImageView, int currentFrameIndex, String name, String creator) {
         this.color = color;
         this.size = size;
         this.y = y;
         this.x = x;
         this.dragonImageView = dragonImageView;
         this.currentFrameIndex = currentFrameIndex;
+        this.name = name;
+        this.creator = creator;
     }
 
     public double getX() {
@@ -49,6 +53,22 @@ public class DragonForFly {
 
     public double getY() {
         return y;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCreator() {
+        return creator;
+    }
+
+    public void setCreator(String creator) {
+        this.creator = creator;
     }
 
     public static LinkedList<DragonForFly> getNewColl(LinkedList<Dragon> baselist) {
@@ -61,8 +81,10 @@ public class DragonForFly {
             float y = dragon.getCoordinates().getY();
             double yy = kfY(y);
             double xx = kfX(x);
+            String name = dragon.getName();
+            String creator = dragon.getCreator();
 
-            DragonForFly dragonForFly = new DragonForFly(xx, color, size, yy, null, 0);
+            DragonForFly dragonForFly = new DragonForFly(xx, color, size, yy, null, 0, name, creator);
             newColl.add(dragonForFly);
         }
         return newColl;
