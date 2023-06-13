@@ -101,7 +101,14 @@ public class StatsBundle_be_sl extends ListResourceBundle {
             {"notExistType", "Neexistuje takýto typ"},
             {"needNumber", "Pre správne fungovanie príkazu je potrebné zadať číslo"},
             {"argComm", "Chýbajú argumenty príkazu"},
-            {"necorrName", "Zadaná neplatná hodnota"}
+            {"necorrName", "Zadaná neplatná hodnota"},
+            {"desk", "Výstupné pole"},
+            {"prt", "Zbierka je prázdna"},
+            {"notColor", "Nevybrali ste farbu"},
+            {"notType", "Nevybrali ste typ"},
+            {"choose", "Vyberte príkaz"},
+            {"window", "Reštartujte okno. V jednej relácii nie je možné pridať 2 draky"}
+
     };
 }
 

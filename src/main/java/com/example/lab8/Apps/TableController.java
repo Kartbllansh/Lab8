@@ -154,7 +154,7 @@ public class TableController implements Initializable {
                     float previousValue = dragon.getCoordinates().getX(); // Сохраняем предыдущее значение
                     String i = event.getNewValue().toString();
                     System.out.println(i);
-                    if (!i.matches("\\d*")) {
+                    if (!i.matches("\\d*[.,]?\\d*")) {
                         Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), CurrentLanguage.getCurrentLanguage().getString("necorrName"), "");
                         a = false;
                     }
@@ -201,7 +201,7 @@ public class TableController implements Initializable {
                     float previousValue = dragon.getCoordinates().getY(); // Сохраняем предыдущее значение
                     String i = event.getNewValue().toString();
                     System.out.println(i);
-                    if (!i.matches("\\d*")) {
+                    if (!i.matches("\\d*[.,]?\\d*")) {
                         Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), CurrentLanguage.getCurrentLanguage().getString("necorrName"), "");
                         a = false;
                     }
@@ -373,9 +373,10 @@ public class TableController implements Initializable {
                     double previousValue = dragon.getHead().getSize(); // Сохраняем предыдущее значение
                     String i = event.getNewValue().toString();
                     System.out.println(i);
-                    if (!i.matches("\\d*")) {
+                    if (!i.matches("\\d*[.,]?\\d*")) {
                         Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), CurrentLanguage.getCurrentLanguage().getString("necorrName"), "");
                         a = false;
+                        System.out.println("aaa");
                     }
                     if (a) {
                         double newValue = Double.parseDouble(event.getNewValue().toString());
@@ -535,6 +536,7 @@ public class TableController implements Initializable {
             throw new RuntimeException(e);
         }
         stage.setOnCloseRequest(event1 -> {
+
             update();
             table.refresh();
         });
@@ -580,7 +582,7 @@ public class TableController implements Initializable {
         ResourceBundle currentLanguage = CurrentLanguage.getCurrentLanguage();
         print.setText(currentLanguage.getString("Print"));
         print_type.setText(currentLanguage.getString("PrintType"));
-        //printAge.setText(currentLanguage.getString("PrintAge"));
+        print_age.setText(currentLanguage.getString("PrintAge"));
         clear.setText(currentLanguage.getString("Clear"));
         info.setText(currentLanguage.getString("Info"));
         help.setText(currentLanguage.getString("Help"));
@@ -601,6 +603,7 @@ public class TableController implements Initializable {
         color.setText(currentLanguage.getString("color"));
         creationDate.setText(currentLanguage.getString("data"));
         type.setText(currentLanguage.getString("type"));
+        desk.setText(currentLanguage.getString("desk"));
     }
     public void ref(){
         table.refresh();

@@ -220,7 +220,7 @@ public class CollectionManager {
         StringBuilder stringBuilder = new StringBuilder();
         if(isCollectEmpty(baseList)){
             //System.err.println("Коллекция пуста. Команда бесполезна");
-            return "Коллекция пуста. Команда бесполезна";
+            return CurrentLanguage.getCurrentLanguage().getString("prt") ;
         }
         LinkedList<Integer> agess = new LinkedList<>();
         LinkedList<Dragon> age = new LinkedList<>(baseList);
@@ -232,7 +232,7 @@ public class CollectionManager {
             for (int b = 0; b < age.size(); b++) {
                 Dragon dragon = age.get(b);
                 if (Objects.equals(findAge, dragon.getAge())) {
-                    String op =" Возрасту " + findAge + " соответствует дракону " + dragon.getName();
+                    String op =" Age " + findAge + " = " + dragon.getName();
                     stringBuilder.append(op);
                     stringBuilder.append("\n");
 
@@ -251,7 +251,7 @@ public class CollectionManager {
         StringBuilder stringbuilder = new StringBuilder();
         if(isCollectEmpty(baseList)){
             //System.err.println("Коллекция пуста. Команда бесполезна");
-            return "Коллекция пуста. Команда бесполезна";
+            return CurrentLanguage.getCurrentLanguage().getString("prt") ;
         }
         ComparatorLenght comparatorLenght = new ComparatorLenght();
         LinkedList<DragonType> dragonTypes = new LinkedList<>();
@@ -267,7 +267,7 @@ public class CollectionManager {
             String findTypeS = findType.toString();
             for (Dragon dragon : baseList) {
                 if (findTypeS.equals(dragon.getType().toString())) {
-                   String op =" Типу " + findTypeS + " соответствует дракону " + dragon.getName();
+                   String op =" Type " + findTypeS + " = " + dragon.getName();
                     stringbuilder.append(op);
                     stringbuilder.append("\n");
                 }

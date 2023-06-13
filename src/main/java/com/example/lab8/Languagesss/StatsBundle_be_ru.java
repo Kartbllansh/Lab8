@@ -58,9 +58,9 @@ public class StatsBundle_be_ru extends ListResourceBundle {
             {"removeIdB", "Удалить по ID"},
             {"RemoveTypeB", "Удалить по типу"},
             {"remomeGreatB", "Удалить Greater"},
-            {"fId", "Поле для ввода ID"},
-            {"fType", "Поле для ввода типа"},
-            {"fSize", "Поле для ввода размера"},
+            {"fieldId", "Поле для ввода ID"},
+            {"fieldType", "Поле для ввода типа"},
+            {"fieldSize", "Поле для ввода размера"},
             {"nameA", "Имя"},
             {"ageA", "Возраст"},
             {"weightA", "Вес"},
@@ -102,6 +102,11 @@ public class StatsBundle_be_ru extends ListResourceBundle {
             {"needNumber", "Требуется ввести число, чтобы команда работала"},
             {"argComm", "Не указаны аргументы команды"},
             {"necorrName", "Введено некорректное значение"},
+            {"desk", "Поле для вывода"},
+            {"notColor", "Не выбран цвет"},
+            {"notType", "Не выбран type"},
+            {"choose", "Выберите команду"},
+            {"window", "Перезапустите окно. Нельзя за одну сессию добавить 2 дракона"}
 
 
 

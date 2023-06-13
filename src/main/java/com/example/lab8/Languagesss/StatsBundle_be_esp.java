@@ -102,7 +102,13 @@ public class StatsBundle_be_esp extends ListResourceBundle {
             {"notExistType", "No existe ese tipo"},
             {"needNumber", "Se requiere ingresar un número para que el comando funcione"},
             {"argComm", "Faltan argumentos del comando"},
-            {"necorrName", "Valor ingresado incorrecto"}
+            {"necorrName", "Valor ingresado incorrecto"},
+            {"desk", "Campo de salida"},
+            {"prt", "La colección está vacía"},
+            {"notColor", "No se ha seleccionado ningún color"},
+            {"notType", "No se ha seleccionado ningún tipo"},
+            {"choose", "Seleccione un comando"},
+            {"window", "Reinicie la ventana. No se pueden agregar 2 dragones en una misma sesión"}
 
     };
 }

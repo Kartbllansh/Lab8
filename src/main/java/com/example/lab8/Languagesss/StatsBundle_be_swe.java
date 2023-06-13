@@ -103,7 +103,13 @@ public class StatsBundle_be_swe extends ListResourceBundle {
             {"notExistType", "Det finns ingen sådan typ"},
             {"needNumber", "Du måste ange ett nummer för att kommandot ska fungera"},
             {"argComm", "Inga argument angivna för kommandot"},
-            {"necorrName", "Ogiltigt angivet värde"}
+            {"necorrName", "Ogiltigt angivet värde"},
+            {"desk", "Utmatningsfält"},
+            {"prt", "Samlingen är tom"},
+            {"notColor", "Ingen färg vald"},
+            {"notType", "Ingen typ vald"},
+            {"choose", "Välj en kommando"},
+            {"window", "Starta om fönstret. Det går inte att lägga till 2 drakar under samma session"}
     };
 }
 

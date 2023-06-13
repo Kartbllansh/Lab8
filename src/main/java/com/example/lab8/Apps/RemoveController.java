@@ -25,11 +25,12 @@ public class RemoveController implements Initializable {
     public TextField fieldAge;
     @Override
     public void initialize(URL location, ResourceBundle resources){
+        appLang();
        remove_id.setOnAction(event -> {
            try{
          collectionManager.removeById(Long.parseLong(fieldId.getText()));
          collectionManager.save();
-         tableController.update();
+         //tableController.update();
            } catch  (IndexOutOfBoundsException ex) {
                Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("errArg"), CurrentLanguage.getCurrentLanguage().getString("argComm"), "");
                //System.err.println("Не указаны аргументы команды.");
@@ -41,7 +42,7 @@ public class RemoveController implements Initializable {
            try{
            collectionManager.removeByType(fieldType.getText());
            collectionManager.save();
-               tableController.update();
+              // tableController.update();
            } catch ( IndexOutOfBoundsException ex) { //
                System.err.println("Не указаны аргументы команды.");
                Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("errArg"), CurrentLanguage.getCurrentLanguage().getString("argComm"), "");
@@ -58,7 +59,7 @@ public class RemoveController implements Initializable {
            try{
         collectionManager.gread(Double.parseDouble(fieldAge.getText()));
         collectionManager.save();
-               tableController.update();
+              // tableController.update();
            } catch  ( IndexOutOfBoundsException ex) { //IndexOutOfBoundsException
                System.err.println("Не указаны аргументы команды.");
                Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("errArg"), CurrentLanguage.getCurrentLanguage().getString("argForm"), "");
@@ -67,15 +68,15 @@ public class RemoveController implements Initializable {
                Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("errArg"), CurrentLanguage.getCurrentLanguage().getString("argForm"), "");
            }
        });
-       appLang();
+
     }
     public void appLang(){
         ResourceBundle currentLanguage = CurrentLanguage.getCurrentLanguage();
         remove_id.setText(currentLanguage.getString("removeIdB"));
         remove_great.setText(currentLanguage.getString("remomeGreatB"));
         remove_type.setText(currentLanguage.getString("RemoveTypeB"));
-        idF.setText(currentLanguage.getString("fId"));
-        typeF.setText(currentLanguage.getString("fType"));
-        sizeF.setText(currentLanguage.getString("fSize"));
+        idF.setText(currentLanguage.getString("fieldId"));
+        typeF.setText(currentLanguage.getString("fieldType"));
+        sizeF.setText(currentLanguage.getString("fieldSize"));
     }
 }

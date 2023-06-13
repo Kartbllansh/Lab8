@@ -44,11 +44,17 @@ public class DragonAnimation {
     private int direction = 1;
     public  static Timeline animation;
     public static MediaPlayer mediaPlayer;
-    public HashMap<ImageView, DragonForFly> hashMap = new HashMap<>();
+    public static HashMap<ImageView, DragonForFly> hashMap = new HashMap<>();
     public HashMap<ImageView, DragonForFly> getHashMap(){
         return hashMap;
     }
-
+    public LinkedList<ImageView> imageViews = new LinkedList<>();
+    public LinkedList<ImageView> getImageViews(){
+        return imageViews;
+    }
+    public static DragonAnimation getInstance() {
+        return new DragonAnimation();
+    }
     public static Stage primaryStage = new Stage();
     public void startAnimation()  {
 
@@ -62,6 +68,7 @@ public class DragonAnimation {
         }
 
         int i = 0;
+        //Controller.startToll();
         //Image backgroundImage = new Image("/image/Безимени-1.jpg");
         //ImageView backgroundImageView = new ImageView(backgroundImage);
        // root.getChildren().add(backgroundImageView);
@@ -88,6 +95,7 @@ public class DragonAnimation {
             dragonAnimateds.add(dragonAnimated);
             //double initialY = random.nextDouble() * (root.getHeight() - dragonAnimated.getImageView().getHeight());
             hashMap.put(ff, dragonForFly);
+            imageViews.add(ff);
             // Установка начальной позиции дракона
             dragonAnimated.getImageView().setTranslateX(dragonForFly.getX());
             dragonAnimated.getImageView().setTranslateY(dragonForFly.getY());
@@ -95,7 +103,8 @@ public class DragonAnimation {
             dragonAnimated.getAnimation().play();
             root.getChildren().add(dragonAnimated.getImageView());
             StackPane.setAlignment(dragonAnimated.getImageView(), Pos.CENTER);
-            System.out.println(hashMap);
+            System.out.println("check"+getHashMap());
+            System.out.println(getImageViews());
         }
             /*dragonImageView = new ImageView();
             animation = new Timeline(
@@ -124,6 +133,7 @@ public class DragonAnimation {
         primaryStage.setScene(new Scene(root, 1280, 720));
         primaryStage.setTitle("Dragon Animation");
         primaryStage.show();
+        //Controller.startToll();
         primaryStage.setOnCloseRequest(event -> {
             // Остановка анимации и сброс текущего кадра для каждого DragonAnimated
             for (DragonAnimated dragonAnimated : dragonAnimateds) {
@@ -134,6 +144,7 @@ public class DragonAnimation {
             // Остановка воспроизведения музыки
             mediaPlayer.stop();
             currentFrameIndex = 0;
+
         });
 
 

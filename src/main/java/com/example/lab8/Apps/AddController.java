@@ -52,8 +52,10 @@ public class AddController implements Initializable {
     public TextField xField;
     public RadioButton add;
     public RadioButton addMin;
+    int a =1;
     @Override
     public void initialize(URL location, ResourceBundle resources){
+
 
         ToggleGroup clr = new ToggleGroup();
         ToggleGroup tp = new ToggleGroup();
@@ -88,58 +90,67 @@ public class AddController implements Initializable {
               des=3;
           });
         start.setOnAction(event -> {
-            if(change.getColor()==null){
-                Edition.showAlert("Ошибка с аргуметом", "Не выбран цвет", "");
-                return;
-            }
-            if(change.getType()==null){
-                Edition.showAlert("Ошибка с аргуметом", "Не выбран type", "");
-                return;
-            }
-            allCheck();
-            change.setCreationDate(ZonedDateTime.now());
-            change.setCreator(Users.getCurrentUser());
-            VotTvoyId.votDragon(change);
-            change.setAge(Integer.parseInt(ageField.getText()));
-            change.setName(nameField.getText());
-            change.setWeight(Long.parseLong(weightField.getText()));
-            DragonHead dragonHead = new DragonHead(Double.parseDouble(sizeField.getText()),Integer.parseInt(eyesField.getText()), Long.parseLong(toothField.getText()));
-            change.setHead(dragonHead);
-            Coordinates coordinates = new Coordinates(Float.parseFloat(xField.getText()), Float.parseFloat(yField.getText()));
-            change.setCoordinates(coordinates);
-            if(des==1){
-                collectionManager.addIfMin(change);
-                collectionManager.idget();
-                collectionManager.save();
-                tableController.update();
-                Edition.showAlert("Успешно", "Успешно", "Успешно");
-            } else if (des==2) {
+            if(a==1) {
 
-             collectionManager.add(change); ;
-             collectionManager.idget();
-             collectionManager.show();
-             collectionManager.save();
-                tableController.update();
-                //tableController.ref();
-                Edition.showAlert("Успешно", "Успешно", "Успешно");
-            } else if (des==3) {
-                try{
-                    collectionManager.updateId(Long.parseLong(idField.getText()));
+                if (change.getColor() == null) {
+                    Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("errArg"), CurrentLanguage.getCurrentLanguage().getString("notColor"), "");
+                    return;
+                }
+                if (change.getType() == null) {
+                    Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("errArg"), CurrentLanguage.getCurrentLanguage().getString("notType"), "");
+                    return;
+                }
+                allCheck();
+                a=2;
+                change.setCreationDate(ZonedDateTime.now());
+                change.setCreator(Users.getCurrentUser());
+                VotTvoyId.votDragon(change);
+                change.setAge(Integer.parseInt(ageField.getText()));
+                change.setName(nameField.getText());
+                change.setWeight(Long.parseLong(weightField.getText()));
+                DragonHead dragonHead = new DragonHead(Double.parseDouble(sizeField.getText()), Integer.parseInt(eyesField.getText()), Long.parseLong(toothField.getText()));
+                change.setHead(dragonHead);
+                Coordinates coordinates = new Coordinates(Float.parseFloat(xField.getText()), Float.parseFloat(yField.getText()));
+                change.setCoordinates(coordinates);
+                a = 2;
+                if (des == 1) {
+                    collectionManager.addIfMin(change);
                     collectionManager.idget();
                     collectionManager.save();
                     tableController.update();
-                    //tableController.refresh();
-                    Edition.showAlert("Успешно", "Успешно", "Успешно");
-                } catch  (IndexOutOfBoundsException ex) {
-                    Edition.showAlert("Ошибка с аргуметом", "Не указаны аргументы команды", "");
-                    //System.err.println("Не указаны аргументы команды.");
+                    Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("succ"), CurrentLanguage.getCurrentLanguage().getString("succ"), "");
+                } else if (des == 2) {
 
-                } catch (NumberFormatException ex) {
-                    Edition.showAlert("Ошибка с аргуметом", "Требуется ввести число, чтобы команда работала", "");
+                    collectionManager.add(change);
+                    ;
+                    collectionManager.idget();
+                    collectionManager.show();
+                    collectionManager.save();
+                    tableController.update();
+                    //tableController.ref();
+                    Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("succ"), CurrentLanguage.getCurrentLanguage().getString("succ"), "");
+                } else if (des == 3) {
+                    try {
+                        collectionManager.updateId(Long.parseLong(idField.getText()));
+                        collectionManager.idget();
+                        collectionManager.save();
+                        tableController.update();
+                        //tableController.refresh();
+                        Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("succ"), CurrentLanguage.getCurrentLanguage().getString("succ"), "");
+                    } catch (IndexOutOfBoundsException ex) {
+                        Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("errArg"), CurrentLanguage.getCurrentLanguage().getString("argComm"), "");
+                        //System.err.println("Не указаны аргументы команды.");
+
+                    } catch (NumberFormatException ex) {
+                        Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("errArg"), CurrentLanguage.getCurrentLanguage().getString("needNumber"), "");
+                    }
+
+                } else {
+                    Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), CurrentLanguage.getCurrentLanguage().getString("choose"), "");
                 }
-
             } else {
-                Edition.showAlert("Ошибка", "Выберите команду", "Не выбрана команда");
+                Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("error"), CurrentLanguage.getCurrentLanguage().getString("window"), "");
+
             }
         });
 
@@ -151,7 +162,7 @@ public class AddController implements Initializable {
     String name = nameField.getText();
         if (!name.matches("[-a-zA-Zа-яА-ЯЁё]+")) {
             System.out.println("Неправильный формат");
-            Edition.showAlert("Ошибка", "Неправильно записано имя", "Неправильный аргумент");
+            Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("errArg"), CurrentLanguage.getCurrentLanguage().getString("argComm"), "name");
             check = false;
         }
     }
@@ -160,15 +171,15 @@ public class AddController implements Initializable {
         String age = ageField.getText();
         int a = Integer.parseInt(age);
         if(a<=0){
-            Edition.showAlert("Ошибка", "Неправильно записан возраст", "Неправильный аргумент");
+            Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("errArg"), CurrentLanguage.getCurrentLanguage().getString("argComm"), "age");
             check=false;
         }
         } catch  (IndexOutOfBoundsException ex) {
-            Edition.showAlert("Ошибка с аргуметом", "Не указаны аргументы команды", "Ошибка с аргуметом с возрастом");
+            Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("errArg"), CurrentLanguage.getCurrentLanguage().getString("argComm"), "age");
             //System.err.println("Не указаны аргументы команды.");
             check = false;
         } catch (NumberFormatException ex) {
-            Edition.showAlert("Ошибка с аргуметом", "Требуется ввести число, чтобы команда работала", "Ошибка с аргуметом с возрастом");
+            Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("errArg"), CurrentLanguage.getCurrentLanguage().getString("needNumber"), "age");
             check = false;
         }
 
@@ -178,15 +189,15 @@ public class AddController implements Initializable {
         String weight = weightField.getText();
         long a = Long.parseLong(weight);
         if(a<=0){
-            Edition.showAlert("Ошибка", "Неправильно записан вес", "Неправильный аргумент");
+            Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("errArg"), CurrentLanguage.getCurrentLanguage().getString("argComm"), "weight");
             check = false;
         }
         } catch  (IndexOutOfBoundsException ex) {
-            Edition.showAlert("Ошибка с аргуметом", "Не указаны аргументы команды", "Ошибка с аргуметом у weight");
+            Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("errArg"), CurrentLanguage.getCurrentLanguage().getString("argComm"), "weight");
             //System.err.println("Не указаны аргументы команды.");
             check=false;
         } catch (NumberFormatException ex) {
-            Edition.showAlert("Ошибка с аргуметом", "Требуется ввести число, чтобы команда работала", "Ошибка с аргуметом у weight");
+            Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("errArg"), CurrentLanguage.getCurrentLanguage().getString("needNumber"), "weight");
             check = false;
         }
 
@@ -198,15 +209,15 @@ public class AddController implements Initializable {
         float a = Float.parseFloat(x);
         float b = Float.parseFloat(y);
         if(a<-474 | b<-474){
-            Edition.showAlert("Ошибка с аргуметом", "Требуется ввести число, чтобы команда работала", "Ошибка с записью координат");
+            Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("errArg"), CurrentLanguage.getCurrentLanguage().getString("needNumber"), "Coordinate");
             check=false;
         }
         } catch  (IndexOutOfBoundsException ex) {
-            Edition.showAlert("Ошибка с аргуметом", "Не указаны аргументы команды", "Ошибка с записью координат");
+            Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("errArg"), CurrentLanguage.getCurrentLanguage().getString("argComm"), "Coordinate");
             check =false;
             //System.err.println("Не указаны аргументы команды.");
         } catch (NumberFormatException ex) {
-            Edition.showAlert("Ошибка с аргуметом", "Требуется ввести число, чтобы команда работала", "Ошибка с записью координат");
+            Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("errArg"), CurrentLanguage.getCurrentLanguage().getString("needNumber"), "Coordinate");
             check = false;
         }
     }
@@ -215,15 +226,15 @@ public class AddController implements Initializable {
         String size = sizeField.getText();
         double a = Double.parseDouble(size);
         if(a<0){
-            Edition.showAlert("Ошибка с аргуметом", "Требуется ввести число, чтобы команда работала", "Ошибка с записью size");
+            Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("errArg"), CurrentLanguage.getCurrentLanguage().getString("needNumber"), "size");
             check =false;
         }
         } catch  (IndexOutOfBoundsException ex) {
-            Edition.showAlert("Ошибка с аргуметом", "Не указаны аргументы команды", "Ошибка с записью size");
+            Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("errArg"), CurrentLanguage.getCurrentLanguage().getString("argComm"), "size");
             check =false;
             //System.err.println("Не указаны аргументы команды.");
         } catch (NumberFormatException ex) {
-            Edition.showAlert("Ошибка с аргуметом", "Требуется ввести число, чтобы команда работала", "Ошибка с записью size");
+            Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("errArg"), CurrentLanguage.getCurrentLanguage().getString("needNumber"), "size");
             check = false;
         }
     }
@@ -232,15 +243,15 @@ public class AddController implements Initializable {
         String eyes = eyesField.getText();
         int a = Integer.parseInt(eyes);
         if(a<0){
-            Edition.showAlert("Ошибка с аргуметом", "Требуется ввести число, чтобы команда работала", "Ошибка с записью eyesCount");
+            Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("errArg"), CurrentLanguage.getCurrentLanguage().getString("needNumber"), "eyesCount");
             check = false;
         }
     } catch  (IndexOutOfBoundsException ex) {
-        Edition.showAlert("Ошибка с аргуметом", "Не указаны аргументы команды", "Ошибка с записью eyesCount");
+        Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("errArg"), CurrentLanguage.getCurrentLanguage().getString("argComm"), "eyesCount");
         check =false;
         //System.err.println("Не указаны аргументы команды.");
     } catch (NumberFormatException ex) {
-        Edition.showAlert("Ошибка с аргуметом", "Требуется ввести число, чтобы команда работала", "Ошибка с записью eyesCount");
+        Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("errArg"), CurrentLanguage.getCurrentLanguage().getString("needNumber"), "eyesCount");
         check = false;
     }
     }
@@ -249,15 +260,15 @@ public class AddController implements Initializable {
             String eyes = toothField.getText();
             long a = Long.parseLong(eyes);
             if(a<0){
-                Edition.showAlert("Ошибка с аргуметом", "Требуется ввести число, чтобы команда работала", "Ошибка с записью toothCount");
+                Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("errArg"), CurrentLanguage.getCurrentLanguage().getString("needNumber") , "toothCount");
                 check = false;
             }
         } catch  (IndexOutOfBoundsException ex) {
-            Edition.showAlert("Ошибка с аргуметом", "Не указаны аргументы команды", "Ошибка с записью toothCount");
+            Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("errArg"), CurrentLanguage.getCurrentLanguage().getString("argComm"), "toothCount");
             check =false;
             //System.err.println("Не указаны аргументы команды.");
         } catch (NumberFormatException ex) {
-            Edition.showAlert("Ошибка с аргуметом", "Требуется ввести число, чтобы команда работала", "Ошибка с записью toothCount");
+            Edition.showAlert(CurrentLanguage.getCurrentLanguage().getString("errArg"), CurrentLanguage.getCurrentLanguage().getString("needNumber"), "toothCount");
             check =false;
         }
     }
