@@ -125,7 +125,24 @@ public class DragonAnimation {
         String musicPath = Objects.requireNonNull(getClass().getResource("/music/Bomba.mp3")).toExternalForm();
         Media media = new Media(musicPath);
        mediaPlayer = new MediaPlayer(media);
+        Button stopButton = new Button("Остановить");
+        root.getChildren().add(stopButton);
+        StackPane.setAlignment(stopButton, Pos.BOTTOM_RIGHT);
 
+        Button resumeButton = new Button("Продолжить");
+        root.getChildren().add(resumeButton);
+        StackPane.setAlignment(resumeButton, Pos.BOTTOM_LEFT);
+
+        resumeButton.setOnAction(event -> {
+            for (DragonAnimated dragonAnimated : dragonAnimateds) {
+                dragonAnimated.getAnimation().play();
+            }
+        });
+        stopButton.setOnAction(event -> {
+            for (DragonAnimated dragonAnimated : dragonAnimateds) {
+                dragonAnimated.getAnimation().pause();
+            }
+        });
 
 
         // Воспроизведение музыки при запуске окна

@@ -18,15 +18,17 @@ public class Controller implements Initializable {
 
     public StackPane rootPane;
 
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         Platform.runLater(() -> {
             System.out.println("work");
             for (Map.Entry<ImageView, DragonForFly> entry : DragonAnimation.hashMap.entrySet()) {
                 DragonForFly dragon = entry.getValue();
                 ImageView imageView = entry.getKey();
                 //rootPane.getChildren().add(imageView);
-                String info = "Дракон c именем - " + dragon.getName() + "принадлежит пользавтелю: " + dragon.getCreator();
+                String info = "Дракон c именем - " + dragon.getName() + " принадлежит пользавтелю: " + dragon.getCreator();
                 System.out.println("1");
                 Tooltip tooltip = new Tooltip(info);
                 Tooltip.install(imageView, tooltip);
